@@ -15,8 +15,28 @@
   </head>
 
   <body>
-
-    <div id="app"></div>
+    <div class="flex flex-col justify-center items-center" id="app">
+      <img class="bg-black px-4
+      py-2 rounded-lg mt-32" src="./src/assets/icons/logo.png" alt="_">
+      <p class="font-bold text-2xl mt-8">Login to your Account</p>
+      <p class="hidden font-bold text-2xl mt-8">Create New Account</p>
+      <div class="flex items-center mt-8 h-8 mr-4 bg-slate-50">
+        <img src="./src/assets/icons/icons8-mail-25 (1).png" alt="_">
+        <input class="w-48 bg-slate-50 focus:outline-none" type="email" required placeholder="Email">
+      </div>
+      <div class="flex items-center mt-6 h-8 bg-slate-50">
+        <img src="./src/assets/icons/icons8-lock-24.png" alt="_">
+        <input class="w-48 bg-slate-50 focus:outline-none" type="password" placeholder="Password">
+        <img class="w-4 h-auto cursor-pointer" src="./src/assets/icons/invisible.png" alt="">
+      </div>
+      <p class="mt-6 text-blue-400 cursor-pointer">New Here? Create new account</p>
+      <p class=" hidden mt-6 text-blue-400 cursor-pointer">Do you have an account? Log in</p>
+      <div class="mt-4">
+        <input type="checkbox">
+        <label for="checkbox">Remember me</label>
+      </div>
+      <button class="mt-16 py-2 px-28 rounded-3xl bg-slate-800 text-slate-100">Sign in</button>
+    </div>
     <script type="module" src="./main.js"></script>
   </body>
 
