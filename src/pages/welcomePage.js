@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -36,4 +37,7 @@ export function welcomePage() {
   textContainer2.textContent = 'The best sneakers e-commerce app of the century for your fashion needs!';
 
   container.appendChild(textContainer2);
+  setTimeout(() => {
+    router.navigate(routes.firstlanding);
+  }, 4000)
 }
