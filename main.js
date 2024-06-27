@@ -38,7 +38,7 @@ export const routes = {
 export const router = new Navigo("/");
 
 
-router.on(routes.first, firstPage)
+// router.on(routes.first, firstPage)
   .on(routes.welcome, welcomePage)
   .on(routes.firstlanding, firstLandingPage)
   .on(routes.secondlanding, secondLandingPage)
