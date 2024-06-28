@@ -2,6 +2,7 @@
 const container = document.getElementById('app');
 
 export function productPage() {
+  container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max';
 
   const carousel = document.createElement('div');
@@ -48,7 +49,7 @@ export function productPage() {
 
   const likeIcon = document.createElement('img');
   likeIcon.classList = 'w-10 h-auto pt-2';
-  likeIcon.src = './src/assets/icons/like.png';
+  likeIcon.src = '../src/assets/icons/like.png';
   likeIcon.alt = '_';
 
   productInfo.appendChild(productName);
@@ -70,7 +71,7 @@ export function productPage() {
 
   const rateIcon = document.createElement('img');
   rateIcon.classList = 'w-6 h-6';
-  rateIcon.src = './src/assets/icons/star.png';
+  rateIcon.src = '../src/assets/icons/star.png';
   rateIcon.alt = '_';
 
   const rateText = document.createElement('p');
@@ -117,7 +118,7 @@ export function productPage() {
   sizeOptions.classList = 'flex gap-x-3';
 
   const sizeOption1 = document.createElement('div');
-  sizeOption1.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700';
+  sizeOption1.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-400';
   sizeOption1.textContent = '41';
 
   const sizeOption2 = document.createElement('div');
@@ -125,7 +126,7 @@ export function productPage() {
   sizeOption2.textContent = '42';
 
   const sizeOption3 = document.createElement('div');
-  sizeOption3.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700';
+  sizeOption3.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-400';
   sizeOption3.textContent = '43';
 
   sizeOptions.appendChild(sizeOption1);
@@ -152,7 +153,7 @@ export function productPage() {
   const colorOption2 = document.createElement('div');
   colorOption2.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 bg-slate-700';
   const colorOption2Img = document.createElement('img');
-  colorOption2Img.src = './src/assets/icons/check.png';
+  colorOption2Img.src = '../src/assets/icons/check.png';
   colorOption2Img.alt = '_';
   colorOption2.appendChild(colorOption2Img);
 
@@ -173,18 +174,18 @@ export function productPage() {
   container.appendChild(options);
 
   const quantity = document.createElement('div');
-  quantity.className = 'pl-6 mt-10 flex gap-x-6 items-center';
+  quantity.classList = 'pl-6 mt-10 flex gap-x-6 items-center';
   quantity.id = 'quantity';
 
   const quantityTitle = document.createElement('p');
-  quantityTitle.className = 'font-semibold text-2xl';
+  quantityTitle.classList = 'font-semibold text-2xl';
   quantityTitle.textContent = 'Quantity';
 
   const quantityControls = document.createElement('div');
-  quantityControls.className = 'py-2 px-5 rounded-3xl bg-slate-100 flex text-3xl gap-x-6 font-semibold';
+  quantityControls.classList = 'py-2 px-5 rounded-3xl bg-slate-100 flex text-3xl gap-x-6 font-semibold';
 
   const decrement = document.createElement('p');
-  decrement.className = 'cursor-pointer';
+  decrement.classList = 'cursor-pointer';
   decrement.textContent = '-';
 
   const quantityValue = document.createElement('p');
@@ -192,7 +193,7 @@ export function productPage() {
   quantityValue.textContent = '1';
 
   const increment = document.createElement('p');
-  increment.className = 'cursor-pointer';
+  increment.classList = 'cursor-pointer';
   increment.textContent = '+';
 
 
@@ -206,19 +207,19 @@ export function productPage() {
   container.appendChild(quantity);
 
   const action = document.createElement('div');
-  action.className = 'fixed bottom-0 h-28 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around';
+  action.classList = 'fixed bottom-0 h-28 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around';
   action.id = 'action';
 
   const price = document.createElement('div');
-  price.className = 'flex flex-col text-center mt-3';
+  price.classList = 'flex flex-col text-center mt-3';
   price.id = 'price';
 
   const priceLabel = document.createElement('p');
-  priceLabel.className = 'text-lg font-semibold';
+  priceLabel.classList = 'text-lg font-semibold';
   priceLabel.textContent = 'Total Price';
 
   const priceValue = document.createElement('p');
-  priceValue.className = 'text-2xl font-bold';
+  priceValue.classList = 'text-2xl font-bold';
   priceValue.id = 'price';
   priceValue.textContent = '$ 240.00';
 
@@ -226,10 +227,10 @@ export function productPage() {
   price.appendChild(priceValue);
 
   const addToCartButton = document.createElement('button');
-  addToCartButton.className = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2';
+  addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2';
 
   const cartIcon = document.createElement('img');
-  cartIcon.src = './src/assets/icons/carticon.png';
+  cartIcon.src = '../src/assets/icons/carticon.png';
   cartIcon.alt = '_';
 
   const buttonText = document.createElement('span');

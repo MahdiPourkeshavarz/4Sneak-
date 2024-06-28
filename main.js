@@ -31,7 +31,8 @@ export const routes = {
   secondlanding: "/landing/2",
   thirdlanding: "/landing/3",
   auth: "/auth",
-  home: "/home"
+  home: "/home",
+  product: "/product"
 }
 
 
@@ -45,7 +46,7 @@ export const router = new Navigo("/");
   .on(routes.thirdlanding, thirdLandingPage)
   .on(routes.auth, authenticationPage)
   .on(routes.home, homePage)
-  .on(routes.first, cartPage)
+  .on(routes.product, productPage)
   .on(routes.first, walletPage)
   .on(routes.first, profilePage)
   .on(routes.first, ordersPage)
