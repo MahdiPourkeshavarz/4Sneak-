@@ -1,6 +1,62 @@
-/*
-! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
-*/
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.custom-radio {
+  -moz-appearance: none !important;
+       appearance: none !important;
+  /* Remove default styling */
+  -webkit-appearance: none !important;
+  /* Remove default styling for Safari */
+  background-color: #fff !important;
+  /* Background color */
+  border: 2px solid #ccc !important;
+  /* Border styling */
+  border-radius: 50% !important;
+  /* Make it round */
+  width: 36px !important;
+  /* Width of the custom radio button */
+  height: 36px !important;
+  /* Height of the custom radio button */
+  position: relative !important;
+  /* Positioning for the checked state */
+  cursor: pointer !important;
+  /* Cursor styling */
+  margin-left: 12px !important;
+  /* Adjust margin as needed */
+}
+
+.custom-radio:checked {
+  background-color: #000 !important;
+  /* Background color when checked */
+  border-color: #000 !important;
+  /* Border color when checked */
+}
+
+.custom-radio:checked::after {
+  content: '' !important;
+  /* Content of the pseudo-element */
+  display: block !important;
+  /* Display the pseudo-element */
+  width: 24px !important;
+  /* Width of the inner circle */
+  height: 24px !important;
+  /* Height of the inner circle */
+  background: #fff !important;
+  /* Background color of the inner circle */
+  border-radius: 50% !important;
+  /* Make the inner circle round */
+  position: absolute !important;
+  /* Position it absolutely */
+  top: 50% !important;
+  /* Center it vertically */
+  left: 50% !important;
+  /* Center it horizontally */
+  transform: translate(-50%, -50%) !important;
+  /* Center it exactly */
+}
+
+/* ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com */
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -588,6 +644,38 @@ video {
   }
 }
 
+.custom-radio {
+  -moz-appearance: none !important;
+       appearance: none !important;
+  -webkit-appearance: none !important;
+  background-color: #fff !important;
+  border: 2px solid #ccc !important;
+  border-radius: 50% !important;
+  width: 48px !important;
+  height: 48px !important;
+  position: relative !important;
+  cursor: pointer !important;
+  margin-left: 12px !important;
+}
+
+.custom-radio:checked {
+  background-color: #000 !important;
+  border-color: #000 !important;
+}
+
+.custom-radio:checked::after {
+  content: "" !important;
+  display: block !important;
+  width: 12px !important;
+  height: 12px !important;
+  background-color: #fff !important;
+  border-radius: 50% !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+}
+
 .fixed {
   position: fixed;
 }
@@ -652,12 +740,20 @@ video {
   right: 0.5rem;
 }
 
+.right-8 {
+  right: 2rem;
+}
+
 .top-3 {
   top: 0.75rem;
 }
 
 .top-4 {
   top: 1rem;
+}
+
+.top-8 {
+  top: 2rem;
 }
 
 .mx-auto {
@@ -731,6 +827,10 @@ video {
 
 .mt-32 {
   margin-top: 8rem;
+}
+
+.mt-36 {
+  margin-top: 9rem;
 }
 
 .mt-4 {
@@ -1271,6 +1371,10 @@ video {
   padding-left: 0.5rem;
 }
 
+.pl-28 {
+  padding-left: 7rem;
+}
+
 .pl-32 {
   padding-left: 8rem;
 }
@@ -1454,4 +1558,3 @@ video {
     color: rgb(249 250 251 / var(--tw-text-opacity));
   }
 }
-

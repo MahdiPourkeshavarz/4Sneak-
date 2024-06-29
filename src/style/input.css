@@ -1,7 +1,39 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
+.custom-radio {
+  appearance: none !important; /* Remove default styling */
+  -webkit-appearance: none !important; /* Remove default styling for Safari */
+  background-color: #fff !important; /* Background color */
+  border: 2px solid #ccc !important; /* Border styling */
+  border-radius: 50% !important; /* Make it round */
+  width: 36px !important; /* Width of the custom radio button */
+  height: 36px !important; /* Height of the custom radio button */
+  position: relative !important; /* Positioning for the checked state */
+  cursor: pointer !important; /* Cursor styling */
+  margin-left: 12px !important; /* Adjust margin as needed */
+}
+
+.custom-radio:checked {
+  background-color: #000 !important; /* Background color when checked */
+  border-color: #000 !important; /* Border color when checked */
+}
+
+.custom-radio:checked::after {
+  content: '' !important; /* Content of the pseudo-element */
+  display: block !important; /* Display the pseudo-element */
+  width: 24px !important; /* Width of the inner circle */
+  height: 24px !important; /* Height of the inner circle */
+  background: #fff !important; /* Background color of the inner circle */
+  border-radius: 50% !important; /* Make the inner circle round */
+  position: absolute !important; /* Position it absolutely */
+  top: 50% !important; /* Center it vertically */
+  left: 50% !important; /* Center it horizontally */
+  transform: translate(-50%, -50%) !important; /* Center it exactly */
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
