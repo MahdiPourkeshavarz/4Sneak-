@@ -32,14 +32,19 @@ export const routes = {
   thirdlanding: "/landing/3",
   auth: "/auth",
   home: "/home",
-  product: "/product"
+  product: "/product",
+  cart: "/cart",
+  ship: "/shippingMethod",
+  search: "/search",
+  address: "/address",
+  finalcheckout: "/checkout/final",
 }
 
 
 export const router = new Navigo("/");
 
 
-// router.on(routes.first, firstPage)
+router.on(routes.first, firstPage)
   .on(routes.welcome, welcomePage)
   .on(routes.firstlanding, firstLandingPage)
   .on(routes.secondlanding, secondLandingPage)
@@ -47,15 +52,15 @@ export const router = new Navigo("/");
   .on(routes.auth, authenticationPage)
   .on(routes.home, homePage)
   .on(routes.product, productPage)
-  .on(routes.first, walletPage)
-  .on(routes.first, profilePage)
-  .on(routes.first, ordersPage)
-  .on(routes.first, searchPage)
+  .on(routes.cart, cartPage)
+  .on(routes.ship, shipmentPage)
+  .on(routes.search, searchPage)
+  .on(routes.address, addressPage)
   .on(routes.first, checkoutPage)
   .on(routes.first, mostPopularPage)
   .on(routes.first, brandPage)
   .on(routes.first, productPage)
-  .on(routes.first, finalCheckoutPage)
+  .on(routes.finalcheckout, finalCheckoutPage)
   .on(routes.first, shipmentPage)
   .on(routes.first, addressPage)
   .on(routes.first, paymentPage)

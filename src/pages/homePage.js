@@ -169,7 +169,7 @@ export function homePage() {
   actionLinks.forEach(link => {
     const a = document.createElement('a');
     if (link.badge) {
-      a.className = 'relative';
+      a.classList = 'relative';
 
       const badge = document.createElement('div');
       badge.classList = 'absolute flex items-center justify-center w-6 h-6 bg-red-700 text-white rounded-full -top-4 right-0 text-center text-sm';

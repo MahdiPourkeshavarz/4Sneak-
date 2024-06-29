@@ -2,6 +2,7 @@
 const container = document.getElementById('app');
 
 export function cartPage() {
+  container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-12 px-6';
 
   const top = document.createElement('div');
@@ -125,7 +126,7 @@ export function cartPage() {
   checkout.id = 'Checkout';
 
   const checkoutPrice = document.createElement('div');
-  checkoutPrice.className = 'flex flex-col text-center mt-3';
+  checkoutPrice.classList = 'flex flex-col text-center mt-3';
   checkoutPrice.id = 'price';
 
   const totalPriceLabel = document.createElement('p');
