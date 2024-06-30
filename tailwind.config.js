@@ -17,22 +17,22 @@ export default {
           backgroundColor: '#fff !important',
           border: '2px solid #ccc !important',
           borderRadius: '50% !important',
-          width: '48px !important',
-          height: '48px !important',
+          width: '28px !important',
+          height: '28px !important',
           position: 'relative !important',
           cursor: 'pointer !important',
           marginLeft: '12px !important'
         },
         '.custom-radio:checked': {
-          backgroundColor: '#000 !important',
+          backgroundColor: '#fff !important',
           borderColor: '#000 !important'
         },
         '.custom-radio:checked::after': {
           content: '"" !important',
           display: 'block !important',
-          width: '12px !important',
-          height: '12px !important',
-          backgroundColor: '#fff !important',
+          width: '18px !important',
+          height: '18px !important',
+          backgroundColor: '#000 !important',
           borderRadius: '50% !important',
           position: 'absolute !important',
           top: '50% !important',

@@ -2,61 +2,9 @@
   display: none;
 }
 
-.custom-radio {
-  -moz-appearance: none !important;
-       appearance: none !important;
-  /* Remove default styling */
-  -webkit-appearance: none !important;
-  /* Remove default styling for Safari */
-  background-color: #fff !important;
-  /* Background color */
-  border: 2px solid #ccc !important;
-  /* Border styling */
-  border-radius: 50% !important;
-  /* Make it round */
-  width: 36px !important;
-  /* Width of the custom radio button */
-  height: 36px !important;
-  /* Height of the custom radio button */
-  position: relative !important;
-  /* Positioning for the checked state */
-  cursor: pointer !important;
-  /* Cursor styling */
-  margin-left: 12px !important;
-  /* Adjust margin as needed */
-}
-
-.custom-radio:checked {
-  background-color: #000 !important;
-  /* Background color when checked */
-  border-color: #000 !important;
-  /* Border color when checked */
-}
-
-.custom-radio:checked::after {
-  content: '' !important;
-  /* Content of the pseudo-element */
-  display: block !important;
-  /* Display the pseudo-element */
-  width: 24px !important;
-  /* Width of the inner circle */
-  height: 24px !important;
-  /* Height of the inner circle */
-  background: #fff !important;
-  /* Background color of the inner circle */
-  border-radius: 50% !important;
-  /* Make the inner circle round */
-  position: absolute !important;
-  /* Position it absolutely */
-  top: 50% !important;
-  /* Center it vertically */
-  left: 50% !important;
-  /* Center it horizontally */
-  transform: translate(-50%, -50%) !important;
-  /* Center it exactly */
-}
-
-/* ! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com */
+/*
+! tailwindcss v3.4.4 | MIT License | https://tailwindcss.com
+*/
 
 /*
 1. Prevent padding and border from affecting element width. (https://github.com/mozdevs/cssremedy/issues/4)
@@ -651,24 +599,24 @@ video {
   background-color: #fff !important;
   border: 2px solid #ccc !important;
   border-radius: 50% !important;
-  width: 48px !important;
-  height: 48px !important;
+  width: 28px !important;
+  height: 28px !important;
   position: relative !important;
   cursor: pointer !important;
   margin-left: 12px !important;
 }
 
 .custom-radio:checked {
-  background-color: #000 !important;
+  background-color: #fff !important;
   border-color: #000 !important;
 }
 
 .custom-radio:checked::after {
   content: "" !important;
   display: block !important;
-  width: 12px !important;
-  height: 12px !important;
-  background-color: #fff !important;
+  width: 18px !important;
+  height: 18px !important;
+  background-color: #000 !important;
   border-radius: 50% !important;
   position: absolute !important;
   top: 50% !important;
@@ -756,6 +704,18 @@ video {
   top: 2rem;
 }
 
+.-right-8 {
+  right: -2rem;
+}
+
+.-right-10 {
+  right: -2.5rem;
+}
+
+.-right-6 {
+  right: -1.5rem;
+}
+
 .mx-auto {
   margin-left: auto;
   margin-right: auto;
@@ -775,6 +735,10 @@ video {
 
 .ml-2 {
   margin-left: 0.5rem;
+}
+
+.ml-32 {
+  margin-left: 8rem;
 }
 
 .ml-4 {
@@ -847,6 +811,10 @@ video {
 
 .mt-8 {
   margin-top: 2rem;
+}
+
+.ml-20 {
+  margin-left: 5rem;
 }
 
 .inline {
@@ -1413,6 +1381,18 @@ video {
 
 .pt-4 {
   padding-top: 1rem;
+}
+
+.pl-20 {
+  padding-left: 5rem;
+}
+
+.pr-6 {
+  padding-right: 1.5rem;
+}
+
+.pr-8 {
+  padding-right: 2rem;
 }
 
 .text-left {

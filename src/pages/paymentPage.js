@@ -3,7 +3,7 @@ const container = document.getElementById('app');
 
 export function paymentPage() {
   container.innerHTML = "";
-  container.classList = 'flex flex-col w-[430px] h-max gap-y-8';
+  container.classList = 'flex flex-col w-[430px] h-max gap-y-8 bg-slate-50';
 
   const topDiv = document.createElement('div');
   topDiv.classList.add('flex', 'items-center', 'mt-16');
@@ -42,9 +42,10 @@ export function paymentPage() {
   // Function to create an item element
   function createItem(paymentMethod) {
     const itemDiv = document.createElement('div');
-    itemDiv.classList.add('flex', 'p-2', 'items-center', 'h-20', 'bg-white', 'rounded-2xl', 'relative');
+    itemDiv.classList.add('flex', 'py-1', 'items-center', 'h-20', 'bg-white', 'rounded-2xl', 'relative', 'justify-between', 'pr-8');
     itemDiv.id = 'item';
-
+    const leftDiv = document.createElement('div');
+    leftDiv.classList = "flex items-center";
     const img = document.createElement('img');
     img.classList.add('pl-2');
     img.src = paymentMethod.src;
@@ -54,22 +55,28 @@ export function paymentPage() {
     text.classList.add('pl-2', 'font-semibold', 'text-xl');
     text.textContent = paymentMethod.text;
 
-    itemDiv.appendChild(img);
-    itemDiv.appendChild(text);
+    leftDiv.appendChild(img);
+    leftDiv.appendChild(text);
+
+    const rightDiv = document.createElement('div');
+    rightDiv.classList = "flex items-center"
 
     if (paymentMethod.amount) {
       const amount = document.createElement('p');
       amount.classList.add('pl-28', 'font-semibold', 'text-xl');
       amount.textContent = paymentMethod.amount;
-      itemDiv.appendChild(amount);
+      rightDiv.appendChild(amount);
     }
 
     const input = document.createElement('input');
-    input.classList.add('absolute', 'right-8', 'top-8', 'custom-radio');
+    input.classList.add('absolute', '-right-6', 'custom-radio');
     input.type = 'radio';
     input.name = 'payment';
 
-    itemDiv.appendChild(input);
+    rightDiv.appendChild(input);
+
+    itemDiv.appendChild(leftDiv);
+    itemDiv.appendChild(rightDiv);
 
     return itemDiv;
   }

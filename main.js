@@ -38,13 +38,14 @@ export const routes = {
   search: "/search",
   address: "/address",
   finalcheckout: "/checkout/final",
+  payment: "/checkout/payment",
 }
 
 
 export const router = new Navigo("/");
 
 
-// router.on(routes.first, firstPage)
+router.on(routes.first, firstPage)
   .on(routes.welcome, welcomePage)
   .on(routes.firstlanding, firstLandingPage)
   .on(routes.secondlanding, secondLandingPage)
@@ -63,7 +64,7 @@ export const router = new Navigo("/");
   .on(routes.finalcheckout, finalCheckoutPage)
   .on(routes.first, shipmentPage)
   .on(routes.first, addressPage)
-  .on(routes.first, paymentPage)
+  .on(routes.payment, paymentPage)
   .resolve();
 
 
