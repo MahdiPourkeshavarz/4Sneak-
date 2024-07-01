@@ -39,6 +39,7 @@ export const routes = {
   address: "/address",
   finalcheckout: "/checkout/final",
   payment: "/checkout/payment",
+  orders: "/orders/active"
 }
 
 
@@ -57,7 +58,7 @@ router.on(routes.first, firstPage)
   .on(routes.ship, shipmentPage)
   .on(routes.search, searchPage)
   .on(routes.address, addressPage)
-  .on(routes.first, checkoutPage)
+  .on(routes.orders, ordersPage)
   .on(routes.first, mostPopularPage)
   .on(routes.first, brandPage)
   .on(routes.first, productPage)
