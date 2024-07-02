@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -292,4 +293,7 @@ export function finalCheckoutPage() {
   button.appendChild(buttonImg);
   container.appendChild(button);
 
+  button.addEventListener('click', () => {
+    router.navigate(routes.payment);
+  })
 }

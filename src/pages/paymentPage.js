@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -100,4 +101,8 @@ export function paymentPage() {
   button.textContent = 'Continue to Payment';
 
   container.appendChild(button);
+  button.addEventListener('click', () => {
+    router.navigate(routes.home);
+    router.navigate(routes.successModal);
+  })
 }

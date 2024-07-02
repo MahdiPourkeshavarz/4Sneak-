@@ -168,6 +168,7 @@ export function homePage() {
   // biome-ignore lint/complexity/noForEach: <explanation>
   actionLinks.forEach(link => {
     const a = document.createElement('a');
+    a.innerHTML = '<a data-navigo></a>'
     if (link.badge) {
       a.classList = 'relative';
 
