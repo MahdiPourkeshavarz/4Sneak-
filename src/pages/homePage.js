@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -59,6 +60,10 @@ export function homePage() {
   search.appendChild(searchInput);
 
   container.appendChild(search);
+
+  search.addEventListener('click', () => {
+    router.navigate(routes.search);
+  })
 
 
   const brands = document.createElement('div');

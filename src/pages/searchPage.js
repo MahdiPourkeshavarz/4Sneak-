@@ -20,7 +20,7 @@ export function searchPage() {
   searchContainer.appendChild(searchIcon);
 
   const searchInput = document.createElement('input');
-  searchInput.classList = 'pl-4';
+  searchInput.classList = 'pl-4 focus:outline-none w-56';
   searchInput.type = 'text';
   searchInput.placeholder = 'Enter Name';
   searchContainer.appendChild(searchInput);
@@ -73,7 +73,7 @@ export function searchPage() {
   notFound.appendChild(notFoundText);
 
   container.appendChild(notFound);
-  const result = false;
+  const result = true;
   if (result) {
     notFound.classList.add('hidden');
     // Create the items container

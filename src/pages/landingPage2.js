@@ -3,14 +3,15 @@ const container = document.getElementById('app');
 
 export function secondLandingPage() {
   container.innerHTML = "";
-  container.classList = 'flex flex-col justify-center items-center w-[400px]';
+  container.classList = 'flex flex-col justify-center items-center w-[430px] h-max';
 
   const img1 = document.createElement('img');
-  img1.src = '../src/assets/landings/slide2.png';
+  img1.classList = "w-[430px] h-[660px]"
+  img1.src = '../src/assets/landings/landing.png';
   img1.alt = '_';
 
   const paragraph = document.createElement('p');
-  paragraph.classList = 'pt-4 text-2xl text-center font-bold';
+  paragraph.classList = 'pt-8 text-2xl text-center font-bold';
   paragraph.innerHTML = 'We provide high quality <br> products just for you';
 
   const img2 = document.createElement('img');
@@ -19,7 +20,7 @@ export function secondLandingPage() {
   img2.alt = '_';
 
   const link = document.createElement('a');
-  link.innerHTML = '<a href="/landing/3" data-navigo><button class="bg-slate-900 rounded-3xl px-28 py-2 mt-4 text-white">Next</button></a>';
+  link.innerHTML = '<a href="/landing/3" data-navigo><button class="bg-slate-900 rounded-3xl px-36 py-2 mt-4 text-white">Next</button></a>';
 
   container.appendChild(img1);
   container.appendChild(paragraph);

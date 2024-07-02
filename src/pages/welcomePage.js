@@ -4,11 +4,11 @@ const container = document.getElementById('app');
 
 export function welcomePage() {
   container.innerHTML = "";
-  container.classList = "flex flex-col w-fit h-fit relative bg-slate-600";
+  container.classList = "flex flex-col w-[430px] h-max relative bg-slate-600";
 
 
   const img = document.createElement('img');
-  img.src = '../src/assets/landings/landing.png';
+  img.src = '../src/assets/newLanding/3.jpg';
   img.alt = '_';
 
   container.appendChild(img);
@@ -38,6 +38,6 @@ export function welcomePage() {
 
   container.appendChild(textContainer2);
   setTimeout(() => {
-    router.navigate(routes.firstlanding);
+    router.navigate(routes.firstlanding)
   }, 4000)
 }
