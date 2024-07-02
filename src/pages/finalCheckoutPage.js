@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -64,7 +65,7 @@ export function finalCheckoutPage() {
 
   const shippingAddressMoreImg = document.createElement('img');
   shippingAddressMoreImg.classList = 'w-8 h-8 mt-4 ml-2';
-  shippingAddressMoreImg.src = '../src/assets/icons/top-more.png';
+  shippingAddressMoreImg.src = '../src/assets/icons/edit.png';
   shippingAddressMoreImg.alt = '_';
 
   // Append everything to the shipping item
@@ -229,7 +230,7 @@ export function finalCheckoutPage() {
   // Create the more options image
   const moreImg = document.createElement('img');
   moreImg.classList = 'w-8 h-8 mt-4 ml-2';
-  moreImg.src = '../src/assets/icons/top-more.png';
+  moreImg.src = '../src/assets/icons/edit.png';
   moreImg.alt = '_';
 
   // Append the image, info div, and more options image to the item div
@@ -292,4 +293,7 @@ export function finalCheckoutPage() {
   button.appendChild(buttonImg);
   container.appendChild(button);
 
+  button.addEventListener('click', () => {
+    router.navigate(routes.payment);
+  })
 }

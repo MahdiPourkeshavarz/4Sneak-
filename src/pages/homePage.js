@@ -1,7 +1,9 @@
+import { router, routes } from "../../main";
+import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
 
 const container = document.getElementById('app');
 
-export function homePage() {
+export async function homePage() {
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max';
 
@@ -59,6 +61,10 @@ export function homePage() {
   search.appendChild(searchInput);
 
   container.appendChild(search);
+
+  searchIcon.addEventListener('click', () => {
+    router.navigate(routes.search);
+  })
 
 
   const brands = document.createElement('div');
@@ -125,36 +131,37 @@ export function homePage() {
 
   container.appendChild(filter);
 
+  filter.addEventListener('click', (e) => {
+    switch (e.target.innerHTML) {
+      case "Adidas":
+        getProducts(`${PRODUCT_URL}?_start=${ADIDAS_PRO[0]}&_end=${ADIDAS_PRO[1]}`);
+        break;
+      case "Nike":
+        getProducts(`${PRODUCT_URL}?_start=${NIKE_PRO[0]}&_end=${NIKE_PRO[1]}`);
+        break;
+      case "Puma":
+        getProducts(`${PRODUCT_URL}?_start=${PUMA_PRO[0]}&_end=${PUMA_PRO[1]}`);
+        break;
+      case "NB":
+        getProducts(`${PRODUCT_URL}?_start=${NB_PRO[0]}&_end=${NB_PRO[1]}`);
+        break;
+      case "Reebok":
+        getProducts(`${PRODUCT_URL}?_start=${REEBOK_PRO[0]}&_end=${REEBOK_PRO[1]}`);
+        break;
+      case "All":
+        getProducts(MOST_URL);
+    }
+  })
+
   const items = document.createElement('div');
-  items.classList = 'mt-6 px-8 grid grid-cols-2 mb-16';
+  items.classList = 'mt-6 px-8 grid grid-cols-2 mb-32';
   items.id = 'items';
-
-  const item = document.createElement('div');
-  item.classList = 'flex flex-col p-4 w-fit justify-evenly';
-
-  const itemImg = document.createElement('img');
-  itemImg.classList = 'w-32 h-auto p-1 bg-[#F3F3F3] rounded-2xl';
-  itemImg.src = '../src/assets/adidas/adidas.png';
-  itemImg.alt = '_';
-  item.appendChild(itemImg);
-
-  const itemName = document.createElement('p');
-  itemName.classList = 'text-xs font-bold pt-1 pl-1';
-  itemName.textContent = 'Nike Pegasus';
-  item.appendChild(itemName);
-
-  const itemPrice = document.createElement('p');
-  itemPrice.classList = 'font-bold text-xs pt-1 pl-1';
-  itemPrice.textContent = '$ 110.00';
-  item.appendChild(itemPrice);
-
-  items.appendChild(item);
 
   container.appendChild(items);
 
   // Create the action bar
   const actionBar = document.createElement('div');
-  actionBar.classList = 'fixed h-20 bottom-0 flex items-center left-9 gap-x-10 bg-white';
+  actionBar.classList = 'fixed h-28 bottom-0 flex items-center left-9 gap-x-10 bg-white';
   actionBar.id = 'action-bar';
 
   const actionLinks = [
@@ -168,6 +175,7 @@ export function homePage() {
   // biome-ignore lint/complexity/noForEach: <explanation>
   actionLinks.forEach(link => {
     const a = document.createElement('a');
+    a.innerHTML = '<a data-navigo></a>'
     if (link.badge) {
       a.classList = 'relative';
 
@@ -188,5 +196,44 @@ export function homePage() {
     actionBar.appendChild(a);
   });
   container.appendChild(actionBar);
-
+  getProducts(MOST_URL);
 }
+
+async function getProducts(url) {
+  try {
+    const items = document.getElementById('items')
+    items.innerHTML = "";
+    const response = await fetch(url);
+    const data = await response.json();
+    console.log(data);
+    if (data) {
+      items.innerHTML = "";
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      data.forEach((product) => {
+        const item = document.createElement('div');
+        item.classList = 'flex flex-col p-4 w-fit justify-evenly';
+
+        const itemImg = document.createElement('img');
+        itemImg.classList = 'w-32 h-auto p-1 bg-[#F3F3F3] rounded-2xl';
+        itemImg.src = product.imgUrl;
+        itemImg.alt = '_';
+        item.appendChild(itemImg);
+
+        const itemName = document.createElement('p');
+        itemName.classList = 'text-xs font-bold pt-1 pl-1';
+        itemName.textContent = product.name;
+        item.appendChild(itemName);
+
+        const itemPrice = document.createElement('p');
+        itemPrice.classList = 'font-bold text-xs pt-1 pl-1';
+        itemPrice.textContent = `$ ${product.price}`;
+        item.appendChild(itemPrice);
+
+        items.appendChild(item);
+      })
+    }
+  } catch (e) {
+    throw new Error("failed to fetch", e);
+  }
+}
+

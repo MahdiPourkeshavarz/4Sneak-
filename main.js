@@ -15,8 +15,10 @@ import { ordersPage } from "./src/pages/ordersPage";
 import { paymentPage } from "./src/pages/paymentPage";
 import { productPage } from "./src/pages/productPage";
 import { profilePage } from "./src/pages/profilePage";
+import { removeProductModal } from "./src/pages/removeProductModal";
 import { searchPage } from "./src/pages/searchPage";
 import { shipmentPage } from "./src/pages/shipmentPage";
+import { successfulOrderModal } from "./src/pages/successfulOrderModal";
 import { walletPage } from "./src/pages/walletPage";
 import { welcomePage } from "./src/pages/welcomePage";
 import "./src/style/output.css";
@@ -38,6 +40,10 @@ export const routes = {
   search: "/search",
   address: "/address",
   finalcheckout: "/checkout/final",
+  payment: "/checkout/payment",
+  orders: "/orders/active",
+  successModal: "/checkout/successfulOrder",
+  removePro: "/cart/remove:id"
 }
 
 
@@ -56,14 +62,14 @@ router.on(routes.first, firstPage)
   .on(routes.ship, shipmentPage)
   .on(routes.search, searchPage)
   .on(routes.address, addressPage)
-  .on(routes.first, checkoutPage)
-  .on(routes.first, mostPopularPage)
-  .on(routes.first, brandPage)
+  .on(routes.orders, ordersPage)
+  .on(routes.successModal, successfulOrderModal)
+  .on(routes.removePro, removeProductModal)
   .on(routes.first, productPage)
   .on(routes.finalcheckout, finalCheckoutPage)
   .on(routes.first, shipmentPage)
   .on(routes.first, addressPage)
-  .on(routes.first, paymentPage)
+  .on(routes.payment, paymentPage)
   .resolve();
 
 

@@ -1,7 +1,9 @@
+import { router, routes } from "../../main";
 
-const container = document.getElementById('app');
+
 
 export function cartPage() {
+  const container = document.getElementById('app');
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-12 px-6';
 
@@ -159,71 +161,69 @@ export function cartPage() {
   container.appendChild(checkout);
 
 
+  const links = [
+    { href: '/home', iconSrc: '../src/assets/action/home.png', iconAlt: '_', additionalClasses: '' },
+    { href: '/cart', iconSrc: '../src/assets/action/cart.png', iconAlt: '_', additionalClasses: 'relative', isCart: true },
+    { href: '/orders/an', iconSrc: '../src/assets/action/orders.png', iconAlt: '_', additionalClasses: '' },
+    { href: '/wallet', iconSrc: '../src/assets/action/wallet.png', iconAlt: '_', additionalClasses: '' },
+    { href: '/profile', iconSrc: '../src/assets/action/profile.png', iconAlt: '_', additionalClasses: '' }
+  ];
+
+  // Utility function to create links with icons
+  function createLink(href, iconSrc, iconAlt, additionalClasses = '') {
+    const link = document.createElement('a');
+    link.innerHTML = '<a data-navigo></a>'
+    link.href = href;
+    if (additionalClasses) {
+      link.className = additionalClasses;
+    }
+
+    const icon = document.createElement('img');
+    icon.className = 'w-10 h-auto';
+    icon.src = iconSrc;
+    icon.alt = iconAlt;
+
+    link.appendChild(icon);
+    return link;
+  }
+
+  // Utility function to create cart link with badge
+  function createCartLink(href, iconSrc, iconAlt) {
+    const link = createLink(href, iconSrc, iconAlt, 'relative');
+
+    const badge = document.createElement('div');
+    badge.className = 'absolute flex items-center justify-center w-6 h-6 bg-red-700 text-white rounded-full -top-4 right-0 text-center text-sm';
+    badge.textContent = '0';
+
+    link.appendChild(badge);
+    return link;
+  }
+
+  // Create action bar container
   const actionBar = document.createElement('div');
-  actionBar.classList = 'fixed h-20 bottom-0 flex items-center left-9 gap-x-10 bg-white';
+  actionBar.className = 'fixed h-20 bottom-0 flex items-center left-9 gap-x-10 bg-white';
   actionBar.id = 'action-bar';
 
-  const homeLink = document.createElement('a');
-  homeLink.href = '#';
+  // Iterate over the links object to create and append links
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  links.forEach(link => {
+    let linkElement;
+    if (link.isCart) {
+      linkElement = createCartLink(link.href, link.iconSrc, link.iconAlt);
+    } else {
+      linkElement = createLink(link.href, link.iconSrc, link.iconAlt, link.additionalClasses);
+    }
+    actionBar.appendChild(linkElement);
+  });
 
-  const homeIcon = document.createElement('img');
-  homeIcon.classList = 'w-10 h-auto';
-  homeIcon.src = '../src/assets/action/home.png';
-  homeIcon.alt = '_';
-
-  homeLink.appendChild(homeIcon);
-
-  const cartLink = document.createElement('a');
-  cartLink.classList = 'relative';
-  cartLink.href = '#';
-
-  const cartBadge = document.createElement('div');
-  cartBadge.classList = 'absolute flex items-center justify-center w-6 h-6 bg-red-700 text-white rounded-full -top-4 right-0 text-center text-sm';
-  cartBadge.textContent = '0';
-
-  const cartIcon = document.createElement('img');
-  cartIcon.classList = 'w-10 h-auto';
-  cartIcon.src = '../src/assets/action/cart.png';
-  cartIcon.alt = '_';
-
-  cartLink.appendChild(cartBadge);
-  cartLink.appendChild(cartIcon);
-
-  const ordersLink = document.createElement('a');
-  ordersLink.href = '#';
-
-  const ordersIcon = document.createElement('img');
-  ordersIcon.classList = 'w-10 h-auto';
-  ordersIcon.src = '../src/assets/action/orders.png';
-  ordersIcon.alt = '_';
-
-  ordersLink.appendChild(ordersIcon);
-
-  const walletLink = document.createElement('a');
-  walletLink.href = '#';
-
-  const walletIcon = document.createElement('img');
-  walletIcon.classList = 'w-10 h-auto';
-  walletIcon.src = '../src/assets/action/wallet.png';
-  walletIcon.alt = '_';
-
-  walletLink.appendChild(walletIcon);
-
-  const profileLink = document.createElement('a');
-  profileLink.href = '#';
-
-  const profileIcon = document.createElement('img');
-  profileIcon.classList = 'w-10 h-auto';
-  profileIcon.src = '../src/assets/action/profile.png';
-  profileIcon.alt = '_';
-
-  profileLink.appendChild(profileIcon);
-
-  actionBar.appendChild(homeLink);
-  actionBar.appendChild(cartLink);
-  actionBar.appendChild(ordersLink);
-  actionBar.appendChild(walletLink);
-  actionBar.appendChild(profileLink);
+  // Append action bar to container
   container.appendChild(actionBar);
 
+  binIcon.addEventListener('click', () => {
+    router.navigate(routes.removePro);
+  })
+
+  checkoutButton.addEventListener('click', () => {
+    router.navigate(routes.finalcheckout);
+  })
 }
