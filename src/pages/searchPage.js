@@ -152,5 +152,43 @@ export function searchPage() {
     // Append the item to the items container
     itemsContainer.appendChild(item);
     container.appendChild(itemsContainer);
+
+    const actionBar = document.createElement('div');
+    actionBar.classList = 'fixed h-20 bottom-2 flex items-center left-9 gap-x-10 bg-white';
+    actionBar.id = 'action-bar';
+
+    const actionLinks = [
+      { href: '/home', src: '../src/assets/action/home.png' },
+      { href: '/cart', src: '../src/assets/action/cart.png', badge: true },
+      { href: '/order/active', src: '../src/assets/action/orders.png' },
+      { href: '/wallet', src: '../src/assets/action/wallet.png' },
+      { href: '/profile', src: '../src/assets/action/profile.png' }
+    ];
+
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    actionLinks.forEach(link => {
+      const a = document.createElement('a');
+      a.innerHTML = '<a data-navigo></a>'
+      if (link.badge) {
+        a.classList = 'relative';
+
+        const badge = document.createElement('div');
+        badge.classList = 'absolute flex items-center justify-center w-6 h-6 bg-red-700 text-white rounded-full -top-4 right-0 text-center text-sm';
+        badge.textContent = '0';
+        a.appendChild(badge);
+      }
+
+      a.href = link.href;
+
+      const img = document.createElement('img');
+      img.classList = 'w-10 h-auto';
+      img.src = link.src;
+      img.alt = '_';
+
+      a.appendChild(img);
+      actionBar.appendChild(a);
+    });
+
+    container.appendChild(actionBar)
   }
 }
