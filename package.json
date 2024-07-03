@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "server": "npx json-server ./src/data/db.json -m ./node_modules/json-server-auth",
+    "server": "npx json-server ./src/data/db.json -m ./node_modules/json-server-auth --watch",
     "tailwind": "npx tailwindcss -c ./tailwind.config.js -i ./src/style/input.css -o ./src/style/output.css --watch"
   },
   "devDependencies": {

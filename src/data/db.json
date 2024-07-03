@@ -308,7 +308,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/puma/4.jpg",
+      "imgUrl": "./src/assets/puma/4.webp",
       "brand": "puma"
     },
     {
@@ -327,7 +327,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/puma/5.jpg",
+      "imgUrl": "./src/assets/puma/5.webp",
       "brand": "puma"
     },
     {
@@ -346,7 +346,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/puma/6.jpg",
+      "imgUrl": "./src/assets/puma/6.webp",
       "brand": "puma"
     },
     {
@@ -479,7 +479,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/1.png",
+      "imgUrl": "./src/assets/reebok/1.jpg",
       "brand": "reebok"
     },
     {
@@ -498,7 +498,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/2.png",
+      "imgUrl": "./src/assets/reebok/2.jpg",
       "brand": "reebok"
     },
     {
@@ -517,7 +517,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/3.png",
+      "imgUrl": "./src/assets/reebok/3.jpg",
       "brand": "reebok"
     },
     {
@@ -555,7 +555,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/5.png",
+      "imgUrl": "./src/assets/reebok/5.jpg",
       "brand": "reebok"
     },
     {
@@ -574,7 +574,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/6.png",
+      "imgUrl": "./src/assets/reebok/6.jpg",
       "brand": "reebok"
     }
   ],
@@ -595,7 +595,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/adidas/2.png",
+      "imgUrl": "../src/assets/adidas/2.png",
       "brand": "adidas"
     },
     {
@@ -614,7 +614,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/nike/1_2.png",
+      "imgUrl": "../src/assets/nike/1_2.png",
       "brand": "nike"
     },
     {
@@ -633,7 +633,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/puma/1.jpg",
+      "imgUrl": "../src/assets/puma/1.jpg",
       "brand": "puma"
     },
     {
@@ -652,7 +652,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/newbalance/1.jpg",
+      "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "newbalance"
     },
     {
@@ -671,7 +671,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/6.jpg",
+      "imgUrl": "../src/assets/reebok/6.jpg",
       "brand": "reebok"
     },
     {
@@ -690,7 +690,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "./src/assets/reebok/3.jpg",
+      "imgUrl": "../src/assets/reebok/3.jpg",
       "brand": "reebok"
     }
   ],
