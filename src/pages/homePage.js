@@ -1,5 +1,6 @@
 import { router, routes } from "../../main";
 import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
+import { updateInfo } from "./brandPage";
 
 const container = document.getElementById('app');
 
@@ -72,21 +73,30 @@ export async function homePage() {
   brands.id = 'brands';
 
   const brandImages = [
-    '../src/assets/logos/adidas.png',
-    '../src/assets/logos/nike.png',
-    '../src/assets/logos/new balance.png',
-    '../src/assets/logos/puma.png',
-    '../src/assets/logos/reebok.png',
-    '../src/assets/logos/more.png'
+    ['../src/assets/logos/adidas.png', 'Adidas'],
+    ['../src/assets/logos/nike.png', 'Nike'],
+    ['../src/assets/logos/new balance.png', 'New Balance'],
+    ['../src/assets/logos/puma.png', 'Puma'],
+    ['../src/assets/logos/reebok.png', 'Reebok'],
+    ['../src/assets/logos/more.png', 'More']
   ];
 
   // biome-ignore lint/complexity/noForEach: <explanation>
-  brandImages.forEach(src => {
+  brandImages.forEach(brand => {
     const img = document.createElement('img');
-    img.src = src;
+    img.src = brand[0];
     img.alt = '_';
+    img.id = brand[1];
     brands.appendChild(img);
   });
+
+  brands.addEventListener('click', (e) => {
+    if (e.target.id === "More") {
+      updateInfo(e.target.id);
+      router.navigate(routes.brand);
+    }
+
+  })
 
   container.appendChild(brands);
 
@@ -113,12 +123,12 @@ export async function homePage() {
   filter.id = 'filter';
 
   const filterOptions = [
-    { text: 'All', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold text-white bg-slate-800' },
-    { text: 'Adidas', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold' },
-    { text: 'Nike', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold' },
-    { text: 'Reebok', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold' },
-    { text: 'Puma', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold' },
-    { text: 'NB', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold' }
+    { text: 'All', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold text-white bg-slate-800', id: "AllB" },
+    { text: 'Adidas', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold', id: "AdidasB" },
+    { text: 'Nike', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold', id: "NikeB" },
+    { text: 'Reebok', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold', id: "ReebokB" },
+    { text: 'Puma', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold', id: "PumaB" },
+    { text: 'NB', class: 'border-solid border-slate-700 border-2 w-fit py-2 px-6 rounded-3xl text-lg font-bold', id: "NBB" }
   ];
 
   // biome-ignore lint/complexity/noForEach: <explanation>
@@ -126,32 +136,43 @@ export async function homePage() {
     const div = document.createElement('div');
     div.classList = option.class;
     div.textContent = option.text;
+    div.id = option.id;
     filter.appendChild(div);
   });
 
   container.appendChild(filter);
 
   filter.addEventListener('click', (e) => {
-    switch (e.target.innerHTML) {
-      case "Adidas":
-        getProducts(`${PRODUCT_URL}?_start=${ADIDAS_PRO[0]}&_end=${ADIDAS_PRO[1]}`);
-        break;
-      case "Nike":
-        getProducts(`${PRODUCT_URL}?_start=${NIKE_PRO[0]}&_end=${NIKE_PRO[1]}`);
-        break;
-      case "Puma":
-        getProducts(`${PRODUCT_URL}?_start=${PUMA_PRO[0]}&_end=${PUMA_PRO[1]}`);
-        break;
-      case "NB":
-        getProducts(`${PRODUCT_URL}?_start=${NB_PRO[0]}&_end=${NB_PRO[1]}`);
-        break;
-      case "Reebok":
-        getProducts(`${PRODUCT_URL}?_start=${REEBOK_PRO[0]}&_end=${REEBOK_PRO[1]}`);
-        break;
-      case "All":
-        getProducts(MOST_URL);
+    const elements = ['AllB', 'AdidasB', 'NikeB', 'ReebokB', 'PumaB', 'NBB'];
+    const productMap = {
+      Adidas: ADIDAS_PRO,
+      Nike: NIKE_PRO,
+      Puma: PUMA_PRO,
+      NB: NB_PRO,
+      Reebok: REEBOK_PRO,
+      All: []
+    };
+
+    const targetText = e.target.innerHTML;
+    const targetID = `${targetText}B`;
+
+    if (productMap[targetText]) {
+      const isAll = targetText === 'All';
+      getProducts(isAll ? MOST_URL : `${PRODUCT_URL}?_start=${productMap[targetText][0]}&_end=${productMap[targetText][1]}`);
+
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      elements.forEach(id => {
+        const element = document.getElementById(id);
+        if (element) {
+          if (id === targetID) {
+            element.classList.add("text-white", "bg-slate-800");
+          } else {
+            element.classList.remove("text-white", "bg-slate-800");
+          }
+        }
+      });
     }
-  })
+  });
 
   const items = document.createElement('div');
   items.classList = 'mt-6 px-8 grid grid-cols-2 mb-32';
@@ -161,7 +182,7 @@ export async function homePage() {
 
   // Create the action bar
   const actionBar = document.createElement('div');
-  actionBar.classList = 'fixed h-28 bottom-0 flex items-center left-9 gap-x-10 bg-white';
+  actionBar.classList = 'fixed h-20 bottom-0 flex items-center left-9 gap-x-10 bg-white';
   actionBar.id = 'action-bar';
 
   const actionLinks = [
@@ -199,13 +220,12 @@ export async function homePage() {
   getProducts(MOST_URL);
 }
 
-async function getProducts(url) {
+export async function getProducts(url) {
   try {
     const items = document.getElementById('items')
     items.innerHTML = "";
     const response = await fetch(url);
     const data = await response.json();
-    console.log(data);
     if (data) {
       items.innerHTML = "";
       // biome-ignore lint/complexity/noForEach: <explanation>

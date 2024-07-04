@@ -26,4 +26,5 @@ export function thirdLandingPage() {
   container.appendChild(paragraph);
   container.appendChild(img2);
   container.appendChild(link);
+  localStorage.setItem('visited', true);
 }

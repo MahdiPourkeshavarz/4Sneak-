@@ -1,7 +1,9 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
 export function addressPage() {
+  container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-[930px] bg-slate-50';
 
   const top = document.createElement('div');
@@ -92,4 +94,8 @@ export function addressPage() {
   container.appendChild(adds);
   container.appendChild(addNewAddressButton);
   container.appendChild(applyButton);
+
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.finalcheckout)
+  })
 }

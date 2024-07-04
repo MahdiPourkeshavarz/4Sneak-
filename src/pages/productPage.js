@@ -107,65 +107,126 @@ export function productPage() {
   options.id = 'options';
 
   const sizes = document.createElement('div');
-  sizes.classList = 'flex flex-col gap-y-4 text-left w-1/2';
+  sizes.className = 'flex flex-col gap-y-4 text-left w-1/2';
   sizes.id = 'sizes';
 
+  // Create and append size title
   const sizeTitle = document.createElement('p');
-  sizeTitle.classList = 'text-2xl font-semibold';
+  sizeTitle.className = 'text-2xl font-semibold';
   sizeTitle.textContent = 'Size';
-
-  const sizeOptions = document.createElement('div');
-  sizeOptions.classList = 'flex gap-x-3';
-
-  const sizeOption1 = document.createElement('div');
-  sizeOption1.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-400';
-  sizeOption1.textContent = '41';
-
-  const sizeOption2 = document.createElement('div');
-  sizeOption2.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 text-white bg-slate-700';
-  sizeOption2.textContent = '42';
-
-  const sizeOption3 = document.createElement('div');
-  sizeOption3.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-400';
-  sizeOption3.textContent = '43';
-
-  sizeOptions.appendChild(sizeOption1);
-  sizeOptions.appendChild(sizeOption2);
-  sizeOptions.appendChild(sizeOption3);
-
   sizes.appendChild(sizeTitle);
+
+  // Create size options container
+  const sizeOptions = document.createElement('div');
+  sizeOptions.className = 'flex gap-x-3';
+
+  // Utility function to create size option elements
+  function createSizeOption(size, isActive = false) {
+    const sizeOption = document.createElement('div');
+    sizeOption.className = `border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full ${isActive ? 'border-slate-700 text-white bg-slate-700' : 'border-slate-400'}`;
+    sizeOption.textContent = size;
+
+    // Add click event listener to handle active state
+    sizeOption.addEventListener('click', () => {
+      setActiveSize(sizeOption);
+    });
+
+    return sizeOption;
+  }
+
+  // Function to set active size
+  function setActiveSize(activeElement) {
+    // Remove active styles from all size options
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    sizeOptions.childNodes.forEach(option => {
+      option.classList.remove('border-slate-700', 'text-white', 'bg-slate-700');
+      option.classList.add('border-slate-400', 'text-black', 'bg-white');
+    });
+
+    // Add active styles to the clicked size option
+    activeElement.classList.remove('border-slate-400', 'text-black', 'bg-white');
+    activeElement.classList.add('border-slate-700', 'text-white', 'bg-slate-700');
+  }
+
+  // Create and append size options
+  const sizesArray = ['41', '42', '43'];
+  sizesArray.forEach((size, index) => {
+    const isActive = (size === '42'); // Set initial active size
+    const sizeOption = createSizeOption(size, isActive);
+    sizeOptions.appendChild(sizeOption);
+  });
+
+  // Append size options to sizes container
   sizes.appendChild(sizeOptions);
 
+  // Append sizes to the main container
+  container.appendChild(sizes);
+
   const colors = document.createElement('div');
-  colors.classList = 'flex flex-col gap-y-4 overflow-hidden';
+  colors.className = 'flex flex-col gap-y-4 overflow-hidden';
   colors.id = 'colors';
 
+  // Create and append color title
   const colorTitle = document.createElement('p');
-  colorTitle.classList = 'text-2xl font-semibold';
+  colorTitle.className = 'text-2xl font-semibold';
   colorTitle.textContent = 'Color';
-
-  const colorOptions = document.createElement('div');
-  colorOptions.classList = 'flex gap-x-2';
-
-  const colorOption1 = document.createElement('div');
-  colorOption1.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 bg-blue-700';
-
-  const colorOption2 = document.createElement('div');
-  colorOption2.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 bg-slate-700';
-  const colorOption2Img = document.createElement('img');
-  colorOption2Img.src = '../src/assets/icons/check.png';
-  colorOption2Img.alt = '_';
-  colorOption2.appendChild(colorOption2Img);
-
-  const colorOption3 = document.createElement('div');
-  colorOption3.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 bg-red-700';
-
-
-  colorOptions.appendChild(colorOption1);
-  colorOptions.appendChild(colorOption2);
-  colorOptions.appendChild(colorOption3);
-
   colors.appendChild(colorTitle);
+
+  // Create color options container
+  const colorOptions = document.createElement('div');
+  colorOptions.className = 'flex gap-x-2';
+
+  // Utility function to create color option elements
+  function createColorOption(color, isActive = false) {
+    const colorOption = document.createElement('div');
+    colorOption.className = `border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 ${color}`;
+
+    if (isActive) {
+      const checkIcon = document.createElement('img');
+      checkIcon.src = '../src/assets/icons/check.png';
+      checkIcon.alt = '_';
+      colorOption.appendChild(checkIcon);
+    }
+
+    // Add click event listener to handle active state
+    colorOption.addEventListener('click', () => {
+      setActiveColor(colorOption);
+    });
+
+    return colorOption;
+  }
+
+  // Function to set active color
+  function setActiveColor(activeElement) {
+    // Remove check icon from all color options
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    colorOptions.childNodes.forEach(option => {
+      if (option.firstChild && option.firstChild.tagName === 'IMG') {
+        option.removeChild(option.firstChild);
+      }
+    });
+
+    // Add check icon to the clicked color option
+    const checkIcon = document.createElement('img');
+    checkIcon.src = '../src/assets/icons/check.png';
+    checkIcon.alt = '_';
+    activeElement.appendChild(checkIcon);
+  }
+
+  // Create and append color options (initializing the second color as active)
+  const colorArray = [
+    { color: 'bg-blue-700', isActive: false },
+    { color: 'bg-slate-700', isActive: true },
+    { color: 'bg-red-700', isActive: false }
+  ];
+
+  // biome-ignore lint/complexity/noForEach: <explanation>
+  colorArray.forEach(colorObj => {
+    const colorOption = createColorOption(colorObj.color, colorObj.isActive);
+    colorOptions.appendChild(colorOption);
+  });
+
+  // Append color options to colors container
   colors.appendChild(colorOptions);
 
   options.appendChild(sizes);
@@ -187,6 +248,7 @@ export function productPage() {
   const decrement = document.createElement('p');
   decrement.classList = 'cursor-pointer';
   decrement.textContent = '-';
+  decrement.id = 'decrement'
 
   const quantityValue = document.createElement('p');
   quantityValue.id = 'quant';
@@ -194,6 +256,7 @@ export function productPage() {
 
   const increment = document.createElement('p');
   increment.classList = 'cursor-pointer';
+  increment.id = 'increment'
   increment.textContent = '+';
 
 
@@ -227,7 +290,7 @@ export function productPage() {
   price.appendChild(priceValue);
 
   const addToCartButton = document.createElement('button');
-  addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2';
+  addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2 text-xl';
 
   const cartIcon = document.createElement('img');
   cartIcon.src = '../src/assets/icons/carticon.png';
@@ -243,5 +306,19 @@ export function productPage() {
   action.appendChild(addToCartButton);
 
   container.appendChild(action);
+
+  quantity.addEventListener('click', (e) => {
+    if (e.target.id === 'increment') {
+      const numb = document.getElementById('quant');
+      numb.innerHTML++;
+    } else if (e.target.id === 'decrement') {
+      const numb = document.getElementById('quant');
+      if (numb.innerHTML > 1) {
+        numb.innerHTML--;
+      } else {
+        return;
+      }
+    }
+  })
 
 }

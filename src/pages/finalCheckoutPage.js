@@ -82,6 +82,7 @@ export function finalCheckoutPage() {
 
   container.appendChild(addressSection)
 
+
   const itemsSection = document.createElement('div');
   itemsSection.classList = 'flex px-6 flex-col gap-y-10';
   itemsSection.id = 'items';
@@ -295,5 +296,13 @@ export function finalCheckoutPage() {
 
   button.addEventListener('click', () => {
     router.navigate(routes.payment);
+  })
+
+  shippingAddressMoreImg.addEventListener('click', () => {
+    router.navigate(routes.address);
+  })
+
+  moreImg.addEventListener('click', () => {
+    router.navigate(routes.ship);
   })
 }

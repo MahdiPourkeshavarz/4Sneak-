@@ -1,6 +1,7 @@
 const container = document.getElementById('app');
 
 export function authenticationPage() {
+  let mode = "login";
   container.innerHTML = "";
   container.classList = 'flex flex-col justify-center items-center';
 
@@ -13,12 +14,16 @@ export function authenticationPage() {
   const loginText = document.createElement('p');
   loginText.classList = 'font-bold text-2xl mt-8';
   loginText.textContent = 'Login to your Account';
+  loginText.id = "login";
   container.appendChild(loginText);
 
   const createAccountText = document.createElement('p');
   createAccountText.classList = 'hidden font-bold text-2xl mt-8';
   createAccountText.textContent = 'Create New Account';
+  createAccountText.id = "create";
   container.appendChild(createAccountText);
+
+  const from = document.createElement('form');
 
   const emailDiv = document.createElement('div');
   emailDiv.classList = 'flex items-center mt-8 h-8 mr-4 bg-slate-50';
@@ -35,7 +40,7 @@ export function authenticationPage() {
   emailInput.placeholder = 'Email';
   emailDiv.appendChild(emailInput);
 
-  container.appendChild(emailDiv);
+  from.appendChild(emailDiv);
 
   const passwordDiv = document.createElement('div');
   passwordDiv.classList = 'flex items-center mt-6 h-8 bg-slate-50';
@@ -57,16 +62,20 @@ export function authenticationPage() {
   visibilityIcon.alt = '';
   passwordDiv.appendChild(visibilityIcon);
 
-  container.appendChild(passwordDiv);
+  from.appendChild(passwordDiv);
+
+  container.appendChild(from);
 
   const newHereLink = document.createElement('p');
   newHereLink.classList = 'mt-6 text-blue-400 cursor-pointer';
   newHereLink.textContent = 'New Here? Create new account';
+  newHereLink.id = "new";
   container.appendChild(newHereLink);
 
   const existingAccountLink = document.createElement('p');
   existingAccountLink.classList = 'hidden mt-6 text-blue-400 cursor-pointer';
   existingAccountLink.textContent = 'Do you have an account? Log in';
+  existingAccountLink.id = "exist";
   container.appendChild(existingAccountLink);
 
   const rememberMeDiv = document.createElement('div');
@@ -83,8 +92,28 @@ export function authenticationPage() {
   container.appendChild(rememberMeDiv);
 
   const link = document.createElement('a');
-  link.innerHTML = '<a href="/home" data-navigo><button class="mt-16 py-2 px-28 rounded-3xl bg-slate-800 text-slate-100">Sign in</button></a>';
+  link.innerHTML = '<a href="/home" data-navigo><button class="mt-16 py-2 px-28 rounded-3xl bg-slate-800 text-slate-100" id="btn" type="submit">Login</button></a>';
 
   container.appendChild(link);
+
+  container.addEventListener('click', (e) => {
+    if (e.target.id === "new") {
+      mode = "register";
+      document.getElementById('btn').textContent = "SignUp";
+      document.getElementById('login').classList.add('hidden');
+      document.getElementById('create').classList.remove('hidden')
+      document.getElementById('new').classList.add('hidden');
+      document.getElementById('exist').classList.remove('hidden');
+    } else if (e.target.id === "exist") {
+      mode = "login"
+      document.getElementById('btn').textContent = "Login";
+      document.getElementById('login').classList.remove('hidden');
+      document.getElementById('create').classList.add('hidden')
+      document.getElementById('new').classList.remove('hidden');
+      document.getElementById('exist').classList.add('hidden');
+    }
+  })
+
+
 }
 

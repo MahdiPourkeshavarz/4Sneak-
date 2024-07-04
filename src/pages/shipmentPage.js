@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
@@ -9,17 +10,17 @@ export function shipmentPage() {
   top.classList = 'flex items-center gap-x-1 mt-10';
   top.id = 'top';
 
-  const topImg = document.createElement('img');
-  topImg.classList = 'w-20 h-auto';
-  topImg.src = '../src/assets/icons/prev icon.png';
-  topImg.alt = '_';
+  const prevIcon = document.createElement('img');
+  prevIcon.classList = 'w-20 h-auto';
+  prevIcon.src = '../src/assets/icons/prev icon.png';
+  prevIcon.alt = '_';
 
   const topText = document.createElement('p');
   topText.classList = 'font-bold text-2xl';
   topText.textContent = 'Choose Shipping Method';
 
 
-  top.appendChild(topImg);
+  top.appendChild(prevIcon);
   top.appendChild(topText);
 
 
@@ -94,4 +95,7 @@ export function shipmentPage() {
 
   container.appendChild(top);
   container.appendChild(adds);
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.finalcheckout)
+  })
 }
