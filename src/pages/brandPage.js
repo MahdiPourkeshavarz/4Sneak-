@@ -3,11 +3,11 @@ import { getProducts } from "./homePage";
 
 const container = document.getElementById('app');
 
-let brand = "Adidas";
+let brand = "";
 
 let URL = "";
 
-export function updateInfo(name, url = "") {
+export function updateBrandInfo(name, url = "") {
   brand = name;
   URL = url;
 }
@@ -44,6 +44,6 @@ export function brandPage() {
 
   container.appendChild(items);
   console.log('as')
-  getProducts(URL);
+  getProducts(URL, brand);
 
 }
