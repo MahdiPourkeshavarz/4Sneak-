@@ -2,6 +2,7 @@ import { router, routes } from "../../main";
 import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 import { updateProductInfo } from "./productPage";
+import { updateSearchInfo } from "./searchPage";
 
 const container = document.getElementById('app');
 
@@ -65,6 +66,8 @@ export async function homePage() {
   container.appendChild(search);
 
   searchIcon.addEventListener('click', () => {
+    const value = searchInput.value;
+    updateSearchInfo(value);
     router.navigate(routes.search);
   })
 
