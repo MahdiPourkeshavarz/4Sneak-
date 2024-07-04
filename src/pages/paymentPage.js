@@ -11,10 +11,10 @@ export function paymentPage() {
   topDiv.id = 'top';
 
   // Create the image element
-  const img = document.createElement('img');
-  img.classList.add('w-24', 'h-16');
-  img.src = '../src/assets/icons/prev icon.png';
-  img.alt = '_';
+  const prevIcon = document.createElement('img');
+  prevIcon.classList.add('w-24', 'h-16');
+  prevIcon.src = '../src/assets/icons/prev icon.png';
+  prevIcon.alt = '_';
 
   // Create the paragraph element
   const paragraph = document.createElement('p');
@@ -22,7 +22,7 @@ export function paymentPage() {
   paragraph.textContent = 'Payment Method';
 
   // Append the image and paragraph to the parent div
-  topDiv.appendChild(img);
+  topDiv.appendChild(prevIcon);
   topDiv.appendChild(paragraph);
 
   container.appendChild(topDiv);
@@ -104,5 +104,9 @@ export function paymentPage() {
   button.addEventListener('click', () => {
     router.navigate(routes.home);
     router.navigate(routes.successModal);
+  })
+
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.home);
   })
 }

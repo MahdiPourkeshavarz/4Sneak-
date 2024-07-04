@@ -1,6 +1,7 @@
 import { router, routes } from "../../main";
 import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
-import { updateInfo } from "./brandPage";
+import { updateBrandInfo } from "./brandPage";
+import { updateProductInfo } from "./productPage";
 
 const container = document.getElementById('app');
 
@@ -75,10 +76,9 @@ export async function homePage() {
   const brandImages = [
     ['../src/assets/logos/adidas.png', 'Adidas'],
     ['../src/assets/logos/nike.png', 'Nike'],
-    ['../src/assets/logos/new balance.png', 'New Balance'],
+    ['../src/assets/logos/new balance.png', 'NewBalance'],
     ['../src/assets/logos/puma.png', 'Puma'],
-    ['../src/assets/logos/reebok.png', 'Reebok'],
-    ['../src/assets/logos/more.png', 'More']
+    ['../src/assets/logos/reebok.png', 'Reebok']
   ];
 
   // biome-ignore lint/complexity/noForEach: <explanation>
@@ -90,13 +90,23 @@ export async function homePage() {
     brands.appendChild(img);
   });
 
+  const brandData = {
+    Adidas: { start: ADIDAS_PRO[0], end: ADIDAS_PRO[1] },
+    Nike: { start: NIKE_PRO[0], end: NIKE_PRO[1] },
+    Puma: { start: PUMA_PRO[0], end: PUMA_PRO[1] },
+    Reebok: { start: REEBOK_PRO[0], end: REEBOK_PRO[1] },
+    NewBalance: { start: NB_PRO[0], end: NB_PRO[1] }
+  };
+
+  // Add event listener to the brands container
   brands.addEventListener('click', (e) => {
-    if (e.target.id === "More") {
-      updateInfo(e.target.id);
+    const brandId = e.target.id;
+    if (brandData[brandId]) {
+      const { start, end } = brandData[brandId];
+      updateBrandInfo(brandId, `${PRODUCT_URL}?_start=${start}&_end=${end}`);
       router.navigate(routes.brand);
     }
-
-  })
+  });
 
   container.appendChild(brands);
 
@@ -220,7 +230,7 @@ export async function homePage() {
   getProducts(MOST_URL);
 }
 
-export async function getProducts(url) {
+export async function getProducts(url, route) {
   try {
     const items = document.getElementById('items')
     items.innerHTML = "";
@@ -232,6 +242,7 @@ export async function getProducts(url) {
       data.forEach((product) => {
         const item = document.createElement('div');
         item.classList = 'flex flex-col p-4 w-fit justify-evenly';
+        item.id = 'item';
 
         const itemImg = document.createElement('img');
         itemImg.classList = 'w-32 h-auto p-1 bg-[#F3F3F3] rounded-2xl';
@@ -250,6 +261,16 @@ export async function getProducts(url) {
         item.appendChild(itemPrice);
 
         items.appendChild(item);
+
+        item.addEventListener('click', () => {
+          if (route) {
+            console.log(route)
+            updateProductInfo(product.id, route);
+          } else {
+            updateProductInfo(product.id, 'home');
+          }
+          router.navigate(routes.product);
+        })
       })
     }
   } catch (e) {

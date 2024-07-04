@@ -44,7 +44,8 @@ export const routes = {
   orders: "/orders/active",
   successModal: "/checkout/successfulOrder",
   removePro: "/cart/remove:id",
-  brand: "/home/brand"
+  brand: "/home/brand",
+  wallet: "/wallet"
 }
 
 
@@ -68,7 +69,7 @@ router.on(routes.first, firstPage)
   .on(routes.removePro, removeProductModal)
   .on(routes.brand, brandPage)
   .on(routes.finalcheckout, finalCheckoutPage)
-  .on(routes.first, shipmentPage)
+  .on(routes.wallet, walletPage)
   .on(routes.first, addressPage)
   .on(routes.payment, paymentPage)
   .resolve();
