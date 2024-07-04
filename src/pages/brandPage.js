@@ -1,5 +1,4 @@
 import { router, routes } from "../../main";
-import { MOST_URL, NIKE_PRO, PRODUCT_URL } from "../services/links";
 import { getProducts } from "./homePage";
 
 const container = document.getElementById('app');
@@ -45,6 +44,6 @@ export function brandPage() {
 
   container.appendChild(items);
   console.log('as')
-  getProducts(MOST_URL)
+  getProducts(URL);
 
 }

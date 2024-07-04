@@ -75,10 +75,9 @@ export async function homePage() {
   const brandImages = [
     ['../src/assets/logos/adidas.png', 'Adidas'],
     ['../src/assets/logos/nike.png', 'Nike'],
-    ['../src/assets/logos/new balance.png', 'New Balance'],
+    ['../src/assets/logos/new balance.png', 'NewBalance'],
     ['../src/assets/logos/puma.png', 'Puma'],
-    ['../src/assets/logos/reebok.png', 'Reebok'],
-    ['../src/assets/logos/more.png', 'More']
+    ['../src/assets/logos/reebok.png', 'Reebok']
   ];
 
   // biome-ignore lint/complexity/noForEach: <explanation>
@@ -90,13 +89,23 @@ export async function homePage() {
     brands.appendChild(img);
   });
 
+  const brandData = {
+    Adidas: { start: ADIDAS_PRO[0], end: ADIDAS_PRO[1] },
+    Nike: { start: NIKE_PRO[0], end: NIKE_PRO[1] },
+    Puma: { start: PUMA_PRO[0], end: PUMA_PRO[1] },
+    Reebok: { start: REEBOK_PRO[0], end: REEBOK_PRO[1] },
+    NewBalance: { start: NB_PRO[0], end: NB_PRO[1] }
+  };
+
+  // Add event listener to the brands container
   brands.addEventListener('click', (e) => {
-    if (e.target.id === "More") {
-      updateInfo(e.target.id);
+    const brandId = e.target.id;
+    if (brandData[brandId]) {
+      const { start, end } = brandData[brandId];
+      updateInfo(brandId, `${PRODUCT_URL}?_start=${start}&_end=${end}`);
       router.navigate(routes.brand);
     }
-
-  })
+  });
 
   container.appendChild(brands);
 
