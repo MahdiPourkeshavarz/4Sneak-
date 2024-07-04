@@ -2,8 +2,8 @@ import { router, routes } from "../../main";
 
 const container = document.getElementById('app');
 
-export function firstPage() {
 
+export function firstPage() {
   container.innerHTML = "";
   container.classList = 'flex flex-col items-center justify-center';
 
@@ -58,7 +58,11 @@ export function firstPage() {
 
   container.appendChild(topDiv);
   container.appendChild(loadingDiv);
-  setTimeout(() => {
-    router.navigate(routes.welcome);
-  }, 4000)
+  if (localStorage.getItem('visited')) {
+    router.navigate(routes.auth)
+  } else {
+    setTimeout(() => {
+      router.navigate(routes.welcome);
+    }, 4000)
+  }
 }

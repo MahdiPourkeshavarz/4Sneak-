@@ -182,7 +182,7 @@ export async function homePage() {
 
   // Create the action bar
   const actionBar = document.createElement('div');
-  actionBar.classList = 'fixed h-28 bottom-0 flex items-center left-9 gap-x-10 bg-white';
+  actionBar.classList = 'fixed h-20 bottom-0 flex items-center left-9 gap-x-10 bg-white';
   actionBar.id = 'action-bar';
 
   const actionLinks = [

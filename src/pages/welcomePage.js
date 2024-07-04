@@ -3,6 +3,7 @@ import { router, routes } from "../../main";
 const container = document.getElementById('app');
 
 export function welcomePage() {
+
   container.innerHTML = "";
   container.classList = "flex flex-col w-[430px] h-max relative bg-slate-600";
 
@@ -37,7 +38,11 @@ export function welcomePage() {
   textContainer2.textContent = 'The best sneakers e-commerce app of the century for your fashion needs!';
 
   container.appendChild(textContainer2);
-  setTimeout(() => {
-    router.navigate(routes.firstlanding)
-  }, 4000)
+  if (localStorage.getItem('visited')) {
+    router.navigate(routes.auth)
+  } else {
+    setTimeout(() => {
+      router.navigate(routes.firstlanding)
+    }, 4000)
+  }
 }

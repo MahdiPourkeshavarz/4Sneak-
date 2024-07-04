@@ -1,3 +1,4 @@
+import { router, routes } from "../../main";
 import { MOST_URL, NIKE_PRO, PRODUCT_URL } from "../services/links";
 import { getProducts } from "./homePage";
 
@@ -33,6 +34,10 @@ export function brandPage() {
   top.appendChild(topImg1);
   top.appendChild(topText);
   container.appendChild(top);
+
+  topImg1.addEventListener('click', () => {
+    router.navigate(routes.home);
+  })
 
   const items = document.createElement('div');
   items.classList = 'mt-6 px-8 grid grid-cols-2 mb-32';
