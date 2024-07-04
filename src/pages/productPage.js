@@ -160,7 +160,6 @@ export function productPage() {
   const colorOption3 = document.createElement('div');
   colorOption3.classList = 'border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 bg-red-700';
 
-
   colorOptions.appendChild(colorOption1);
   colorOptions.appendChild(colorOption2);
   colorOptions.appendChild(colorOption3);
@@ -187,6 +186,7 @@ export function productPage() {
   const decrement = document.createElement('p');
   decrement.classList = 'cursor-pointer';
   decrement.textContent = '-';
+  decrement.id = 'decrement'
 
   const quantityValue = document.createElement('p');
   quantityValue.id = 'quant';
@@ -194,6 +194,7 @@ export function productPage() {
 
   const increment = document.createElement('p');
   increment.classList = 'cursor-pointer';
+  increment.id = 'increment'
   increment.textContent = '+';
 
 
@@ -207,7 +208,7 @@ export function productPage() {
   container.appendChild(quantity);
 
   const action = document.createElement('div');
-  action.classList = 'fixed bottom-0 h-28 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around';
+  action.classList = 'fixed bottom-0 h-24 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around';
   action.id = 'action';
 
   const price = document.createElement('div');
@@ -227,7 +228,7 @@ export function productPage() {
   price.appendChild(priceValue);
 
   const addToCartButton = document.createElement('button');
-  addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2';
+  addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2 text-xl';
 
   const cartIcon = document.createElement('img');
   cartIcon.src = '../src/assets/icons/carticon.png';
@@ -243,5 +244,19 @@ export function productPage() {
   action.appendChild(addToCartButton);
 
   container.appendChild(action);
+
+  quantity.addEventListener('click', (e) => {
+    if (e.target.id === 'increment') {
+      const numb = document.getElementById('quant');
+      numb.innerHTML++;
+    } else if (e.target.id === 'decrement') {
+      const numb = document.getElementById('quant');
+      if (numb.innerHTML > 1) {
+        numb.innerHTML--;
+      } else {
+        return;
+      }
+    }
+  })
 
 }
