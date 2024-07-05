@@ -11,10 +11,10 @@ export function finalCheckoutPage() {
   top.classList = 'flex items-center h-14 mt-10';
   top.id = 'top';
 
-  const topImg1 = document.createElement('img');
-  topImg1.classList = 'w-24 h-auto';
-  topImg1.src = '../src/assets/icons/prev icon.png';
-  topImg1.alt = '_';
+  const prevIcon = document.createElement('img');
+  prevIcon.classList = 'w-24 h-auto';
+  prevIcon.src = '../src/assets/icons/prev icon.png';
+  prevIcon.alt = '_';
 
   const topText = document.createElement('p');
   topText.classList = 'font-bold text-3xl pb-1';
@@ -26,7 +26,7 @@ export function finalCheckoutPage() {
   topImg2.alt = '_';
 
   // Append top images and text to top div
-  top.appendChild(topImg1);
+  top.appendChild(prevIcon);
   top.appendChild(topText);
   top.appendChild(topImg2);
   container.appendChild(top);
@@ -304,5 +304,9 @@ export function finalCheckoutPage() {
 
   moreImg.addEventListener('click', () => {
     router.navigate(routes.ship);
+  })
+
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.cart);
   })
 }

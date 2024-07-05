@@ -1,5 +1,5 @@
 import { router, routes } from "../../main";
-import { ADIDAS_PRO, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
+import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 
 const container = document.getElementById('app');
@@ -125,6 +125,11 @@ export async function productPage() {
 
     container.appendChild(description);
 
+    let chosenSize = 41;
+    let chosenColor = "";
+    let chosenQuantity = 1;
+
+
     const options = document.createElement('div');
     options.classList = 'flex w-full h-max pl-6 mt-6 items-center';
     options.id = 'options';
@@ -146,8 +151,9 @@ export async function productPage() {
     // Utility function to create size option elements
     function createSizeOption(size, isActive = false) {
       const sizeOption = document.createElement('div');
-      sizeOption.className = `border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full ${isActive ? 'border-slate-700 text-white bg-slate-700' : 'border-slate-400'}`;
+      sizeOption.classList = `border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full ${isActive ? 'border-slate-700 text-white bg-slate-700' : 'border-slate-400'}`;
       sizeOption.textContent = size;
+      sizeOption.id = size;
 
       // Add click event listener to handle active state
       sizeOption.addEventListener('click', () => {
@@ -203,6 +209,7 @@ export async function productPage() {
     function createColorOption(color, isActive = false) {
       const colorOption = document.createElement('div');
       colorOption.className = `border-solid p-1 w-12 h-12 flex items-center justify-center font-semibold text-xl border-2 rounded-full border-slate-700 ${color}`;
+      colorOption.id = `${color}`
 
       if (isActive) {
         const checkIcon = document.createElement('img');
@@ -257,6 +264,17 @@ export async function productPage() {
 
     container.appendChild(options);
 
+    sizes.addEventListener('click', (e) => {
+      chosenSize = e.target.id
+      console.log(chosenSize)
+    })
+
+    colors.addEventListener('click', (e) => {
+      chosenColor = e.target.id
+      console.log(chosenColor)
+    })
+
+
     const quantity = document.createElement('div');
     quantity.classList = 'pl-6 mt-10 flex gap-x-6 items-center mb-10';
     quantity.id = 'quantity';
@@ -291,6 +309,9 @@ export async function productPage() {
     quantity.appendChild(quantityControls);
 
     container.appendChild(quantity);
+    let totPrice = data.price;
+
+
 
     const action = document.createElement('div');
     action.classList = 'fixed bottom-0 h-28 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around';
@@ -306,7 +327,7 @@ export async function productPage() {
 
     const priceValue = document.createElement('p');
     priceValue.classList = 'text-2xl font-bold';
-    priceValue.id = 'price';
+    priceValue.id = 'price-value';
     priceValue.textContent = `$ ${data.price}`;
 
     price.appendChild(priceLabel);
@@ -329,6 +350,20 @@ export async function productPage() {
     action.appendChild(addToCartButton);
 
     container.appendChild(action);
+
+    increment.addEventListener('click', () => {
+      chosenQuantity = Number(quantityValue.innerText) + 1;
+      totPrice += data.price;
+      console.log(totPrice);
+      priceValue.textContent = `$ ${totPrice}`;
+    })
+
+    decrement.addEventListener('click', () => {
+      chosenQuantity = Number(quantityValue.innerText) + 1;
+      totPrice -= data.price;
+      console.log(totPrice);
+      priceValue.textContent = `$ ${totPrice}`;
+    })
 
     quantity.addEventListener('click', (e) => {
       if (e.target.id === 'increment') {
@@ -376,6 +411,39 @@ export async function productPage() {
           router.navigate(routes.brand);
       }
     })
+
+    addToCartButton.addEventListener('click', async () => {
+      let colorName = 'blue';
+      if (chosenColor === 'bg-[#c72800]') {
+        colorName = 'red'
+      } else if (chosenColor === 'bg-[#268801]') {
+        colorName = 'green'
+      }
+      const product = {
+        id: data.id,
+        name: data.name,
+        price: totPrice,
+        color: colorName,
+        hexCode: chosenColor,
+        size: chosenSize,
+        quantity: chosenQuantity,
+        imgUrl: data.imgUrl,
+        brand: data.brand
+      }
+      const response = await fetch(CART_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      })
+      if (response.ok) {
+        addToCartButton.textContent = "Added to Cart";
+        addToCartButton.classList.remove('bg-slate-900');
+        addToCartButton.classList.add('bg-blue-700')
+      }
+    })
   }
+
 
 }

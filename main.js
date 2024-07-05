@@ -3,7 +3,6 @@ import { addressPage } from "./src/pages/addressPage";
 import { authenticationPage } from "./src/pages/authenticationPage";
 import { brandPage } from "./src/pages/brandPage";
 import { cartPage } from "./src/pages/cartPage";
-import { checkoutPage } from "./src/pages/checkoutPage";
 import { finalCheckoutPage } from "./src/pages/finalCheckoutPage";
 import { firstPage } from "./src/pages/firstPage";
 import { homePage } from "./src/pages/homePage";

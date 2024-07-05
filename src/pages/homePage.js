@@ -201,7 +201,7 @@ export async function homePage() {
   const actionLinks = [
     { href: '/home', src: '../src/assets/action/home.png' },
     { href: '/cart', src: '../src/assets/action/cart.png', badge: true },
-    { href: '/order/active', src: '../src/assets/action/orders.png' },
+    { href: '/orders/active', src: '../src/assets/action/orders.png' },
     { href: '/wallet', src: '../src/assets/action/wallet.png' },
     { href: '/profile', src: '../src/assets/action/profile.png' }
   ];

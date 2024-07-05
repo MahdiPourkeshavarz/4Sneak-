@@ -107,6 +107,6 @@ export function paymentPage() {
   })
 
   prevIcon.addEventListener('click', () => {
-    router.navigate(routes.home);
+    router.navigate(routes.finalcheckout);
   })
 }

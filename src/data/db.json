@@ -572,6 +572,25 @@
   ],
   "mostPopular": [
     {
+      "id": 31,
+      "name": "NewBalance 906",
+      "price": 130,
+      "rate": 4.1,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
+    },
+    {
       "id": 2,
       "name": "Adidas UltraBoost",
       "price": 120,
@@ -589,25 +608,6 @@
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
       "imgUrl": "../src/assets/adidas/2.png",
       "brand": "adidas"
-    },
-    {
-      "id": 7,
-      "name": "Nike Pegasus",
-      "price": 150,
-      "rate": 4.1,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/1_2.png",
-      "brand": "nike"
     },
     {
       "id": 13,
@@ -715,6 +715,28 @@
       "quantity": 1,
       "imgUrl": "../src/assets/nike/2_2.png",
       "brand": "nike"
+    },
+    {
+      "id": 2,
+      "name": "Adidas UltraBoost",
+      "price": 120,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "41",
+      "quantity": 1,
+      "imgUrl": "../src/assets/adidas/2.png",
+      "brand": "adidas"
+    },
+    {
+      "id": 27,
+      "name": "Reebok Rewind",
+      "price": 340,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/reebok/3.jpg",
+      "brand": "reebok"
     }
   ],
   "checkout": [
