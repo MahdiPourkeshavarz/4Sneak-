@@ -158,12 +158,16 @@ export async function searchPage() {
 }
 
 export async function fetchProducts(input) {
-  console.log(input);
   const searchInput = document.getElementById('search-input');
   searchInput.value = input;
   const searchKey = document.getElementById('search-key');
   searchKey.innerHTML = `"${input}"`;
   let result = "";
+
+  if (input === "") {
+    return;
+  }
+
   try {
     const response = await fetch(`${PRODUCT_URL}?name_like=${input}`);
     result = await response.json();

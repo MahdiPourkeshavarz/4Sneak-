@@ -721,6 +721,10 @@ video {
   margin-right: auto;
 }
 
+.mb-10 {
+  margin-bottom: 2.5rem;
+}
+
 .mb-32 {
   margin-bottom: 8rem;
 }
@@ -809,8 +813,8 @@ video {
   margin-top: 2rem;
 }
 
-.mb-10 {
-  margin-bottom: 2.5rem;
+.mr-2 {
+  margin-right: 0.5rem;
 }
 
 .inline {
@@ -907,10 +911,6 @@ video {
   height: max-content;
 }
 
-.h-24 {
-  height: 6rem;
-}
-
 .w-1\/2 {
   width: 50%;
 }
@@ -991,6 +991,10 @@ video {
   width: 24rem;
 }
 
+.w-\[360\] {
+  width: 360;
+}
+
 .w-\[430px\] {
   width: 430px;
 }
@@ -1011,10 +1015,6 @@ video {
 .w-max {
   width: -moz-max-content;
   width: max-content;
-}
-
-.w-\[360\] {
-  width: 360;
 }
 
 .flex-shrink-0 {
@@ -1053,10 +1053,6 @@ video {
 
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.flex-row {
-  flex-direction: row;
 }
 
 .flex-row-reverse {
@@ -1274,11 +1270,6 @@ video {
   background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
-.bg-blue-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(29 78 216 / var(--tw-bg-opacity));
-}
-
 .bg-gray-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 250 251 / var(--tw-bg-opacity));
@@ -1347,11 +1338,6 @@ video {
 .bg-white {
   --tw-bg-opacity: 1;
   background-color: rgb(255 255 255 / var(--tw-bg-opacity));
-}
-
-.bg-slate-400 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-50 {
@@ -1544,12 +1530,16 @@ video {
   padding-top: 2rem;
 }
 
-.pb-8 {
-  padding-bottom: 2rem;
+.pb-14 {
+  padding-bottom: 3.5rem;
 }
 
-.pb-10 {
-  padding-bottom: 2.5rem;
+.pt-6 {
+  padding-top: 1.5rem;
+}
+
+.pb-8 {
+  padding-bottom: 2rem;
 }
 
 .text-left {
@@ -1625,6 +1615,11 @@ video {
   line-height: 1.5rem;
 }
 
+.text-black {
+  --tw-text-opacity: 1;
+  color: rgb(0 0 0 / var(--tw-text-opacity));
+}
+
 .text-blue-400 {
   --tw-text-opacity: 1;
   color: rgb(96 165 250 / var(--tw-text-opacity));
@@ -1683,11 +1678,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.text-black {
-  --tw-text-opacity: 1;
-  color: rgb(0 0 0 / var(--tw-text-opacity));
 }
 
 .antialiased {

@@ -124,20 +124,12 @@
     {
       "id": 7,
       "name": "Nike Pegasus",
-      "price": 150,
-      "rate": 4.1,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/1_2.png",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "#27aec7",
+      "size": 41,
+      "quantity": 1,
+      "imgUrl": "../src/assets/nike/5_2.png",
       "brand": "nike"
     },
     {
@@ -372,7 +364,7 @@
       "id": 20,
       "name": "NewBalance 530",
       "price": 140,
-      "rate": 4.0,
+      "rate": 4,
       "colors": {
         "blue": "#27aec7",
         "green": "#268801",
@@ -705,12 +697,12 @@
     {
       "id": 1,
       "name": "Adidas Samba",
-      "price": 110,
+      "price": 220,
       "color": "blue",
       "hexCode": "#27aec7",
-      "sizes": 41,
+      "size": 41,
       "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
     },
     {
@@ -721,7 +713,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/5_2.png",
+      "imgUrl": "../src/assets/nike/2_2.png",
       "brand": "nike"
     }
   ],
@@ -736,7 +728,7 @@
           "hexCode": "#27aec7",
           "sizes": 41,
           "quantity": 1,
-          "imgUrl": "./src/assets/nike/2_2.png",
+          "imgUrl": "../src/assets/nike/2_2.png",
           "brand": "nike"
         },
         {
@@ -747,7 +739,7 @@
           "hexCode": "#27aec7",
           "sizes": 41,
           "quantity": 2,
-          "imgUrl": "./src/assets/adidas/1.png",
+          "imgUrl": "../src/assets/adidas/1.png",
           "brand": "adidas"
         }
       ],
@@ -771,7 +763,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/4_2.png",
+      "imgUrl": "../src/assets/nike/4_2.png",
       "brand": "nike"
     },
     {
@@ -782,7 +774,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
     }
   ],
@@ -795,7 +787,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/6_2.png",
+      "imgUrl": "../src/assets/nike/6_2.png",
       "brand": "nike"
     },
     {
@@ -806,7 +798,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
     }
   ],
