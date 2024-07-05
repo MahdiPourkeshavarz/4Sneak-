@@ -356,8 +356,6 @@ export async function productPage() {
     cartIcon.src = '../src/assets/icons/carticon.png';
     cartIcon.alt = '_';
 
-
-
     const buttonText = document.createElement('span');
     buttonText.textContent = 'Add to Cart';
     buttonText.id = "btntxt"
@@ -373,8 +371,8 @@ export async function productPage() {
     if (isAdded) {
       const btn = document.getElementById('addbtn');
       btn.textContent = "Already in Cart";
-      btn.classList.remove('bg-slate-900');
-      btn.classList.add('bg-blue-700')
+      btn.classList.remove('bg-slate-900', 'text-white');
+      btn.classList.add('bg-slate-300', 'text-black')
     }
 
     increment.addEventListener('click', () => {
@@ -439,6 +437,9 @@ export async function productPage() {
     })
 
     addToCartButton.addEventListener('click', async () => {
+      if (isAdded) {
+        return;
+      }
       let colorName = 'blue';
       if (chosenColor === 'bg-[#c72800]') {
         colorName = 'red'

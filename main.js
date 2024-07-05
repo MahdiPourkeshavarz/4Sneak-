@@ -33,6 +33,7 @@ export const routes = {
   thirdlanding: "/landing/3",
   auth: "/auth",
   home: "/home",
+  seeAll: "/home/seeAll",
   product: "/product",
   cart: "/cart",
   ship: "/shippingMethod",
@@ -69,7 +70,7 @@ router.on(routes.first, firstPage)
   .on(routes.brand, brandPage)
   .on(routes.finalcheckout, finalCheckoutPage)
   .on(routes.wallet, walletPage)
-  .on(routes.first, addressPage)
+  .on(routes.seeAll, mostPopularPage)
   .on(routes.payment, paymentPage)
   .resolve();
 

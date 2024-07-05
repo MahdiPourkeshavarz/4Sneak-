@@ -131,6 +131,10 @@ export async function homePage() {
 
   container.appendChild(link);
 
+  link.addEventListener('click', () => {
+    router.navigate(routes.seeAll)
+  })
+
   const filter = document.createElement('div');
   filter.classList = 'mt-6 pl-8 flex border-solid h-12 w-[430px] overflow-x-scroll scrollbar-hide gap-x-5';
   filter.id = 'filter';
