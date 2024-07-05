@@ -16,17 +16,32 @@ export async function productPage() {
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max';
 
+  let isAdded = false;
   let data = "";
+  let cartData = "";
+  const cartResponse = await fetch(CART_URL);
+  cartData = await cartResponse.json();
 
   try {
     const response = await fetch(URl);
     data = await response.json();
+    if (cartData) {
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      cartData.forEach((item) => {
+        if (data.id === item.id) {
+          isAdded = true;
+          console.log(isAdded)
+        }
+      })
+    }
     getProduct(data);
   } catch (e) {
     throw new Error('failed to fetch', e);
   }
 
+
   function getProduct(data) {
+
     const carousel = document.createElement('div');
     carousel.classList = 'relative';
     carousel.id = 'carousel';
@@ -335,13 +350,17 @@ export async function productPage() {
 
     const addToCartButton = document.createElement('button');
     addToCartButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2 text-xl';
+    addToCartButton.id = "addbtn";
 
     const cartIcon = document.createElement('img');
     cartIcon.src = '../src/assets/icons/carticon.png';
     cartIcon.alt = '_';
 
+
+
     const buttonText = document.createElement('span');
     buttonText.textContent = 'Add to Cart';
+    buttonText.id = "btntxt"
 
     addToCartButton.appendChild(cartIcon);
     addToCartButton.appendChild(buttonText);
@@ -350,6 +369,13 @@ export async function productPage() {
     action.appendChild(addToCartButton);
 
     container.appendChild(action);
+
+    if (isAdded) {
+      const btn = document.getElementById('addbtn');
+      btn.textContent = "Already in Cart";
+      btn.classList.remove('bg-slate-900');
+      btn.classList.add('bg-blue-700')
+    }
 
     increment.addEventListener('click', () => {
       chosenQuantity = Number(quantityValue.innerText) + 1;
@@ -444,6 +470,8 @@ export async function productPage() {
       }
     })
   }
+
+
 
 
 }
