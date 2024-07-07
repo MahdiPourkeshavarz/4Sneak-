@@ -760,12 +760,36 @@
   ],
   "active": [
     {
+      "id": 14,
+      "name": "Puma Suede",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/puma/2.jpg",
+      "brand": "puma"
+    },
+    {
+      "id": 22,
+      "name": "NewBalance 327",
+      "price": 125,
+      "color": "green",
+      "hexCode": "bg-[#268801]",
+      "size": "42",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "newbalance"
+    }
+  ],
+  "completed": [
+    {
       "id": 7,
       "name": "Nike Pegasus",
       "price": 110,
       "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
+      "hexCode": "bg-[#268801]",
+      "size": 41,
       "quantity": 1,
       "imgUrl": "../src/assets/nike/4_2.png",
       "brand": "nike"
@@ -775,32 +799,8 @@
       "name": "Adidas Samba",
       "price": 110,
       "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
-      "quantity": 2,
-      "imgUrl": "../src/assets/adidas/1.png",
-      "brand": "adidas"
-    }
-  ],
-  "completed": [
-    {
-      "id": 7,
-      "name": "Nike Pegasus",
-      "price": 110,
-      "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
-      "quantity": 1,
-      "imgUrl": "../src/assets/nike/6_2.png",
-      "brand": "nike"
-    },
-    {
-      "id": 1,
-      "name": "Adidas Samba",
-      "price": 110,
-      "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
+      "hexCode": "bg-[#268801]",
+      "size": 41,
       "quantity": 2,
       "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"

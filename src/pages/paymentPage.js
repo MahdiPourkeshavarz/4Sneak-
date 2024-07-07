@@ -1,4 +1,5 @@
 import { router, routes } from "../../main";
+import { ACTIVE_URL, CHECKOUT_URL, COMPLETED_URL } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -101,12 +102,103 @@ export function paymentPage() {
   button.textContent = 'Continue to Payment';
 
   container.appendChild(button);
-  button.addEventListener('click', () => {
-    router.navigate(routes.home);
-    router.navigate(routes.successModal);
+  button.addEventListener('click', async () => {
+    try {
+      await handleFirstProcess();
+      await handleSecondProcess();
+      await handleThirdProcess();
+      await handleFourthProcess();
+      router.navigate(routes.home);
+      router.navigate(routes.successModal);
+    } catch (e) {
+      console.error('Error during processing:', e);
+    }
   })
 
   prevIcon.addEventListener('click', () => {
     router.navigate(routes.finalcheckout);
   })
+}
+
+async function handleFirstProcess() {
+  try {
+    const response = await fetch(COMPLETED_URL);
+    const result = await response.json();
+    if (result) {
+      await Promise.all(
+        result.map(async (product) => {
+          await fetch(`${COMPLETED_URL}/${product.id}`, { method: 'DELETE' });
+        })
+      );
+    } else {
+      return;
+    }
+  } catch (e) {
+    console.error('Failed at level one:', e);
+    throw new Error('Failed at level one');
+  }
+}
+
+async function handleSecondProcess() {
+  let res = "";
+  try {
+    const response = await fetch(ACTIVE_URL);
+    res = await response.json();
+    if (res) {
+      await Promise.all(
+        res.map(async (product) => {
+          await fetch(COMPLETED_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product),
+          });
+        })
+      );
+    }
+  } catch (e) {
+    console.error('Failed at level two:', e);
+    throw new Error('Failed at level two');
+  }
+}
+
+async function handleThirdProcess() {
+  try {
+    const response = await fetch(ACTIVE_URL);
+    const result = await response.json();
+    if (result) {
+      await Promise.all(
+        result.map(async (product) => {
+          await fetch(`${ACTIVE_URL}/${product.id}`, { method: 'DELETE' });
+        })
+      );
+    } else {
+      return;
+    }
+  } catch (e) {
+    console.error('Failed at level three:', e);
+    throw new Error('Failed at level three');
+  }
+}
+
+async function handleFourthProcess() {
+  let resl = "";
+  try {
+    const response = await fetch(CHECKOUT_URL);
+    resl = await response.json();
+    if (resl) {
+      const { items, ship, address } = resl;
+      await Promise.all(
+        items.map(async (product) => {
+          await fetch(ACTIVE_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(product),
+          });
+        })
+      );
+    }
+  } catch (e) {
+    console.error('Failed at level four:', e);
+    throw new Error('Failed at level four');
+  }
 }
