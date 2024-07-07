@@ -3,7 +3,6 @@ import { addressPage } from "./src/pages/addressPage";
 import { authenticationPage } from "./src/pages/authenticationPage";
 import { brandPage } from "./src/pages/brandPage";
 import { cartPage } from "./src/pages/cartPage";
-import { checkoutPage } from "./src/pages/checkoutPage";
 import { finalCheckoutPage } from "./src/pages/finalCheckoutPage";
 import { firstPage } from "./src/pages/firstPage";
 import { homePage } from "./src/pages/homePage";
@@ -34,6 +33,7 @@ export const routes = {
   thirdlanding: "/landing/3",
   auth: "/auth",
   home: "/home",
+  seeAll: "/home/seeAll",
   product: "/product",
   cart: "/cart",
   ship: "/shippingMethod",
@@ -45,7 +45,8 @@ export const routes = {
   successModal: "/checkout/successfulOrder",
   removePro: "/cart/remove:id",
   brand: "/home/brand",
-  wallet: "/wallet"
+  wallet: "/wallet",
+  profile: "/profile"
 }
 
 
@@ -70,8 +71,9 @@ router.on(routes.first, firstPage)
   .on(routes.brand, brandPage)
   .on(routes.finalcheckout, finalCheckoutPage)
   .on(routes.wallet, walletPage)
-  .on(routes.first, addressPage)
+  .on(routes.seeAll, mostPopularPage)
   .on(routes.payment, paymentPage)
+  .on(routes.profile, profilePage)
   .resolve();
 
 

@@ -124,20 +124,12 @@
     {
       "id": 7,
       "name": "Nike Pegasus",
-      "price": 150,
-      "rate": 4.1,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/1_2.png",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "#27aec7",
+      "size": 41,
+      "quantity": 1,
+      "imgUrl": "../src/assets/nike/5_2.png",
       "brand": "nike"
     },
     {
@@ -372,7 +364,7 @@
       "id": 20,
       "name": "NewBalance 530",
       "price": 140,
-      "rate": 4.0,
+      "rate": 4,
       "colors": {
         "blue": "#27aec7",
         "green": "#268801",
@@ -580,6 +572,25 @@
   ],
   "mostPopular": [
     {
+      "id": 31,
+      "name": "NewBalance 906",
+      "price": 130,
+      "rate": 4.1,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
+    },
+    {
       "id": 2,
       "name": "Adidas UltraBoost",
       "price": 120,
@@ -597,25 +608,6 @@
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
       "imgUrl": "../src/assets/adidas/2.png",
       "brand": "adidas"
-    },
-    {
-      "id": 7,
-      "name": "Nike Pegasus",
-      "price": 150,
-      "rate": 4.1,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/1_2.png",
-      "brand": "nike"
     },
     {
       "id": 13,
@@ -703,63 +695,65 @@
   ],
   "cart": [
     {
-      "id": 1,
-      "name": "Adidas Samba",
-      "price": 110,
+      "id": 26,
+      "name": "Reebok Classic",
+      "price": 160,
       "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
-      "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
-      "brand": "adidas"
+      "hexCode": "bg-[#27aec7]",
+      "size": "43",
+      "quantity": 1,
+      "imgUrl": "../src/assets/reebok/2.jpg",
+      "brand": "reebok"
     },
     {
-      "id": 7,
-      "name": "Nike Pegasus",
-      "price": 110,
+      "id": 19,
+      "name": "NewBalance 9060",
+      "price": 120,
       "color": "blue",
-      "hexCode": "#27aec7",
-      "sizes": 41,
+      "hexCode": "bg-[#27aec7]",
+      "size": "41",
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/5_2.png",
-      "brand": "nike"
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
     }
   ],
   "checkout": [
     {
       "items": [
         {
-          "id": 7,
-          "name": "Nike Pegasus",
-          "price": 110,
+          "id": 26,
+          "name": "Reebok Classic",
+          "price": 160,
           "color": "blue",
-          "hexCode": "#27aec7",
-          "sizes": 41,
+          "hexCode": "bg-[#27aec7]",
+          "size": "43",
           "quantity": 1,
-          "imgUrl": "./src/assets/nike/2_2.png",
-          "brand": "nike"
+          "imgUrl": "../src/assets/reebok/2.jpg",
+          "brand": "reebok"
         },
         {
-          "id": 1,
-          "name": "Adidas Samba",
-          "price": 110,
+          "id": 19,
+          "name": "NewBalance 9060",
+          "price": 120,
           "color": "blue",
-          "hexCode": "#27aec7",
-          "sizes": 41,
-          "quantity": 2,
-          "imgUrl": "./src/assets/adidas/1.png",
-          "brand": "adidas"
+          "hexCode": "bg-[#27aec7]",
+          "size": "41",
+          "quantity": 1,
+          "imgUrl": "../src/assets/newbalance/1.jpg",
+          "brand": "newbalance"
         }
       ],
       "ship": {
-        "name": "economic",
-        "price": 9
+        "name": "Regular",
+        "price": 15,
+        "description": "Estimated Arrival. Dec 20-22",
+        "icon": "../src/assets/chooseshipping/2.png"
       },
       "address": {
-        "name": "Offic",
-        "address": "tehran-poonak"
+        "name": "Home",
+        "address": "61480 Sunbrook park. PC 5679"
       },
-      "total": 424
+      "id": 1
     }
   ],
   "active": [
@@ -771,7 +765,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/4_2.png",
+      "imgUrl": "../src/assets/nike/4_2.png",
       "brand": "nike"
     },
     {
@@ -782,7 +776,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
     }
   ],
@@ -795,7 +789,7 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 1,
-      "imgUrl": "./src/assets/nike/6_2.png",
+      "imgUrl": "../src/assets/nike/6_2.png",
       "brand": "nike"
     },
     {
@@ -806,30 +800,52 @@
       "hexCode": "#27aec7",
       "sizes": 41,
       "quantity": 2,
-      "imgUrl": "./src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
     }
   ],
   "addresses": [
     {
       "name": "Home",
-      "address": "tehran-chitgar"
+      "address": "61480 Sunbrook park. PC 5679"
     },
     {
       "name": "Offic",
-      "address": "tehran-poonak"
+      "address": "6993 Meadow Valley Terra. PC 3637"
+    },
+    {
+      "name": "Apartment",
+      "address": "21833 Clyde Gallagher. PC 4662"
+    },
+    {
+      "name": "Parent's House",
+      "address": "5259 Blue Bill Park. PC 4627"
     }
   ],
   "shipment": [
     {
-      "name": "economic",
-      "price": 9,
-      "icon": "./src/assets/icons/economic.png"
+      "name": "Economy",
+      "price": 10,
+      "description": "Estimated Arrival. Dec 20-23",
+      "icon": "../src/assets/chooseshipping/1.png"
     },
     {
-      "name": "vip",
-      "price": 12,
-      "icon": "./src/assets/icons/vip.png"
+      "name": "Regular",
+      "price": 15,
+      "description": "Estimated Arrival. Dec 20-22",
+      "icon": "../src/assets/chooseshipping/2.png"
+    },
+    {
+      "name": "Cargo",
+      "price": 20,
+      "description": "Estimated Arrival. Dec 19-20",
+      "icon": "../src/assets/chooseshipping/3.png"
+    },
+    {
+      "name": "Express",
+      "price": 30,
+      "description": "Estimated Arrival. Dec 18-19",
+      "icon": "../src/assets/chooseshipping/4.png"
     }
   ]
 }

@@ -2,6 +2,7 @@ import { router, routes } from "../../main";
 import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 import { updateProductInfo } from "./productPage";
+import { updateSearchInfo } from "./searchPage";
 
 const container = document.getElementById('app');
 
@@ -65,6 +66,8 @@ export async function homePage() {
   container.appendChild(search);
 
   searchIcon.addEventListener('click', () => {
+    const value = searchInput.value;
+    updateSearchInfo(value);
     router.navigate(routes.search);
   })
 
@@ -127,6 +130,10 @@ export async function homePage() {
   link.appendChild(seeAll);
 
   container.appendChild(link);
+
+  link.addEventListener('click', () => {
+    router.navigate(routes.seeAll)
+  })
 
   const filter = document.createElement('div');
   filter.classList = 'mt-6 pl-8 flex border-solid h-12 w-[430px] overflow-x-scroll scrollbar-hide gap-x-5';
@@ -198,7 +205,7 @@ export async function homePage() {
   const actionLinks = [
     { href: '/home', src: '../src/assets/action/home.png' },
     { href: '/cart', src: '../src/assets/action/cart.png', badge: true },
-    { href: '/order/active', src: '../src/assets/action/orders.png' },
+    { href: '/orders/active', src: '../src/assets/action/orders.png' },
     { href: '/wallet', src: '../src/assets/action/wallet.png' },
     { href: '/profile', src: '../src/assets/action/profile.png' }
   ];

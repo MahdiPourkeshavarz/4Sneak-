@@ -1,6 +1,7 @@
 
+
 const container = document.getElementById('app');
 
-export function profilePage() {
-  return 1;
+export async function profilePage() {
+  container.innerHTML = "";
 }

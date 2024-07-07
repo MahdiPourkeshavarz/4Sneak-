@@ -1,6 +1,9 @@
+
 import { router, routes } from "../../main";
+import { CART_URL, CHECKOUT_URL } from "../services/links";
+import { removeProductModal } from "./removeProductModal";
 
-
+let totalPrice = 0;
 
 export function cartPage() {
   const container = document.getElementById('app');
@@ -35,100 +38,14 @@ export function cartPage() {
   items.classList = 'flex flex-col gap-y-10';
   items.id = 'items';
 
-  const item = document.createElement('div');
-  item.classList = 'flex gap-x-4 p-2 items-center';
-  item.id = 'item';
-
-  const itemImageContainer = document.createElement('div');
-  itemImageContainer.classList = 'bg-slate-100 px-1 rounded-xl';
-
-  const itemImage = document.createElement('img');
-  itemImage.width = 142;
-  itemImage.height = 'auto';
-  itemImage.src = '../src/assets/adidas/adidas.png';
-  itemImage.alt = '_';
-
-  itemImageContainer.appendChild(itemImage);
-
-  const info = document.createElement('div');
-  info.classList = 'flex flex-col justify-evenly gap-y-5';
-  info.id = 'info';
-
-  const topInfo = document.createElement('div');
-  topInfo.classList = 'flex items-center gap-x-5';
-  topInfo.id = 'top';
-
-  const itemName = document.createElement('p');
-  itemName.classList = 'text-lg font-semibold';
-  itemName.id = 'name';
-  itemName.textContent = 'Air jordan 3 Retro';
-
-  const binIcon = document.createElement('img');
-  binIcon.src = '../src/assets/icons/bin.png';
-  binIcon.alt = '_';
-
-  topInfo.appendChild(itemName);
-  topInfo.appendChild(binIcon);
-
-  const middleInfo = document.createElement('div');
-  middleInfo.classList = 'flex items-center gap-x-2 font-semibold';
-  middleInfo.id = 'middle';
-
-  const colorHex = document.createElement('div');
-  colorHex.classList = 'w-3 h-3 bg-black rounded-full';
-  colorHex.id = 'hex';
-
-  const colorText = document.createElement('p');
-  colorText.innerHTML = '<span id="colorName">Black</span> | Size = <span id="size">42</span>';
-
-  middleInfo.appendChild(colorHex);
-  middleInfo.appendChild(colorText);
-
-  const bottomInfo = document.createElement('div');
-  bottomInfo.classList = 'flex items-center gap-x-12';
-  bottomInfo.id = 'bottom';
-
-  const priceText = document.createElement('p');
-  priceText.classList = 'text-lg font-semibold';
-  priceText.innerHTML = '$ <span id="price">125.00</span>';
-
-  const quantityControl = document.createElement('div');
-  quantityControl.classList = 'py-2 px-3 bg-slate-100 text-xl font-semibold flex gap-x-3 rounded-2xl justify-center';
-  quantityControl.id = 'quant';
-
-  const decrement = document.createElement('p');
-  decrement.textContent = '-';
-
-  const quantityValue = document.createElement('p');
-  quantityValue.textContent = '1';
-
-  const increment = document.createElement('p');
-  increment.textContent = '+';
-
-  quantityControl.appendChild(decrement);
-  quantityControl.appendChild(quantityValue);
-  quantityControl.appendChild(increment);
-
-  bottomInfo.appendChild(priceText);
-  bottomInfo.appendChild(quantityControl);
-
-  info.appendChild(topInfo);
-  info.appendChild(middleInfo);
-  info.appendChild(bottomInfo);
-
-  item.appendChild(itemImageContainer);
-  item.appendChild(info);
-
-  items.appendChild(item);
   container.appendChild(items);
 
-
   const checkout = document.createElement('div');
-  checkout.classList = 'fixed bottom-16 h-28 w-full border-t-2 border-solid border-slate-200 px-6 flex justify-around bg-white';
+  checkout.classList = 'fixed bottom-16 h-28 w-full border-t-2 border-solid border-slate-200 px-4 flex justify-around bg-white';
   checkout.id = 'Checkout';
 
   const checkoutPrice = document.createElement('div');
-  checkoutPrice.classList = 'flex flex-col text-center mt-3';
+  checkoutPrice.classList = 'flex flex-col text-center mt-3 mr-2';
   checkoutPrice.id = 'price';
 
   const totalPriceLabel = document.createElement('p');
@@ -137,14 +54,14 @@ export function cartPage() {
 
   const totalPriceValue = document.createElement('p');
   totalPriceValue.classList = 'text-2xl font-bold';
-  totalPriceValue.id = 'price';
+  totalPriceValue.id = 'total-price';
   totalPriceValue.textContent = '$ 240.00';
 
   checkoutPrice.appendChild(totalPriceLabel);
   checkoutPrice.appendChild(totalPriceValue);
 
   const checkoutButton = document.createElement('button');
-  checkoutButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2';
+  checkoutButton.classList = 'bg-slate-900 cursor-pointer h-16 pl-10 mt-4 pr-12 justify-center rounded-3xl flex items-center text-white gap-x-2 text-xl mr-4';
 
   const checkoutIcon = document.createElement('img');
   checkoutIcon.src = '../src/assets/icons/gocheckout.png';
@@ -218,12 +135,190 @@ export function cartPage() {
 
   // Append action bar to container
   container.appendChild(actionBar);
+  fetchCartProducts();
 
-  binIcon.addEventListener('click', () => {
-    router.navigate(routes.removePro);
+  checkoutButton.addEventListener('click', async () => {
+    let result = "";
+    try {
+      const response = await fetch(CART_URL);
+      result = await response.json();
+    } catch (e) {
+      throw new Error('failed to fetch', e);
+    }
+    if (result) {
+      const res = await fetch(CHECKOUT_URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: result
+        })
+      })
+    }
+    router.navigate(routes.finalcheckout)
   })
 
-  checkoutButton.addEventListener('click', () => {
-    router.navigate(routes.finalcheckout);
-  })
 }
+
+export async function fetchCartProducts() {
+  const items = document.getElementById('items');
+  items.innerHTML = "";
+  let result = ""
+  try {
+    const response = await fetch(CART_URL);
+    result = await response.json();
+    console.log(result);
+  } catch (e) {
+    throw new Error('failed to fetch', e);
+  }
+
+  if (result) {
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    result.forEach((product) => {
+      const item = document.createElement('div');
+      item.classList = 'flex gap-x-4 p-2 items-center';
+      item.id = 'item';
+
+      const itemImageContainer = document.createElement('div');
+      itemImageContainer.classList = 'bg-slate-100 px-1 rounded-xl';
+
+      const itemImage = document.createElement('img');
+      itemImage.width = 142;
+      itemImage.height = 'auto';
+      itemImage.src = product.imgUrl;
+      itemImage.alt = '_';
+
+      itemImageContainer.appendChild(itemImage);
+
+      const info = document.createElement('div');
+      info.classList = 'flex flex-col justify-evenly gap-y-5';
+      info.id = 'info';
+
+      const topInfo = document.createElement('div');
+      topInfo.classList = 'flex items-center gap-x-5';
+      topInfo.id = 'top';
+
+      const itemName = document.createElement('p');
+      itemName.classList = 'text-lg font-semibold';
+      itemName.id = 'name';
+      itemName.textContent = product.name;
+
+      const binIcon = document.createElement('img');
+      binIcon.src = '../src/assets/icons/bin.png';
+      binIcon.alt = '_';
+
+      topInfo.appendChild(itemName);
+      topInfo.appendChild(binIcon);
+
+      const middleInfo = document.createElement('div');
+      middleInfo.classList = 'flex items-center gap-x-2 font-semibold';
+      middleInfo.id = 'middle';
+
+      const colorHex = document.createElement('div');
+      colorHex.classList = 'w-3 h-3 rounded-full';
+      colorHex.classList.add(product.hexCode)
+      colorHex.id = 'hex';
+
+      const colorText = document.createElement('p');
+      colorText.innerHTML = `<span id="colorName">${product.color}</span> | Size = <span id="size">${product.size}</span>`;
+
+      middleInfo.appendChild(colorHex);
+      middleInfo.appendChild(colorText);
+
+      const bottomInfo = document.createElement('div');
+      bottomInfo.classList = 'flex items-center gap-x-12';
+      bottomInfo.id = 'bottom';
+
+      const priceText = document.createElement('p');
+      priceText.classList = 'text-lg font-semibold';
+      priceText.innerHTML = `$ <span id="price-${product.id}">${product.price}</span>`;
+
+
+      const quantityControl = document.createElement('div');
+      quantityControl.classList = 'py-2 px-3 bg-slate-100 text-xl font-semibold flex gap-x-3 rounded-2xl justify-center';
+
+
+      const decrement = document.createElement('p');
+      decrement.textContent = '-';
+      decrement.id = 'decrement'
+
+      const quantityValue = document.createElement('p');
+      quantityValue.textContent = `${product.quantity}`;
+      quantityValue.id = `quant-${product.id}`;
+
+      const increment = document.createElement('p');
+      increment.textContent = '+';
+      increment.id = 'increment'
+
+      quantityControl.appendChild(decrement);
+      quantityControl.appendChild(quantityValue);
+      quantityControl.appendChild(increment);
+
+      bottomInfo.appendChild(priceText);
+      bottomInfo.appendChild(quantityControl);
+
+      info.appendChild(topInfo);
+      info.appendChild(middleInfo);
+      info.appendChild(bottomInfo);
+
+      item.appendChild(itemImageContainer);
+      item.appendChild(info);
+
+      items.appendChild(item);
+
+      totalPrice += ((product.price * product.quantity) / 2);
+      const total = document.getElementById('total-price');
+      total.innerText = `$ ${totalPrice}.00`;
+
+      binIcon.addEventListener('click', () => {
+        removeProductModal(product.id);
+      })
+
+      increment.addEventListener('click', (e) => {
+        totalPrice += product.price;
+        total.innerText = `$ ${totalPrice}.00`;
+      })
+
+      decrement.addEventListener('click', () => {
+        totalPrice -= product.price;
+        total.innerText = `$ ${totalPrice}.00`;
+      })
+      let quan = product.quantity;
+      quantityControl.addEventListener('click', async (e) => {
+        if (e.target.id === 'increment') {
+          quan += 1;
+          const numb = document.getElementById(`quant-${product.id}`);
+          numb.innerHTML++;
+          const res = await fetch(`${CART_URL}/${product.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              quantity: quan
+            })
+          })
+        } else if (e.target.id === 'decrement') {
+          const numb = document.getElementById(`quant-${product.id}`);
+          if (numb.innerHTML > 1) {
+            quan -= 1;
+            numb.innerHTML--;
+            const res = await fetch(`${CART_URL}/${product.id}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                quantity: quan
+              })
+            })
+          } else {
+            return;
+          }
+        }
+      })
+    })
+  }
+}
+

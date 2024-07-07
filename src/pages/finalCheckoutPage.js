@@ -1,4 +1,5 @@
 import { router, routes } from "../../main";
+import { CHECKOUT_URL } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -11,10 +12,10 @@ export function finalCheckoutPage() {
   top.classList = 'flex items-center h-14 mt-10';
   top.id = 'top';
 
-  const topImg1 = document.createElement('img');
-  topImg1.classList = 'w-24 h-auto';
-  topImg1.src = '../src/assets/icons/prev icon.png';
-  topImg1.alt = '_';
+  const prevIcon = document.createElement('img');
+  prevIcon.classList = 'w-24 h-auto';
+  prevIcon.src = '../src/assets/icons/prev icon.png';
+  prevIcon.alt = '_';
 
   const topText = document.createElement('p');
   topText.classList = 'font-bold text-3xl pb-1';
@@ -26,7 +27,7 @@ export function finalCheckoutPage() {
   topImg2.alt = '_';
 
   // Append top images and text to top div
-  top.appendChild(topImg1);
+  top.appendChild(prevIcon);
   top.appendChild(topText);
   top.appendChild(topImg2);
   container.appendChild(top);
@@ -34,52 +35,14 @@ export function finalCheckoutPage() {
   // Create the shipping address section
   const addressSection = document.createElement('div');
   addressSection.classList = 'flex flex-col gap-y-6 px-6';
+  addressSection.id = "address-section"
 
   const addressTitle = document.createElement('p');
   addressTitle.classList = 'px-4 text-2xl font-bold';
   addressTitle.textContent = 'Shipping Address';
 
-  const addressItem = document.createElement('div');
-  addressItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
-  addressItem.id = 'item';
-
-  const addressImg2 = document.createElement('img');
-  addressImg2.classList = 'w-16 h-16';
-  addressImg2.src = '../src/assets/icons/location.png';
-  addressImg2.alt = '_';
-
-  const addressInfo = document.createElement('div');
-  addressInfo.classList = 'flex-col flex gap-y-2';
-
-  const addressInfoTop = document.createElement('div');
-  addressInfoTop.classList = 'flex gap-x-2 items-center';
-
-  const addressType2 = document.createElement('p');
-  addressType2.classList = 'font-semibold text-2xl';
-  addressType2.textContent = 'Office';
-
-  const shippingAddress = document.createElement('p');
-  shippingAddress.classList = 'text-slate-600';
-  shippingAddress.id = 'address';
-  shippingAddress.textContent = '61480 Sunbrook Park, PC 5679';
-
-  const shippingAddressMoreImg = document.createElement('img');
-  shippingAddressMoreImg.classList = 'w-8 h-8 mt-4 ml-2';
-  shippingAddressMoreImg.src = '../src/assets/icons/edit.png';
-  shippingAddressMoreImg.alt = '_';
-
-  // Append everything to the shipping item
-  addressInfoTop.appendChild(addressType2);
-  addressInfo.appendChild(addressInfoTop);
-  addressInfo.appendChild(shippingAddress);
-  addressItem.appendChild(addressImg2);
-  addressItem.appendChild(addressInfo);
-  addressItem.appendChild(shippingAddressMoreImg);
-
   // Append shipping title and item to shipping section
   addressSection.appendChild(addressTitle);
-  addressSection.appendChild(addressItem);
-
   container.appendChild(addressSection)
 
 
@@ -87,162 +50,19 @@ export function finalCheckoutPage() {
   itemsSection.classList = 'flex px-6 flex-col gap-y-10';
   itemsSection.id = 'items';
 
-  // Create the item div
-  const item = document.createElement('div');
-  item.classList = 'flex gap-x-4 p-2 items-center';
-  item.id = 'item';
-
-  // Create the image wrapper div
-  const imgWrapper = document.createElement('div');
-  imgWrapper.classList = 'bg-slate-100 px-1 rounded-xl';
-
-  // Create the image
-  const itemImg = document.createElement('img');
-  itemImg.width = 142;
-  itemImg.height = 'auto';
-  itemImg.src = '../src/assets/Asics/2.jpg';
-  itemImg.alt = '_';
-
-  // Append the image to the image wrapper
-  imgWrapper.appendChild(itemImg);
-
-  // Create the info div
-  const info = document.createElement('div');
-  info.classList = 'flex flex-col justify-evenly gap-y-5';
-  info.id = 'info';
-
-  // Create the top info div
-  const topInfo = document.createElement('div');
-  topInfo.classList = 'flex items-center gap-x-5';
-  topInfo.id = 'top';
-
-  // Create the item name paragraph
-  const itemName = document.createElement('p');
-  itemName.classList = 'text-lg font-semibold';
-  itemName.id = 'name';
-  itemName.textContent = 'Air jordan 3 Retro';
-
-  // Append the item name to the top info div
-  topInfo.appendChild(itemName);
-
-  // Create the middle info div
-  const middleInfo = document.createElement('div');
-  middleInfo.classList = 'flex items-center gap-x-2 font-semibold';
-  middleInfo.id = 'middle';
-
-  // Create the color hex div
-  const colorHex = document.createElement('div');
-  colorHex.classList = 'w-3 h-3 bg-black rounded-full';
-  colorHex.id = 'hex';
-
-  // Create the color and size paragraph
-  const colorSize = document.createElement('p');
-  colorSize.innerHTML = '<span id="colorName">Black</span> | Size = <span>42</span>';
-
-  // Append color hex and color size to the middle info div
-  middleInfo.appendChild(colorHex);
-  middleInfo.appendChild(colorSize);
-
-  // Create the bottom info div
-  const bottomInfo = document.createElement('div');
-  bottomInfo.classList = 'flex items-center gap-x-12';
-  bottomInfo.id = 'bottom';
-
-  // Create the price paragraph
-  const price = document.createElement('p');
-  price.classList = 'text-xl font-semibold';
-  price.innerHTML = '$ <span id="price">125.00</span>';
-
-  // Create the quantity div
-  const quantityDiv = document.createElement('div');
-  quantityDiv.classList = 'py-2 px-3 bg-slate-100 text-xl font-semibold flex gap-x-3 rounded-2xl justify-center';
-  quantityDiv.id = 'quant';
-
-  // Create the quantity paragraph
-  const quantity = document.createElement('p');
-  quantity.id = 'quantity';
-  quantity.textContent = '1';
-
-  // Append the quantity paragraph to the quantity div
-  quantityDiv.appendChild(quantity);
-
-  // Append the price and quantity div to the bottom info div
-  bottomInfo.appendChild(price);
-  bottomInfo.appendChild(quantityDiv);
-
-  // Append top, middle, and bottom info divs to the info div
-  info.appendChild(topInfo);
-  info.appendChild(middleInfo);
-  info.appendChild(bottomInfo);
-
-  // Append image wrapper and info div to the item div
-  item.appendChild(imgWrapper);
-  item.appendChild(info);
-
-  // Append the item div to the items section
-  itemsSection.appendChild(item);
   container.appendChild(itemsSection)
 
   const shippingSection = document.createElement('div');
   shippingSection.classList = 'flex flex-col gap-y-6 px-6';
+  shippingSection.id = "ship-section"
 
   // Create the title paragraph
   const shippingTitle = document.createElement('p');
   shippingTitle.classList = 'px-4 text-2xl font-bold';
   shippingTitle.textContent = 'Choose Shipping';
 
-  // Create the item div
-  const shipItem = document.createElement('div');
-  shipItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
-  shipItem.id = 'item';
 
-  // Create the image
-  const shippingImg = document.createElement('img');
-  shippingImg.classList = 'w-16 h-16';
-  shippingImg.src = '../src/assets/chooseshipping/1.png';
-  shippingImg.alt = '_';
-
-  // Create the info div
-  const shipInfo = document.createElement('div');
-  info.classList = 'flex-col flex gap-y-2';
-
-  // Create the top info div
-  const shipTopInfo = document.createElement('div');
-  topInfo.classList = 'flex gap-x-2 items-center';
-
-  // Create the shipping type paragraph
-  const shippingType = document.createElement('p');
-  shippingType.classList = 'font-semibold text-2xl';
-  shippingType.textContent = 'Economy';
-
-  // Append the shipping type to the top info div
-  shipTopInfo.appendChild(shippingType);
-
-  // Create the address paragraph
-  const address = document.createElement('p');
-  address.classList = 'text-slate-600';
-  address.id = 'address';
-  address.textContent = 'estimated for 2 business day';
-
-  // Append the top info and address to the info div
-  shipInfo.appendChild(shipTopInfo);
-  shipInfo.appendChild(address);
-
-  // Create the more options image
-  const moreImg = document.createElement('img');
-  moreImg.classList = 'w-8 h-8 mt-4 ml-2';
-  moreImg.src = '../src/assets/icons/edit.png';
-  moreImg.alt = '_';
-
-  // Append the image, info div, and more options image to the item div
-  shipItem.appendChild(shippingImg);
-  shipItem.appendChild(shipInfo);
-  shipItem.appendChild(moreImg);
-
-  // Append the title and item div to the shipping section div
   shippingSection.appendChild(shippingTitle);
-  shippingSection.appendChild(shipItem);
-
   container.appendChild(shippingSection);
 
   const registry = document.createElement('div');
@@ -294,15 +114,226 @@ export function finalCheckoutPage() {
   button.appendChild(buttonImg);
   container.appendChild(button);
 
+  fetchCheckoutProducts();
+
   button.addEventListener('click', () => {
     router.navigate(routes.payment);
   })
 
-  shippingAddressMoreImg.addEventListener('click', () => {
-    router.navigate(routes.address);
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.cart);
   })
+}
 
-  moreImg.addEventListener('click', () => {
-    router.navigate(routes.ship);
-  })
+async function fetchCheckoutProducts() {
+  const itemsSection = document.getElementById('items');
+  const shippingSection = document.getElementById('ship-section')
+  const addressSection = document.getElementById('address-section')
+  let res = "";
+  try {
+    const response = await fetch(CHECKOUT_URL);
+    res = await response.json()
+  } catch (e) {
+    throw new Error('failed to fetch', e)
+  }
+  if (res) {
+    const { items, ship, address } = res;
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    items.forEach((product) => {
+      // Create the item div
+      const item = document.createElement('div');
+      item.classList = 'flex gap-x-4 p-2 items-center';
+      item.id = 'item';
+
+      // Create the image wrapper div
+      const imgWrapper = document.createElement('div');
+      imgWrapper.classList = 'bg-slate-100 px-1 rounded-xl';
+
+      // Create the image
+      const itemImg = document.createElement('img');
+      itemImg.width = 142;
+      itemImg.height = 'auto';
+      itemImg.src = product.imgUrl;
+      itemImg.alt = '_';
+
+      // Append the image to the image wrapper
+      imgWrapper.appendChild(itemImg);
+
+      // Create the info div
+      const info = document.createElement('div');
+      info.classList = 'flex flex-col justify-evenly gap-y-5';
+      info.id = 'info';
+
+      // Create the top info div
+      const topInfo = document.createElement('div');
+      topInfo.classList = 'flex items-center gap-x-5';
+      topInfo.id = 'top';
+
+      // Create the item name paragraph
+      const itemName = document.createElement('p');
+      itemName.classList = 'text-lg font-semibold';
+      itemName.id = 'name';
+      itemName.textContent = product.name;
+
+      // Append the item name to the top info div
+      topInfo.appendChild(itemName);
+
+      // Create the middle info div
+      const middleInfo = document.createElement('div');
+      middleInfo.classList = 'flex items-center gap-x-2 font-semibold';
+      middleInfo.id = 'middle';
+
+      // Create the color hex div
+      const colorHex = document.createElement('div');
+      colorHex.classList = 'w-3 h-3 rounded-full';
+      colorHex.classList.add(product.hexCode)
+      colorHex.id = 'hex';
+
+      // Create the color and size paragraph
+      const colorSize = document.createElement('p');
+      colorSize.innerHTML = `<span id="colorName">${product.color}</span> | Size = <span>${product.size}</span>`;
+
+      // Append color hex and color size to the middle info div
+      middleInfo.appendChild(colorHex);
+      middleInfo.appendChild(colorSize);
+
+      // Create the bottom info div
+      const bottomInfo = document.createElement('div');
+      bottomInfo.classList = 'flex items-center gap-x-12';
+      bottomInfo.id = 'bottom';
+
+      // Create the price paragraph
+      const price = document.createElement('p');
+      price.classList = 'text-xl font-semibold';
+      price.innerHTML = `$ <span id="price">${product.price * product.quantity}.00</span>`;
+
+      // Create the quantity div
+      const quantityDiv = document.createElement('div');
+      quantityDiv.classList = 'py-2 px-3 bg-slate-100 text-xl font-semibold flex gap-x-3 rounded-2xl justify-center';
+      quantityDiv.id = 'quant';
+
+      // Create the quantity paragraph
+      const quantity = document.createElement('p');
+      quantity.id = 'quantity';
+      quantity.textContent = `${product.quantity}`;
+
+      // Append the quantity paragraph to the quantity div
+      quantityDiv.appendChild(quantity);
+
+      // Append the price and quantity div to the bottom info div
+      bottomInfo.appendChild(price);
+      bottomInfo.appendChild(quantityDiv);
+
+      // Append top, middle, and bottom info divs to the info div
+      info.appendChild(topInfo);
+      info.appendChild(middleInfo);
+      info.appendChild(bottomInfo);
+
+      // Append image wrapper and info div to the item div
+      item.appendChild(imgWrapper);
+      item.appendChild(info);
+
+      // Append the item div to the items section
+      itemsSection.appendChild(item);
+    })
+
+    if (address) {
+      const addressItem = document.createElement('div');
+      addressItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
+      addressItem.id = 'add-item';
+
+      const addressImg2 = document.createElement('img');
+      addressImg2.classList = 'w-16 h-16';
+      addressImg2.src = '../src/assets/icons/location.png';
+      addressImg2.alt = '_';
+
+      const addressInfo = document.createElement('div');
+      addressInfo.classList = 'flex-col flex gap-y-2';
+
+      const addressInfoTop = document.createElement('div');
+      addressInfoTop.classList = 'flex gap-x-2 items-center';
+
+      const addressType2 = document.createElement('p');
+      addressType2.classList = 'font-semibold text-2xl';
+      addressType2.textContent = address.name;
+
+      const shippingAddress = document.createElement('p');
+      shippingAddress.classList = 'text-slate-600';
+      shippingAddress.id = 'address';
+      shippingAddress.textContent = address.address;
+
+      const shippingAddressMoreImg = document.createElement('img');
+      shippingAddressMoreImg.classList = 'w-8 h-8 mt-4 ml-2';
+      shippingAddressMoreImg.src = '../src/assets/icons/edit.png';
+      shippingAddressMoreImg.alt = '_';
+
+      // Append everything to the shipping item
+      addressInfoTop.appendChild(addressType2);
+      addressInfo.appendChild(addressInfoTop);
+      addressInfo.appendChild(shippingAddress);
+      addressItem.appendChild(addressImg2);
+      addressItem.appendChild(addressInfo);
+      addressItem.appendChild(shippingAddressMoreImg);
+
+      addressSection.appendChild(addressItem);
+      shippingAddressMoreImg.addEventListener('click', () => {
+        router.navigate(routes.address);
+      })
+    }
+
+    if (ship) {
+      const shipItem = document.createElement('div');
+      shipItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
+      shipItem.id = 'ship-item';
+
+      // Create the image
+      const shippingImg = document.createElement('img');
+      shippingImg.classList = 'w-16 h-16';
+      shippingImg.src = ship.icon;
+      shippingImg.alt = '_';
+
+      // Create the info div
+      const shipInfo = document.createElement('div');
+      shipInfo.classList = 'flex-col flex gap-y-2';
+
+      // Create the top info div
+      const shipTopInfo = document.createElement('div');
+      shipTopInfo.classList = 'flex gap-x-2 items-center';
+
+      // Create the shipping type paragraph
+      const shippingType = document.createElement('p');
+      shippingType.classList = 'font-semibold text-2xl';
+      shippingType.textContent = ship.name;
+
+      // Append the shipping type to the top info div
+      shipTopInfo.appendChild(shippingType);
+
+      // Create the address paragraph
+      const time = document.createElement('p');
+      time.classList = 'text-slate-600';
+      time.id = 'address';
+      time.textContent = ship.description;
+
+      // Append the top info and address to the info div
+      shipInfo.appendChild(shipTopInfo);
+      shipInfo.appendChild(time);
+
+      // Create the more options image
+      const moreImg = document.createElement('img');
+      moreImg.classList = 'w-8 h-8 mt-4 ml-2';
+      moreImg.src = '../src/assets/icons/edit.png';
+      moreImg.alt = '_';
+
+      // Append the image, info div, and more options image to the item div
+      shipItem.appendChild(shippingImg);
+      shipItem.appendChild(shipInfo);
+      shipItem.appendChild(moreImg);
+
+      shippingSection.appendChild(shipItem);
+
+      moreImg.addEventListener('click', () => {
+        router.navigate(routes.ship);
+      })
+    }
+  }
 }
