@@ -1,6 +1,6 @@
-import { result } from "lodash";
+
 import { router, routes } from "../../main";
-import { CART_URL } from "../services/links";
+import { CART_URL, CHECKOUT_URL } from "../services/links";
 import { removeProductModal } from "./removeProductModal";
 
 let totalPrice = 0;
@@ -135,15 +135,33 @@ export function cartPage() {
 
   // Append action bar to container
   container.appendChild(actionBar);
-
-  checkoutButton.addEventListener('click', () => {
-    router.navigate(routes.finalcheckout);
-  })
   fetchCartProducts();
+
+  checkoutButton.addEventListener('click', async () => {
+    let result = "";
+    try {
+      const response = await fetch(CART_URL);
+      result = await response.json();
+    } catch (e) {
+      throw new Error('failed to fetch', e);
+    }
+    if (result) {
+      const res = await fetch(CHECKOUT_URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          items: result
+        })
+      })
+    }
+    router.navigate(routes.finalcheckout)
+  })
+
 }
 
 export async function fetchCartProducts() {
-
   const items = document.getElementById('items');
   items.innerHTML = "";
   let result = ""
@@ -199,7 +217,7 @@ export async function fetchCartProducts() {
 
       const colorHex = document.createElement('div');
       colorHex.classList = 'w-3 h-3 rounded-full';
-      colorHex.classList.add(`bg-[${product.hexCode}]`)
+      colorHex.classList.add(product.hexCode)
       colorHex.id = 'hex';
 
       const colorText = document.createElement('p');
@@ -214,23 +232,24 @@ export async function fetchCartProducts() {
 
       const priceText = document.createElement('p');
       priceText.classList = 'text-lg font-semibold';
-      priceText.innerHTML = `$ <span id="price">${product.price}</span>`;
-      totalPrice += (product.price / 2);
-      const totalPrices = document.getElementById('total-price');
-      totalPrices.innerHTML = `$ ${totalPrice}.00`;
+      priceText.innerHTML = `$ <span id="price-${product.id}">${product.price}</span>`;
+
 
       const quantityControl = document.createElement('div');
       quantityControl.classList = 'py-2 px-3 bg-slate-100 text-xl font-semibold flex gap-x-3 rounded-2xl justify-center';
-      quantityControl.id = 'quant';
+
 
       const decrement = document.createElement('p');
       decrement.textContent = '-';
+      decrement.id = 'decrement'
 
       const quantityValue = document.createElement('p');
       quantityValue.textContent = `${product.quantity}`;
+      quantityValue.id = `quant-${product.id}`;
 
       const increment = document.createElement('p');
       increment.textContent = '+';
+      increment.id = 'increment'
 
       quantityControl.appendChild(decrement);
       quantityControl.appendChild(quantityValue);
@@ -248,8 +267,56 @@ export async function fetchCartProducts() {
 
       items.appendChild(item);
 
+      totalPrice += ((product.price * product.quantity) / 2);
+      const total = document.getElementById('total-price');
+      total.innerText = `$ ${totalPrice}.00`;
+
       binIcon.addEventListener('click', () => {
         removeProductModal(product.id);
+      })
+
+      increment.addEventListener('click', (e) => {
+        totalPrice += product.price;
+        total.innerText = `$ ${totalPrice}.00`;
+      })
+
+      decrement.addEventListener('click', () => {
+        totalPrice -= product.price;
+        total.innerText = `$ ${totalPrice}.00`;
+      })
+      let quan = product.quantity;
+      quantityControl.addEventListener('click', async (e) => {
+        if (e.target.id === 'increment') {
+          quan += 1;
+          const numb = document.getElementById(`quant-${product.id}`);
+          numb.innerHTML++;
+          const res = await fetch(`${CART_URL}/${product.id}`, {
+            method: 'PATCH',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              quantity: quan
+            })
+          })
+        } else if (e.target.id === 'decrement') {
+          const numb = document.getElementById(`quant-${product.id}`);
+          if (numb.innerHTML > 1) {
+            quan -= 1;
+            numb.innerHTML--;
+            const res = await fetch(`${CART_URL}/${product.id}`, {
+              method: 'PATCH',
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                quantity: quan
+              })
+            })
+          } else {
+            return;
+          }
+        }
       })
     })
   }

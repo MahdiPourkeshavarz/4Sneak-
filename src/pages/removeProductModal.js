@@ -1,6 +1,7 @@
+
 import { router, routes } from "../../main";
-import { CART_URL, PRODUCT_URL } from "../services/links";
-import { cartPage, fetchCartProducts } from "./cartPage";
+import { CART_URL } from "../services/links";
+import { fetchCartProducts } from "./cartPage";
 
 
 export async function removeProductModal(productId) {

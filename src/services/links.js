@@ -20,7 +20,7 @@ export const SESSION_URL = "http://localhost:3000/session"
 
 export const CART_URL = "http://localhost:3000/cart"
 
-export const CHECKOUT_URL = "http://localhost:3000/checkout"
+export const CHECKOUT_URL = "http://localhost:3000/checkout/1"
 
 export const ACTIVE_URL = "http://localhost:3000/active"
 

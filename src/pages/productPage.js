@@ -449,7 +449,7 @@ export async function productPage() {
       const product = {
         id: data.id,
         name: data.name,
-        price: totPrice,
+        price: data.price,
         color: colorName,
         hexCode: chosenColor,
         size: chosenSize,
