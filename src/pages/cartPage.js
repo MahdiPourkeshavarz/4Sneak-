@@ -6,6 +6,7 @@ import { removeProductModal } from "./removeProductModal";
 let totalPrice = 0;
 
 export function cartPage() {
+  totalPrice = 0;
   const container = document.getElementById('app');
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-12 px-6';

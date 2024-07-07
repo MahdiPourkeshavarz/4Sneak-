@@ -695,25 +695,25 @@
   ],
   "cart": [
     {
-      "id": 26,
-      "name": "Reebok Classic",
-      "price": 160,
-      "color": "blue",
-      "hexCode": "bg-[#27aec7]",
-      "size": "43",
-      "quantity": 1,
-      "imgUrl": "../src/assets/reebok/2.jpg",
-      "brand": "reebok"
-    },
-    {
-      "id": 19,
-      "name": "NewBalance 9060",
-      "price": 120,
+      "id": 14,
+      "name": "Puma Suede",
+      "price": 110,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/puma/2.jpg",
+      "brand": "puma"
+    },
+    {
+      "id": 22,
+      "name": "NewBalance 327",
+      "price": 125,
+      "color": "green",
+      "hexCode": "bg-[#268801]",
+      "size": "42",
       "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "imgUrl": "../src/assets/newbalance/4.jpg",
       "brand": "newbalance"
     }
   ],
@@ -721,25 +721,25 @@
     {
       "items": [
         {
-          "id": 26,
-          "name": "Reebok Classic",
-          "price": 160,
-          "color": "blue",
-          "hexCode": "bg-[#27aec7]",
-          "size": "43",
-          "quantity": 1,
-          "imgUrl": "../src/assets/reebok/2.jpg",
-          "brand": "reebok"
-        },
-        {
-          "id": 19,
-          "name": "NewBalance 9060",
-          "price": 120,
+          "id": 14,
+          "name": "Puma Suede",
+          "price": 110,
           "color": "blue",
           "hexCode": "bg-[#27aec7]",
           "size": "41",
+          "quantity": 2,
+          "imgUrl": "../src/assets/puma/2.jpg",
+          "brand": "puma"
+        },
+        {
+          "id": 22,
+          "name": "NewBalance 327",
+          "price": 125,
+          "color": "green",
+          "hexCode": "bg-[#268801]",
+          "size": "42",
           "quantity": 1,
-          "imgUrl": "../src/assets/newbalance/1.jpg",
+          "imgUrl": "../src/assets/newbalance/4.jpg",
           "brand": "newbalance"
         }
       ],

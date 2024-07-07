@@ -817,6 +817,10 @@ video {
   margin-top: 2rem;
 }
 
+.ml-10 {
+  margin-left: 2.5rem;
+}
+
 .inline {
   display: inline;
 }
@@ -1015,6 +1019,10 @@ video {
 .w-max {
   width: -moz-max-content;
   width: max-content;
+}
+
+.w-\[380px\] {
+  width: 380px;
 }
 
 .flex-shrink-0 {
@@ -1555,6 +1563,10 @@ video {
 
 .text-center {
   text-align: center;
+}
+
+.text-right {
+  text-align: right;
 }
 
 .text-2xl {
