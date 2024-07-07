@@ -1,5 +1,5 @@
 import { router, routes } from "../../main";
-import { ADDRESS_URL } from "../services/links";
+import { ADDRESS_URL, CHECKOUT_URL } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -48,12 +48,39 @@ export async function addressPage() {
   prevIcon.addEventListener('click', () => {
     router.navigate(routes.finalcheckout)
   })
+
+  let addItemId = 1;
+  adds.addEventListener('click', (e) => {
+    addItemId = e.target.id;
+  })
+
+  applyButton.addEventListener('click', async () => {
+    let result = "";
+    try {
+      const res = await fetch(`${ADDRESS_URL}/${addItemId}`)
+      result = await res.json();
+    } catch (e) {
+      throw new Error('failed to fetch', e)
+    }
+    if (result) {
+      const resp = await fetch(CHECKOUT_URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          address: result
+        })
+      })
+      router.navigate(routes.finalcheckout)
+    }
+  })
 }
 
 
 async function fetchAddress() {
   const adds = document.getElementById('adds')
-  const createItem = (type, address, isDefault) => {
+  const createItem = (type, address, id, isDefault) => {
     const item = document.createElement('div');
     item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[380px]';
     item.id = 'item';
@@ -99,7 +126,7 @@ async function fetchAddress() {
     radioButton.classList = 'custom-radio';
     radioButton.type = 'radio';
     radioButton.name = 'add';
-    radioButton.id = 'add';
+    radioButton.id = `${id}`;
 
     item.appendChild(contentWrapper);
     item.appendChild(radioButton);
@@ -115,9 +142,9 @@ async function fetchAddress() {
       // biome-ignore lint/complexity/noForEach: <explanation>
       results.forEach((item) => {
         if (item.name === 'Home') {
-          adds.appendChild(createItem(item.name, item.address, true))
+          adds.appendChild(createItem(item.name, item.address, item.id, true))
         } else {
-          adds.appendChild(createItem(item.name, item.address, false))
+          adds.appendChild(createItem(item.name, item.address, item.id, false))
         }
       })
     }

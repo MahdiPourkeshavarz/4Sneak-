@@ -1,9 +1,10 @@
+import { add } from "lodash";
 import { router, routes } from "../../main";
-import { CHECKOUT_URL } from "../services/links";
+import { CART_URL, CHECKOUT_URL } from "../services/links";
 
 const container = document.getElementById('app');
 
-export function finalCheckoutPage() {
+export async function finalCheckoutPage() {
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-8';
 
@@ -73,7 +74,7 @@ export function finalCheckoutPage() {
   function createAmountRow(label, amount) {
     const row = document.createElement('div');
     row.classList = 'flex w-full justify-between px-8';
-    row.id = 'amount';
+    row.id = 'row';
 
     const labelParagraph = document.createElement('p');
     labelParagraph.classList = 'font-semibold text-lg text-slate-700';
@@ -81,6 +82,7 @@ export function finalCheckoutPage() {
 
     const amountParagraph = document.createElement('p');
     amountParagraph.classList = 'font-bold';
+    amountParagraph.id = label;
     amountParagraph.textContent = `$ ${amount}`;
 
     row.appendChild(labelParagraph);
@@ -89,13 +91,29 @@ export function finalCheckoutPage() {
     return row;
   }
 
-  // Create and append amount rows to the registry div
-  registry.appendChild(createAmountRow('Amount', '430.00'));
-  registry.appendChild(createAmountRow('Shipping', '430.00'));
-
-  const totalRow = createAmountRow('Total', '430.00');
-  totalRow.classList = 'flex w-full justify-between px-8 mt-4';
-  registry.appendChild(totalRow);
+  let p = 0;
+  let addp = 10;
+  try {
+    const response = await fetch(CHECKOUT_URL);
+    const data = await response.json();
+    if (data) {
+      const { items, ship, address } = data
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      items.forEach((product) => {
+        p += (product.quantity * product.price)
+        console.log(p);
+      })
+      addp = ship.price;
+      console.log(addp)
+    }
+    registry.appendChild(createAmountRow('Amount', `${p}.00`));
+    registry.appendChild(createAmountRow('Shipping', `${addp}.00`));
+    const totalRow = createAmountRow('Total', `${p + addp}.00`);
+    totalRow.classList = 'flex w-full justify-between px-8 mt-4';
+    registry.appendChild(totalRow);
+  } catch (e) {
+    console.log(e)
+  }
 
   container.appendChild(registry);
 
@@ -114,7 +132,7 @@ export function finalCheckoutPage() {
   button.appendChild(buttonImg);
   container.appendChild(button);
 
-  fetchCheckoutProducts();
+  fetchCheckoutDetail();
 
   button.addEventListener('click', () => {
     router.navigate(routes.payment);
@@ -123,9 +141,10 @@ export function finalCheckoutPage() {
   prevIcon.addEventListener('click', () => {
     router.navigate(routes.cart);
   })
+
 }
 
-async function fetchCheckoutProducts() {
+async function fetchCheckoutDetail() {
   const itemsSection = document.getElementById('items');
   const shippingSection = document.getElementById('ship-section')
   const addressSection = document.getElementById('address-section')
@@ -203,9 +222,10 @@ async function fetchCheckoutProducts() {
       bottomInfo.id = 'bottom';
 
       // Create the price paragraph
+      const priceValue = product.price * product.quantity
       const price = document.createElement('p');
       price.classList = 'text-xl font-semibold';
-      price.innerHTML = `$ <span id="price">${product.price * product.quantity}.00</span>`;
+      price.innerHTML = `$ <span id="price">${priceValue}.00</span>`;
 
       // Create the quantity div
       const quantityDiv = document.createElement('div');
@@ -239,7 +259,7 @@ async function fetchCheckoutProducts() {
 
     if (address) {
       const addressItem = document.createElement('div');
-      addressItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
+      addressItem.classList = 'flex gap-x-3 px-2 h-20 w-[365px] py-2 rounded-2xl bg-white justify-between';
       addressItem.id = 'add-item';
 
       const addressImg2 = document.createElement('img');
@@ -263,7 +283,7 @@ async function fetchCheckoutProducts() {
       shippingAddress.textContent = address.address;
 
       const shippingAddressMoreImg = document.createElement('img');
-      shippingAddressMoreImg.classList = 'w-8 h-8 mt-4 ml-2';
+      shippingAddressMoreImg.classList = 'w-8 h-8 mt-4';
       shippingAddressMoreImg.src = '../src/assets/icons/edit.png';
       shippingAddressMoreImg.alt = '_';
 
@@ -283,7 +303,7 @@ async function fetchCheckoutProducts() {
 
     if (ship) {
       const shipItem = document.createElement('div');
-      shipItem.classList = 'flex gap-x-3 px-2 h-20 w-max py-2 rounded-2xl bg-white';
+      shipItem.classList = 'flex gap-x-3 px-2 h-20 w-[365px] py-2 rounded-2xl bg-white justify-between';
       shipItem.id = 'ship-item';
 
       // Create the image
@@ -291,6 +311,7 @@ async function fetchCheckoutProducts() {
       shippingImg.classList = 'w-16 h-16';
       shippingImg.src = ship.icon;
       shippingImg.alt = '_';
+      shippingImg.id = `${ship.price}`;
 
       // Create the info div
       const shipInfo = document.createElement('div');
@@ -335,5 +356,6 @@ async function fetchCheckoutProducts() {
         router.navigate(routes.ship);
       })
     }
+
   }
 }

@@ -1,5 +1,5 @@
 import { router, routes } from "../../main";
-import { SHIPMENT_URL } from "../services/links";
+import { CHECKOUT_URL, SHIPMENT_URL } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -43,11 +43,37 @@ export function shipmentPage() {
   prevIcon.addEventListener('click', () => {
     router.navigate(routes.finalcheckout)
   })
+  let shipItemId = 1;
+  ships.addEventListener('click', (e) => {
+    shipItemId = e.target.id
+  })
+
+  applyButton.addEventListener('click', async () => {
+    let result = "";
+    try {
+      const res = await fetch(`${SHIPMENT_URL}/${shipItemId}`)
+      result = await res.json();
+    } catch (e) {
+      throw new Error('failed to fetch', e)
+    }
+    if (result) {
+      const resp = await fetch(CHECKOUT_URL, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          ship: result
+        })
+      })
+      router.navigate(routes.finalcheckout)
+    }
+  })
 }
 
 async function fetchShipmentMethods() {
   const ships = document.getElementById('ships')
-  const createShippingItem = (name, price, description, imgSrc, isDefault) => {
+  const createShippingItem = (name, price, description, imgSrc, id, isDefault) => {
     const item = document.createElement('div');
     item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[380px]';
     item.id = 'item';
@@ -100,7 +126,7 @@ async function fetchShipmentMethods() {
     radioButton.classList = 'custom-radio';
     radioButton.type = 'radio';
     radioButton.name = 'add';
-    radioButton.id = 'add';
+    radioButton.id = `${id}`;
 
     contentWrapperLeft.appendChild(itemPrice);
     contentWrapperLeft.appendChild(radioButton);
@@ -119,9 +145,9 @@ async function fetchShipmentMethods() {
       // biome-ignore lint/complexity/noForEach: <explanation>
       results.forEach((item) => {
         if (item.name === 'Economy') {
-          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, true))
+          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, item.id, true))
         } else {
-          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, false))
+          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, item.id, false))
         }
       })
     }
