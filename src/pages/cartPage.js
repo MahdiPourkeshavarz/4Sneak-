@@ -1,4 +1,5 @@
 
+import axios from "axios";
 import { router, routes } from "../../main";
 import { CART_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 import { removeProductModal } from "./removeProductModal";
@@ -144,21 +145,23 @@ export function cartPage() {
   checkoutButton.addEventListener('click', async () => {
     let result = "";
     try {
-      const response = await fetch(CART_URL);
-      result = await response.json();
+      const response = await axios.get(CART_URL);
+      result = response.data;
     } catch (e) {
       throw new Error('failed to fetch', e);
     }
     if (result) {
-      const res = await fetch(CHECKOUT_URL, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      try {
+        const res = await axios.patch(CHECKOUT_URL, {
           items: result
-        })
-      })
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      } catch (e) {
+        throw new Error('failed to update checkout', e);
+      }
     }
     router.navigate(routes.finalcheckout)
   })
@@ -170,8 +173,8 @@ export async function fetchCartProducts() {
   items.innerHTML = "";
   let result = ""
   try {
-    const response = await fetch(CART_URL);
-    result = await response.json();
+    const response = await axios.get(CART_URL);
+    result = response.data;
     console.log(result);
   } catch (e) {
     throw new Error('failed to fetch', e);

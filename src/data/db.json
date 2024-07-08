@@ -43,7 +43,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/1.png",
+      "imgUrl": "../src/assets/reebok/3.jpg",
       "brand": "adidas"
     },
     {
@@ -62,7 +62,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/2.png",
+      "imgUrl": "../src/assets/reebok/2.jpg",
       "brand": "adidas"
     },
     {
@@ -81,7 +81,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/3.png",
+      "imgUrl": "../src/assets/reebok/1.png",
       "brand": "adidas"
     },
     {
@@ -100,7 +100,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/4.png",
+      "imgUrl": "../src/assets/reebok/4.png",
       "brand": "adidas"
     },
     {
@@ -119,7 +119,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/5.png",
+      "imgUrl": "../src/assets/reebok/6.jpg",
       "brand": "adidas"
     },
     {
@@ -138,7 +138,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/adidas/6.png",
+      "imgUrl": "../src/assets/reebok/5.jpg",
       "brand": "adidas"
     },
     {
@@ -149,7 +149,7 @@
       "hexCode": "#27aec7",
       "size": 41,
       "quantity": 1,
-      "imgUrl": "../src/assets/nike/5_2.png",
+      "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "nike"
     },
     {
@@ -168,7 +168,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/2_2.png",
+      "imgUrl": "../src/assets/newbalance/3.jpg",
       "brand": "nike"
     },
     {
@@ -187,7 +187,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/3_2.png",
+      "imgUrl": "../src/assets/newbalance/2.jpg",
       "brand": "nike"
     },
     {
@@ -206,7 +206,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/4_2.png",
+      "imgUrl": "../src/assets/newbalance/6.jpg",
       "brand": "nike"
     },
     {
@@ -225,7 +225,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/5_2.png",
+      "imgUrl": "../src/assets/newbalance/4.jpg",
       "brand": "nike"
     },
     {
@@ -244,7 +244,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/nike/6_2.png",
+      "imgUrl": "../src/assets/newbalance/5.jpg",
       "brand": "nike"
     },
     {
@@ -263,7 +263,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/puma/1.jpg",
+      "imgUrl": "../src/assets/reebok/5.jpg",
       "brand": "puma"
     },
     {
@@ -320,7 +320,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/puma/4.webp",
+      "imgUrl": "../src/assets/reebok/2.jpg",
       "brand": "puma"
     },
     {
@@ -339,7 +339,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/puma/5.webp",
+      "imgUrl": "../src/assets/reebok/3.jpg",
       "brand": "puma"
     },
     {
@@ -358,7 +358,7 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/puma/6.webp",
+      "imgUrl": "../src/assets/reebok/1.png",
       "brand": "puma"
     },
     {
@@ -732,7 +732,7 @@
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "43",
-      "quantity": 2,
+      "quantity": 3,
       "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "newbalance"
     }
@@ -758,7 +758,7 @@
           "color": "blue",
           "hexCode": "bg-[#27aec7]",
           "size": "43",
-          "quantity": 2,
+          "quantity": 3,
           "imgUrl": "../src/assets/newbalance/1.jpg",
           "brand": "newbalance"
         }
@@ -791,24 +791,13 @@
       "brand": "puma"
     },
     {
-      "id": 22,
-      "name": "NewBalance 327",
-      "price": 125,
-      "color": "green",
-      "hexCode": "bg-[#268801]",
-      "size": "42",
-      "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/4.jpg",
-      "brand": "newbalance"
-    },
-    {
       "id": 19,
       "name": "NewBalance 9060",
       "price": 120,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "43",
-      "quantity": 2,
+      "quantity": 3,
       "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "newbalance"
     }
@@ -856,6 +845,17 @@
       "size": "42",
       "quantity": 1,
       "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "newbalance"
+    },
+    {
+      "id": 19,
+      "name": "NewBalance 9060",
+      "price": 120,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "43",
+      "quantity": 2,
+      "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "newbalance"
     }
   ],

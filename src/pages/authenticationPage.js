@@ -1,4 +1,4 @@
-
+import axios from "axios";
 import { USER_URL } from "../services/links";
 import { routes, router } from "../../main";
 
@@ -133,25 +133,23 @@ export function authenticationPage() {
       password: passValue
     })
     try {
-      const response = await fetch(`${USER_URL}/${mode}`, {
-        method: 'POST',
+      const response = await axios.post(`${USER_URL}/${mode}`, {
+        email: emailValue,
+        password: passValue
+      }, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          email: emailValue,
-          password: passValue
-        })
-      })
-      const result = await response.json();
+        }
+      });
+      const result = response.data;
 
-      if (response.ok) {
+      if (response.status === 200) {
         console.log(`successful ${mode}`);
         localStorage.setItem('token', result.accessToken);
         router.navigate(routes.home);
       }
     } catch (e) {
-      throw new Error('failed to authenticate', e)
+      throw new Error('failed to authenticate', e);
     }
 
   })

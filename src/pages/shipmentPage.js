@@ -1,6 +1,6 @@
 import { router, routes } from "../../main";
 import { CHECKOUT_URL, SHIPMENT_URL, isAuthenticated } from "../services/links";
-
+import axios from "axios";
 const container = document.getElementById('app');
 
 export function shipmentPage() {
@@ -54,21 +54,19 @@ export function shipmentPage() {
   applyButton.addEventListener('click', async () => {
     let result = "";
     try {
-      const res = await fetch(`${SHIPMENT_URL}/${shipItemId}`)
-      result = await res.json();
+      const res = await axios.get(`${SHIPMENT_URL}/${shipItemId}`);
+      result = res.data;
     } catch (e) {
       throw new Error('failed to fetch', e)
     }
     if (result) {
-      const resp = await fetch(CHECKOUT_URL, {
-        method: 'PATCH',
+      const resp = await axios.patch(CHECKOUT_URL, {
+        ship: result
+      }, {
         headers: {
           'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ship: result
-        })
-      })
+        }
+      });
       router.navigate(routes.finalcheckout)
     }
   })
@@ -129,6 +127,9 @@ async function fetchShipmentMethods() {
     radioButton.classList = 'custom-radio';
     radioButton.type = 'radio';
     radioButton.name = 'add';
+    if (isDefault) {
+      radioButton.checked = true;
+    }
     radioButton.id = `${id}`;
 
     contentWrapperLeft.appendChild(itemPrice);

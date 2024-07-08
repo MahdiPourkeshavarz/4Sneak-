@@ -1,3 +1,4 @@
+import axios from "axios";
 import { router, routes } from "../../main";
 import { ACTIVE_URL, CHECKOUT_URL, COMPLETED_URL, isAuthenticated } from "../services/links";
 
@@ -125,16 +126,18 @@ export function paymentPage() {
 async function handleFirstProcess() {
   let res = "";
   try {
-    const response = await fetch(ACTIVE_URL);
-    res = await response.json();
+    const response = await axios.get(ACTIVE_URL);
+    res = response.data;
     if (res) {
       await Promise.all(
         res.map(async (product) => {
-          await fetch(COMPLETED_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(product),
-          });
+          try {
+            await axios.post(COMPLETED_URL, product, {
+              headers: { 'Content-Type': 'application/json' }
+            });
+          } catch (e) {
+            throw new Error('failed to post product', e);
+          }
         })
       );
     }
@@ -146,12 +149,16 @@ async function handleFirstProcess() {
 
 async function handleSecondProcess() {
   try {
-    const response = await fetch(ACTIVE_URL);
-    const result = await response.json();
+    const response = await axios.get(ACTIVE_URL);
+    const result = response.data;
     if (result) {
       await Promise.all(
         result.map(async (product) => {
-          await fetch(`${ACTIVE_URL}/${product.id}`, { method: 'DELETE' });
+          try {
+            await axios.delete(`${ACTIVE_URL}/${product.id}`);
+          } catch (e) {
+            throw new Error(`failed to delete product with id ${product.id}`, e);
+          }
         })
       );
     } else {
@@ -166,17 +173,19 @@ async function handleSecondProcess() {
 async function handleThirdProcess() {
   let resl = "";
   try {
-    const response = await fetch(CHECKOUT_URL);
-    resl = await response.json();
+    const response = await axios.get(CHECKOUT_URL);
+    resl = response.data;
     if (resl) {
       const { items, ship, address } = resl;
       await Promise.all(
         items.map(async (product) => {
-          await fetch(ACTIVE_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(product),
-          });
+          try {
+            await axios.post(ACTIVE_URL, product, {
+              headers: { 'Content-Type': 'application/json' }
+            });
+          } catch (e) {
+            throw new Error('failed to post product', e);
+          }
         })
       );
     }

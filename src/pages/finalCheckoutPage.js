@@ -1,6 +1,6 @@
-
+import axios from "axios";
 import { router, routes } from "../../main";
-import { CART_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
+import { CHECKOUT_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -97,8 +97,8 @@ export async function finalCheckoutPage() {
   let p = 0;
   let addp = 10;
   try {
-    const response = await fetch(CHECKOUT_URL);
-    const data = await response.json();
+    const response = await axios.get(CHECKOUT_URL);
+    res = response.data;
     if (data) {
       const { items, ship, address } = data
       // biome-ignore lint/complexity/noForEach: <explanation>

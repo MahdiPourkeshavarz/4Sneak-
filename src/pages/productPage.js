@@ -1,9 +1,10 @@
+import axios from "axios";
 import { router, routes } from "../../main";
 import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, isAuthenticated } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 
 const container = document.getElementById('app');
-
+const usedIds = new Set();
 let route = "";
 let URl = "";
 
@@ -26,8 +27,8 @@ export async function productPage() {
   cartData = await cartResponse.json();
 
   try {
-    const response = await fetch(URl);
-    data = await response.json();
+    const response = await axios.get(URl);
+    data = response.data;
     if (cartData) {
       // biome-ignore lint/complexity/noForEach: <explanation>
       cartData.forEach((item) => {
@@ -284,12 +285,10 @@ export async function productPage() {
 
     sizes.addEventListener('click', (e) => {
       chosenSize = e.target.id
-      console.log(chosenSize)
     })
 
     colors.addEventListener('click', (e) => {
       chosenColor = e.target.id
-      console.log(chosenColor)
     })
 
 
@@ -381,14 +380,12 @@ export async function productPage() {
     increment.addEventListener('click', () => {
       chosenQuantity = Number(quantityValue.innerText) + 1;
       totPrice += data.price;
-      console.log(totPrice);
       priceValue.textContent = `$ ${totPrice}`;
     })
 
     decrement.addEventListener('click', () => {
       chosenQuantity = Number(quantityValue.innerText) + 1;
       totPrice -= data.price;
-      console.log(totPrice);
       priceValue.textContent = `$ ${totPrice}`;
     })
 
@@ -449,6 +446,16 @@ export async function productPage() {
       } else if (chosenColor === 'bg-[#268801]') {
         colorName = 'green'
       }
+
+      function generateUniqueId() {
+        let id;
+        do {
+          id = Math.floor(Math.random() * (200 - 100 + 1)) + 100;
+        } while (usedIds.has(id));
+
+        usedIds.add(id);
+        return id;
+      }
       const product = {
         id: data.id,
         name: data.name,
@@ -460,22 +467,21 @@ export async function productPage() {
         imgUrl: data.imgUrl,
         brand: data.brand
       }
-      const response = await fetch(CART_URL, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(product)
-      })
-      if (response.ok) {
-        addToCartButton.textContent = "Added to Cart";
-        addToCartButton.classList.remove('bg-slate-900');
-        addToCartButton.classList.add('bg-blue-700')
+      try {
+        const response = await axios.post(CART_URL, product, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (response.status === 200) {
+          addToCartButton.textContent = "Added to Cart";
+          addToCartButton.classList.remove('bg-slate-900');
+          addToCartButton.classList.add('bg-blue-700');
+        }
+      } catch (error) {
+        console.error('Error adding to cart:', error);
       }
     })
   }
-
-
-
-
 }

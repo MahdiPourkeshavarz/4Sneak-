@@ -1,3 +1,4 @@
+import axios from "axios";
 import { router, routes } from "../../main";
 import { ADDRESS_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 
@@ -60,22 +61,24 @@ export async function addressPage() {
   applyButton.addEventListener('click', async () => {
     let result = "";
     try {
-      const res = await fetch(`${ADDRESS_URL}/${addItemId}`)
-      result = await res.json();
+      const res = await axios.get(`${ADDRESS_URL}/${addItemId}`);
+      result = res.data;
     } catch (e) {
       throw new Error('failed to fetch', e)
     }
     if (result) {
-      const resp = await fetch(CHECKOUT_URL, {
-        method: 'PATCH',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
+      try {
+        const resp = await axios.patch(CHECKOUT_URL, {
           address: result
-        })
-      })
-      router.navigate(routes.finalcheckout)
+        }, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+        router.navigate(routes.finalcheckout);
+      } catch (e) {
+        throw new Error('failed to update checkout', e);
+      }
     }
   })
 }
@@ -85,7 +88,7 @@ async function fetchAddress() {
   const adds = document.getElementById('adds')
   const createItem = (type, address, id, isDefault) => {
     const item = document.createElement('div');
-    item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[380px]';
+    item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[375px]';
     item.id = 'item';
 
     const locationIcon = document.createElement('img');
@@ -110,6 +113,7 @@ async function fetchAddress() {
       defaultLabel.classList = 'p-1 bg-slate-100 rounded-lg';
       defaultLabel.textContent = 'Default';
       infoTop.appendChild(defaultLabel);
+
     }
 
     const itemAddress = document.createElement('p');
@@ -129,6 +133,9 @@ async function fetchAddress() {
     radioButton.classList = 'custom-radio';
     radioButton.type = 'radio';
     radioButton.name = 'add';
+    if (isDefault) {
+      radioButton.checked = true;
+    }
     radioButton.id = `${id}`;
 
     item.appendChild(contentWrapper);

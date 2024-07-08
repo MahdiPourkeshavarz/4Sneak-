@@ -1,6 +1,6 @@
 import { router, routes } from "../../main";
 import { ACTIVE_URL, COMPLETED_URL, isAuthenticated } from "../services/links";
-
+import axios from "axios";
 const container = document.getElementById('app');
 
 export function ordersPage() {
@@ -61,7 +61,7 @@ export function ordersPage() {
   container.appendChild(tabs);
 
   const items = document.createElement('div');
-  items.classList = 'pl-2 grid grid-cols-1 gap-y-6';
+  items.classList = 'pl-2 grid grid-cols-1 gap-y-6 mb-28 overflow-y-scroll scrollbar-hide';
   items.id = 'items';
 
   container.appendChild(items);
@@ -163,8 +163,8 @@ async function fetchOrderedProducts(mode) {
   let results = "";
 
   try {
-    const response = await fetch(mode === 'active' ? ACTIVE_URL : COMPLETED_URL);
-    results = await response.json()
+    const response = await axios.get(mode === 'active' ? ACTIVE_URL : COMPLETED_URL);
+    results = response.data;
   } catch (e) {
     throw new Error('failed to fetch', e)
   }

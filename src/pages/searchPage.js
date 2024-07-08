@@ -1,5 +1,7 @@
+import axios from "axios";
 import { router, routes } from "../../main";
 import { PRODUCT_URL, isAuthenticated } from "../services/links";
+import { updateProductInfo } from "./productPage";
 
 const container = document.getElementById('app');
 
@@ -102,10 +104,11 @@ export async function searchPage() {
 
   fetchProducts(input);
 
+
   const links = [
     { href: '/home', iconSrc: '../src/assets/action/home.png', iconAlt: '_', additionalClasses: '' },
     { href: '/cart', iconSrc: '../src/assets/action/cart.png', iconAlt: '_', additionalClasses: 'relative', isCart: true },
-    { href: '/orders/an', iconSrc: '../src/assets/action/orders.png', iconAlt: '_', additionalClasses: '' },
+    { href: '/orders/active', iconSrc: '../src/assets/action/orders.png', iconAlt: '_', additionalClasses: '' },
     { href: '/wallet', iconSrc: '../src/assets/action/wallet.png', iconAlt: '_', additionalClasses: '' },
     { href: '/profile', iconSrc: '../src/assets/action/profile.png', iconAlt: '_', additionalClasses: '' }
   ];
@@ -173,11 +176,14 @@ export async function fetchProducts(input) {
   }
 
   try {
-    const response = await fetch(`${PRODUCT_URL}?name_like=${input}`);
-    result = await response.json();
-    console.log(result);
+    const response = await axios.get(`${PRODUCT_URL}`, {
+      params: {
+        name_like: input
+      }
+    });
+    result = response.data;
   } catch (e) {
-    throw new Error('failed to fetch', e);
+    throw new Error('failed to fetch', { cause: e });
   }
 
   if (result) {
@@ -253,7 +259,13 @@ export async function fetchProducts(input) {
       info.appendChild(itemPrice);
 
       item.appendChild(info);
+
       itemsContainer.appendChild(item);
+
+      item.addEventListener('click', () => {
+        updateProductInfo(product.id, 'search');
+        router.navigate(routes.product);
+      })
     })
   }
 }
