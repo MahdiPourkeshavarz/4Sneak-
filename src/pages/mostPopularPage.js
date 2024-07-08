@@ -1,10 +1,13 @@
 import { router, routes } from "../../main";
-import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
+import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, isAuthenticated } from "../services/links";
 import { getProducts } from "./homePage";
 
 const container = document.getElementById('app');
 
 export function mostPopularPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-8 bg-slate-50';
 

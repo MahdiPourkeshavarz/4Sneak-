@@ -1,4 +1,5 @@
-import { PRODUCT_URL } from "../services/links";
+import { router, routes } from "../../main";
+import { PRODUCT_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
@@ -12,6 +13,9 @@ export function updateSearchInfo(value) {
 
 
 export async function searchPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col px-6 w-[430px] h-max gap-y-6';
 

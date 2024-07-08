@@ -1,9 +1,12 @@
 import { router, routes } from "../../main";
-import { ACTIVE_URL, CHECKOUT_URL, COMPLETED_URL } from "../services/links";
+import { ACTIVE_URL, CHECKOUT_URL, COMPLETED_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export function paymentPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-8 bg-slate-50';
 
@@ -107,7 +110,6 @@ export function paymentPage() {
       await handleFirstProcess();
       await handleSecondProcess();
       await handleThirdProcess();
-      await handleFourthProcess();
       router.navigate(routes.home);
       router.navigate(routes.successModal);
     } catch (e) {
@@ -121,25 +123,6 @@ export function paymentPage() {
 }
 
 async function handleFirstProcess() {
-  try {
-    const response = await fetch(COMPLETED_URL);
-    const result = await response.json();
-    if (result) {
-      await Promise.all(
-        result.map(async (product) => {
-          await fetch(`${COMPLETED_URL}/${product.id}`, { method: 'DELETE' });
-        })
-      );
-    } else {
-      return;
-    }
-  } catch (e) {
-    console.error('Failed at level one:', e);
-    throw new Error('Failed at level one');
-  }
-}
-
-async function handleSecondProcess() {
   let res = "";
   try {
     const response = await fetch(ACTIVE_URL);
@@ -161,7 +144,7 @@ async function handleSecondProcess() {
   }
 }
 
-async function handleThirdProcess() {
+async function handleSecondProcess() {
   try {
     const response = await fetch(ACTIVE_URL);
     const result = await response.json();
@@ -180,7 +163,7 @@ async function handleThirdProcess() {
   }
 }
 
-async function handleFourthProcess() {
+async function handleThirdProcess() {
   let resl = "";
   try {
     const response = await fetch(CHECKOUT_URL);

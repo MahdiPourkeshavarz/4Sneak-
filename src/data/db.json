@@ -4,6 +4,26 @@
       "email": "mahdi@gmail.com",
       "password": "11223344",
       "id": 1
+    },
+    {
+      "email": "m@gmail.com",
+      "password": "$2a$10$Ar3.9nRzffZy1YfP7ccaLOvYRXo1TkzGrVVg72BOXZPHeMaEbKEnW",
+      "id": 2
+    },
+    {
+      "email": "ma@gmail.com",
+      "password": "$2a$10$jb4fc6QCuQaobtgwerpU7.E1vX2v4vxF7mD4ycpMA57BCYWXyRkMW",
+      "id": 3
+    },
+    {
+      "email": "maa@gmail.com",
+      "password": "$2a$10$dB/sEfWe8EdERnMLEdPHgeIL7QHrnoHnZlceW3Nl5atWN6ydYPNmu",
+      "id": 4
+    },
+    {
+      "email": "mqq@gmail.com",
+      "password": "$2a$10$en92zqWf4jMb4unjGAoEvOoGkHuazn2k4n8gnCyfGXA4.mF5v3oPK",
+      "id": 5
     }
   ],
   "products": [
@@ -706,14 +726,14 @@
       "brand": "puma"
     },
     {
-      "id": 22,
-      "name": "NewBalance 327",
-      "price": 125,
-      "color": "green",
-      "hexCode": "bg-[#268801]",
-      "size": "42",
-      "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "id": 19,
+      "name": "NewBalance 9060",
+      "price": 120,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "43",
+      "quantity": 2,
+      "imgUrl": "../src/assets/newbalance/1.jpg",
       "brand": "newbalance"
     }
   ],
@@ -732,28 +752,28 @@
           "brand": "puma"
         },
         {
-          "id": 22,
-          "name": "NewBalance 327",
-          "price": 125,
-          "color": "green",
-          "hexCode": "bg-[#268801]",
-          "size": "42",
-          "quantity": 1,
-          "imgUrl": "../src/assets/newbalance/4.jpg",
+          "id": 19,
+          "name": "NewBalance 9060",
+          "price": 120,
+          "color": "blue",
+          "hexCode": "bg-[#27aec7]",
+          "size": "43",
+          "quantity": 2,
+          "imgUrl": "../src/assets/newbalance/1.jpg",
           "brand": "newbalance"
         }
       ],
       "ship": {
-        "name": "Regular",
-        "price": 15,
-        "description": "Estimated Arrival. Dec 20-22",
-        "icon": "../src/assets/chooseshipping/2.png",
-        "id": 2
+        "name": "Cargo",
+        "price": 20,
+        "description": "Estimated Arrival. Dec 19-20",
+        "icon": "../src/assets/chooseshipping/3.png",
+        "id": 3
       },
       "address": {
-        "name": "Offic",
-        "address": "6993 Meadow Valley Terra. PC 3637",
-        "id": 2
+        "name": "Apartment",
+        "address": "21833 Clyde Gallagher. PC 4662",
+        "id": 3
       },
       "id": 1
     }
@@ -780,6 +800,17 @@
       "quantity": 1,
       "imgUrl": "../src/assets/newbalance/4.jpg",
       "brand": "newbalance"
+    },
+    {
+      "id": 19,
+      "name": "NewBalance 9060",
+      "price": 120,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "43",
+      "quantity": 2,
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
     }
   ],
   "completed": [
@@ -804,6 +835,28 @@
       "quantity": 2,
       "imgUrl": "../src/assets/adidas/1.png",
       "brand": "adidas"
+    },
+    {
+      "id": 14,
+      "name": "Puma Suede",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/puma/2.jpg",
+      "brand": "puma"
+    },
+    {
+      "id": 22,
+      "name": "NewBalance 327",
+      "price": 125,
+      "color": "green",
+      "hexCode": "bg-[#268801]",
+      "size": "42",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "newbalance"
     }
   ],
   "addresses": [

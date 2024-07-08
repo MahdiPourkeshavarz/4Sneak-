@@ -1,9 +1,12 @@
 import { router, routes } from "../../main";
-import { ADDRESS_URL, CHECKOUT_URL } from "../services/links";
+import { ADDRESS_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export async function addressPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-[930px] bg-slate-50';
 

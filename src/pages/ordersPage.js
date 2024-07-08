@@ -1,8 +1,12 @@
-import { ACTIVE_URL, COMPLETED_URL } from "../services/links";
+import { router, routes } from "../../main";
+import { ACTIVE_URL, COMPLETED_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export function ordersPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col gap-y-8 w-[430px] h-max bg-slate-50 px-6';
 

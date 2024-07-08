@@ -1,9 +1,12 @@
 import { router, routes } from "../../main";
-import { CHECKOUT_URL, SHIPMENT_URL } from "../services/links";
+import { CHECKOUT_URL, SHIPMENT_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export function shipmentPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-[930px] bg-slate-50';
 

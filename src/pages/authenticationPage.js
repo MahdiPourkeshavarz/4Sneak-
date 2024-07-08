@@ -1,6 +1,11 @@
+
+import { USER_URL } from "../services/links";
+import { routes, router } from "../../main";
+
 const container = document.getElementById('app');
 
 export function authenticationPage() {
+  localStorage.removeItem('token');
   let mode = "login";
   container.innerHTML = "";
   container.classList = 'flex flex-col justify-center items-center';
@@ -91,14 +96,14 @@ export function authenticationPage() {
 
   container.appendChild(rememberMeDiv);
 
-  const link = document.createElement('a');
-  link.innerHTML = '<a href="/home" data-navigo><button class="mt-16 py-2 px-28 rounded-3xl bg-slate-800 text-slate-100" id="btn" type="submit">Login</button></a>';
+  const button = document.createElement('button');
+  button.innerHTML = '<button class="mt-16 py-2 px-28 rounded-3xl bg-slate-800 text-slate-100" id="btn" type="submit">Login</button>';
 
-  container.appendChild(link);
+  container.appendChild(button);
 
   container.addEventListener('click', (e) => {
     if (e.target.id === "new") {
-      mode = "register";
+      mode = "signup";
       document.getElementById('btn').textContent = "SignUp";
       document.getElementById('login').classList.add('hidden');
       document.getElementById('create').classList.remove('hidden')
@@ -114,6 +119,42 @@ export function authenticationPage() {
     }
   })
 
+  button.addEventListener('click', async (e) => {
+    e.preventDefault();
+    const emailValue = emailInput.value;
+    const passValue = passwordInput.value;
+    console.log(mode);
+    if (emailValue === '' || passValue === '') {
+      alert('please fill the email and password')
+      return;
+    }
+    console.log({
+      email: emailValue,
+      password: passValue
+    })
+    try {
+      const response = await fetch(`${USER_URL}/${mode}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          email: emailValue,
+          password: passValue
+        })
+      })
+      const result = await response.json();
+
+      if (response.ok) {
+        console.log(`successful ${mode}`);
+        localStorage.setItem('token', result.accessToken);
+        router.navigate(routes.home);
+      }
+    } catch (e) {
+      throw new Error('failed to authenticate', e)
+    }
+
+  })
 
 }
 

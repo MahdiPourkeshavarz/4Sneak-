@@ -1,11 +1,14 @@
 
 import { router, routes } from "../../main";
-import { CART_URL, CHECKOUT_URL } from "../services/links";
+import { CART_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 import { removeProductModal } from "./removeProductModal";
 
 let totalPrice = 0;
 
 export function cartPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   totalPrice = 0;
   const container = document.getElementById('app');
   container.innerHTML = "";

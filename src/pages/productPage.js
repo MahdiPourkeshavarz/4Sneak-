@@ -1,5 +1,5 @@
 import { router, routes } from "../../main";
-import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
+import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, isAuthenticated } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 
 const container = document.getElementById('app');
@@ -13,6 +13,9 @@ export function updateProductInfo(id, rout) {
 }
 
 export async function productPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max';
 

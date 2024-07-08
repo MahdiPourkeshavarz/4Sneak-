@@ -1,10 +1,13 @@
-import { add } from "lodash";
+
 import { router, routes } from "../../main";
-import { CART_URL, CHECKOUT_URL } from "../services/links";
+import { CART_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export async function finalCheckoutPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-8';
 

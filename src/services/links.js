@@ -10,7 +10,7 @@ export const NB_PRO = [19, 24];
 export const REEBOK_PRO = [25, 30];
 
 
-export const USER_URL = "http://localhost:3000/users"
+export const USER_URL = "http://localhost:3000"
 
 export const PRODUCT_URL = "http://localhost:3000/products"
 
@@ -31,3 +31,12 @@ export const ADDRESS_URL = "http://localhost:3000/addresses"
 export const SHIPMENT_URL = "http://localhost:3000/shipment"
 
 
+export function isAuthenticated() {
+  const token = localStorage.getItem('token');
+  if (token) {
+    return true
+    // biome-ignore lint/style/noUselessElse: <explanation>
+  } else {
+    return false;
+  }
+}

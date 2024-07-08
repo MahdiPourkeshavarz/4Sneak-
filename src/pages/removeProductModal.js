@@ -1,5 +1,5 @@
 
-import { router, routes } from "../../main";
+
 import { CART_URL } from "../services/links";
 import { fetchCartProducts } from "./cartPage";
 
