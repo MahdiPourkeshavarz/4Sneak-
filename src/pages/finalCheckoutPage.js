@@ -98,9 +98,9 @@ export async function finalCheckoutPage() {
   let addp = 10;
   try {
     const response = await axios.get(CHECKOUT_URL);
-    res = response.data;
-    if (data) {
-      const { items, ship, address } = data
+    const result = response.data;
+    if (result) {
+      const { items, ship, address } = result
       // biome-ignore lint/complexity/noForEach: <explanation>
       items.forEach((product) => {
         p += (product.quantity * product.price)

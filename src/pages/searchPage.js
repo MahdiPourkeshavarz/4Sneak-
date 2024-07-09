@@ -9,7 +9,6 @@ const container = document.getElementById('app');
 let input = "";
 
 export function updateSearchInfo(value) {
-  console.log(value);
   input = value;
 }
 
@@ -51,6 +50,19 @@ export async function searchPage() {
   searchBar.appendChild(filterIcon);
 
   container.appendChild(searchBar);
+
+  // const performSearch = (value) => {
+  //   fetchProducts(value);
+  // }
+
+  // const debouncedSearch = _.debounce((value) => {
+  //   performSearch(value);
+  // }, 400)
+
+  // searchInput.addEventListener('input', (e) => {
+  //   const query = e.target.value;
+  //   debouncedSearch(query);
+  // })
 
   searchIcon.addEventListener('click', () => {
     const value = searchInput.value;

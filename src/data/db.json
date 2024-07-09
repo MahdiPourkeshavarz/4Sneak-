@@ -588,6 +588,25 @@
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
       "imgUrl": "../src/assets/reebok/6.jpg",
       "brand": "reebok"
+    },
+    {
+      "id": 31,
+      "name": "NewBalance 906",
+      "price": 130,
+      "rate": 4.1,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
     }
   ],
   "mostPopular": [
@@ -706,61 +725,54 @@
       "brand": "reebok"
     }
   ],
-  "session": [
-    {
-      "name": "Mahdi Keshavarz",
-      "imgUrl": "./src/assets/meiti.jpg",
-      "id": 1
-    }
-  ],
   "cart": [
     {
-      "id": 14,
-      "name": "Puma Suede",
-      "price": 110,
+      "id": 3,
+      "name": "Adidas Gazelle",
+      "price": 100,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "41",
-      "quantity": 2,
-      "imgUrl": "../src/assets/puma/2.jpg",
-      "brand": "puma"
+      "quantity": 1,
+      "imgUrl": "../src/assets/reebok/1.png",
+      "brand": "adidas"
     },
     {
-      "id": 19,
-      "name": "NewBalance 9060",
-      "price": 120,
-      "color": "blue",
-      "hexCode": "bg-[#27aec7]",
-      "size": "43",
-      "quantity": 3,
-      "imgUrl": "../src/assets/newbalance/1.jpg",
-      "brand": "newbalance"
+      "id": 11,
+      "name": "Nike Hurachi",
+      "price": 99,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "41",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "nike"
     }
   ],
   "checkout": [
     {
       "items": [
         {
-          "id": 14,
-          "name": "Puma Suede",
-          "price": 110,
+          "id": 3,
+          "name": "Adidas Gazelle",
+          "price": 100,
           "color": "blue",
           "hexCode": "bg-[#27aec7]",
           "size": "41",
-          "quantity": 2,
-          "imgUrl": "../src/assets/puma/2.jpg",
-          "brand": "puma"
+          "quantity": 1,
+          "imgUrl": "../src/assets/reebok/1.png",
+          "brand": "adidas"
         },
         {
-          "id": 19,
-          "name": "NewBalance 9060",
-          "price": 120,
-          "color": "blue",
-          "hexCode": "bg-[#27aec7]",
-          "size": "43",
-          "quantity": 3,
-          "imgUrl": "../src/assets/newbalance/1.jpg",
-          "brand": "newbalance"
+          "id": 11,
+          "name": "Nike Hurachi",
+          "price": 99,
+          "color": "red",
+          "hexCode": "bg-[#c72800]",
+          "size": "41",
+          "quantity": 1,
+          "imgUrl": "../src/assets/newbalance/4.jpg",
+          "brand": "nike"
         }
       ],
       "ship": {
@@ -780,26 +792,26 @@
   ],
   "active": [
     {
-      "id": 14,
-      "name": "Puma Suede",
-      "price": 110,
+      "id": 3,
+      "name": "Adidas Gazelle",
+      "price": 100,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "41",
-      "quantity": 2,
-      "imgUrl": "../src/assets/puma/2.jpg",
-      "brand": "puma"
+      "quantity": 1,
+      "imgUrl": "../src/assets/reebok/1.png",
+      "brand": "adidas"
     },
     {
-      "id": 19,
-      "name": "NewBalance 9060",
-      "price": 120,
-      "color": "blue",
-      "hexCode": "bg-[#27aec7]",
-      "size": "43",
-      "quantity": 3,
-      "imgUrl": "../src/assets/newbalance/1.jpg",
-      "brand": "newbalance"
+      "id": 11,
+      "name": "Nike Hurachi",
+      "price": 99,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "41",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "nike"
     }
   ],
   "completed": [
@@ -815,48 +827,26 @@
       "brand": "nike"
     },
     {
-      "id": 1,
-      "name": "Adidas Samba",
-      "price": 110,
+      "id": 2,
+      "name": "Adidas UltraBoost",
+      "price": 120,
       "color": "blue",
-      "hexCode": "bg-[#268801]",
-      "size": 41,
-      "quantity": 2,
-      "imgUrl": "../src/assets/adidas/1.png",
+      "hexCode": "bg-[#27aec7]",
+      "size": "41",
+      "quantity": 1,
+      "imgUrl": "../src/assets/reebok/2.jpg",
       "brand": "adidas"
     },
     {
-      "id": 14,
-      "name": "Puma Suede",
-      "price": 110,
+      "id": 3,
+      "name": "Adidas Gazelle",
+      "price": 100,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
       "size": "41",
       "quantity": 2,
-      "imgUrl": "../src/assets/puma/2.jpg",
-      "brand": "puma"
-    },
-    {
-      "id": 22,
-      "name": "NewBalance 327",
-      "price": 125,
-      "color": "green",
-      "hexCode": "bg-[#268801]",
-      "size": "42",
-      "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/4.jpg",
-      "brand": "newbalance"
-    },
-    {
-      "id": 19,
-      "name": "NewBalance 9060",
-      "price": 120,
-      "color": "blue",
-      "hexCode": "bg-[#27aec7]",
-      "size": "43",
-      "quantity": 2,
-      "imgUrl": "../src/assets/newbalance/1.jpg",
-      "brand": "newbalance"
+      "imgUrl": "../src/assets/reebok/1.png",
+      "brand": "adidas"
     }
   ],
   "addresses": [

@@ -447,15 +447,15 @@ export async function productPage() {
         colorName = 'green'
       }
 
-      function generateUniqueId() {
-        let id;
-        do {
-          id = Math.floor(Math.random() * (200 - 100 + 1)) + 100;
-        } while (usedIds.has(id));
+      // function generateUniqueId() {
+      //   let id;
+      //   do {
+      //     id = Math.floor(Math.random() * (200 - 100 + 1)) + 100;
+      //   } while (usedIds.has(id));
 
-        usedIds.add(id);
-        return id;
-      }
+      //   usedIds.add(id);
+      //   return id;
+      // }
       const product = {
         id: data.id,
         name: data.name,

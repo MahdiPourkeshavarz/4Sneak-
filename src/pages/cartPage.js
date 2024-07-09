@@ -4,13 +4,10 @@ import { router, routes } from "../../main";
 import { CART_URL, CHECKOUT_URL, isAuthenticated } from "../services/links";
 import { removeProductModal } from "./removeProductModal";
 
-let totalPrice = 0;
-
 export function cartPage() {
   if (!isAuthenticated()) {
     router.navigate(routes.auth);
   }
-  totalPrice = 0;
   const container = document.getElementById('app');
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-12 px-6';
@@ -86,7 +83,7 @@ export function cartPage() {
   const links = [
     { href: '/home', iconSrc: '../src/assets/action/home.png', iconAlt: '_', additionalClasses: '' },
     { href: '/cart', iconSrc: '../src/assets/action/cart.png', iconAlt: '_', additionalClasses: 'relative', isCart: true },
-    { href: '/orders/an', iconSrc: '../src/assets/action/orders.png', iconAlt: '_', additionalClasses: '' },
+    { href: '/orders/active', iconSrc: '../src/assets/action/orders.png', iconAlt: '_', additionalClasses: '' },
     { href: '/wallet', iconSrc: '../src/assets/action/wallet.png', iconAlt: '_', additionalClasses: '' },
     { href: '/profile', iconSrc: '../src/assets/action/profile.png', iconAlt: '_', additionalClasses: '' }
   ];
@@ -141,7 +138,7 @@ export function cartPage() {
   // Append action bar to container
   container.appendChild(actionBar);
   fetchCartProducts();
-
+  UpdateCartTotalPriceHandler();
   checkoutButton.addEventListener('click', async () => {
     let result = "";
     try {
@@ -165,6 +162,7 @@ export function cartPage() {
     }
     router.navigate(routes.finalcheckout)
   })
+
 
 }
 
@@ -274,23 +272,23 @@ export async function fetchCartProducts() {
 
       items.appendChild(item);
 
-      totalPrice += ((product.price * product.quantity) / 2);
-      const total = document.getElementById('total-price');
-      total.innerText = `$ ${totalPrice}.00`;
+      // totalPrice += ((product.price * product.quantity) / 2);
+      // const total = document.getElementById('total-price');
+      // total.innerText = `$ ${totalPrice}.00`;
 
       binIcon.addEventListener('click', () => {
         removeProductModal(product.id);
       })
 
-      increment.addEventListener('click', (e) => {
-        totalPrice += product.price;
-        total.innerText = `$ ${totalPrice}.00`;
-      })
+      // increment.addEventListener('click', (e) => {
+      //   totalPrice += product.price;
+      //   total.innerText = `$ ${totalPrice}.00`;
+      // })
 
-      decrement.addEventListener('click', () => {
-        totalPrice -= product.price;
-        total.innerText = `$ ${totalPrice}.00`;
-      })
+      // decrement.addEventListener('click', () => {
+      //   totalPrice -= product.price;
+      //   total.innerText = `$ ${totalPrice}.00`;
+      // })
       let quan = product.quantity;
       quantityControl.addEventListener('click', async (e) => {
         if (e.target.id === 'increment') {
@@ -306,6 +304,7 @@ export async function fetchCartProducts() {
               quantity: quan
             })
           })
+          UpdateTotalPriceHandler();
         } else if (e.target.id === 'decrement') {
           const numb = document.getElementById(`quant-${product.id}`);
           if (numb.innerHTML > 1) {
@@ -320,6 +319,7 @@ export async function fetchCartProducts() {
                 quantity: quan
               })
             })
+            UpdateTotalPriceHandler();
           } else {
             return;
           }
@@ -328,4 +328,20 @@ export async function fetchCartProducts() {
     })
   }
 }
-
+export async function UpdateCartTotalPriceHandler() {
+  const total = document.getElementById('total-price');
+  let totalPrice = 0;
+  try {
+    const response = await axios.get(CART_URL);
+    const result = response.data;
+    if (result) {
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      result.forEach((product) => {
+        totalPrice += (product.price * product.quantity);
+      })
+      total.innerText = `$ ${totalPrice}.00`;
+    }
+  } catch (e) {
+    console.log('failed to fetch at update price function', e);
+  }
+}

@@ -1,7 +1,7 @@
 
 import axios from "axios";
 import { CART_URL } from "../services/links";
-import { fetchCartProducts } from "./cartPage";
+import { fetchCartProducts, UpdateCartTotalPriceHandler } from "./cartPage";
 
 
 export async function removeProductModal(productId) {
@@ -153,6 +153,7 @@ export async function removeProductModal(productId) {
   removeButton.addEventListener('click', async () => {
     const response = await axios.delete(`${CART_URL}/${productId}`);
     modalBg.classList.add('hidden');
+    UpdateCartTotalPriceHandler();
     fetchCartProducts();
   })
 
