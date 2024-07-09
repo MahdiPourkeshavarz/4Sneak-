@@ -20,6 +20,7 @@ import { shipmentPage } from "./src/pages/shipmentPage";
 import { successfulOrderModal } from "./src/pages/successfulOrderModal";
 import { walletPage } from "./src/pages/walletPage";
 import { welcomePage } from "./src/pages/welcomePage";
+import { wishlistPage } from "./src/pages/wishlistPage";
 import "./src/style/output.css";
 import Navigo from "navigo";
 
@@ -46,7 +47,8 @@ export const routes = {
   removePro: "/cart/remove:id",
   brand: "/home/brand",
   wallet: "/wallet",
-  profile: "/profile"
+  profile: "/profile",
+  wishlist: "/profile/wishlist"
 }
 
 
@@ -74,6 +76,7 @@ router.on(routes.first, firstPage)
   .on(routes.seeAll, mostPopularPage)
   .on(routes.payment, paymentPage)
   .on(routes.profile, profilePage)
+  .on(routes.wishlist, wishlistPage)
   .resolve();
 
 

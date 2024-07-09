@@ -30,6 +30,7 @@ export const ADDRESS_URL = "http://localhost:3000/addresses"
 
 export const SHIPMENT_URL = "http://localhost:3000/shipment"
 
+export const WISHLIST_URL = "http://localhost:3000/wishlist"
 
 export function isAuthenticated() {
   const token = localStorage.getItem('token');

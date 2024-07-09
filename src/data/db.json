@@ -747,6 +747,17 @@
       "quantity": 1,
       "imgUrl": "../src/assets/newbalance/4.jpg",
       "brand": "nike"
+    },
+    {
+      "id": 31,
+      "name": "NewBalance 906",
+      "price": 130,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "43",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "newbalance"
     }
   ],
   "checkout": [
@@ -899,6 +910,84 @@
       "description": "Estimated Arrival. Dec 18-19",
       "icon": "../src/assets/chooseshipping/4.png",
       "id": 4
+    }
+  ],
+  "wishlist": [
+    {
+      "id": 25,
+      "name": "Reebok Floatzig",
+      "price": 170,
+      "rate": 3.9,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/reebok/1.png",
+      "brand": "reebok"
+    },
+    {
+      "id": 26,
+      "name": "Reebok Classic",
+      "price": 160,
+      "rate": 4.1,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/reebok/2.jpg",
+      "brand": "reebok"
+    },
+    {
+      "id": 27,
+      "name": "Reebok Rewind",
+      "price": 170,
+      "rate": 3.8,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/reebok/3.jpg",
+      "brand": "reebok"
+    },
+    {
+      "id": 5,
+      "name": "Adidas Comfort",
+      "price": 99,
+      "rate": 3.6,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/reebok/6.jpg",
+      "brand": "adidas"
     }
   ]
 }

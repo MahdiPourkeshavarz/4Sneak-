@@ -1025,6 +1025,18 @@ video {
   width: max-content;
 }
 
+.w-\[265px\] {
+  width: 265px;
+}
+
+.w-\[220px\] {
+  width: 220px;
+}
+
+.w-\[28px\] {
+  width: 28px;
+}
+
 .flex-shrink-0 {
   flex-shrink: 0;
 }
@@ -1223,6 +1235,10 @@ video {
 
 .border-t-2 {
   border-top-width: 2px;
+}
+
+.border-b-2 {
+  border-bottom-width: 2px;
 }
 
 .border-solid {
@@ -1693,6 +1709,11 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.text-blue-500 {
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
 }
 
 .shadow-sm {
