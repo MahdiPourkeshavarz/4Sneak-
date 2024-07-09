@@ -151,6 +151,17 @@ async function fetchWishlistItems() {
       item.appendChild(info);
 
       itemsContainer.appendChild(item);
+
+      starIcon.addEventListener('click', async () => {
+        try {
+          const response = await axios.delete(`${WISHLIST_URL}/${product.id}`);
+          if (response.data) {
+            fetchWishlistItems();
+          }
+        } catch (e) {
+          console.log('failed to fetch from wishlist', e)
+        }
+      })
     });
   }
 
