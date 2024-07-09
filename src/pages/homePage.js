@@ -1,12 +1,15 @@
 import { router, routes } from "../../main";
-import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO } from "../services/links";
+import { ADIDAS_PRO, MOST_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, isAuthenticated } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 import { updateProductInfo } from "./productPage";
 import { updateSearchInfo } from "./searchPage";
-
+import axios from "axios";
 const container = document.getElementById('app');
 
 export async function homePage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max';
 
@@ -241,8 +244,8 @@ export async function getProducts(url, route) {
   try {
     const items = document.getElementById('items')
     items.innerHTML = "";
-    const response = await fetch(url);
-    const data = await response.json();
+    const response = await axios.get(url);
+    const data = response.data;
     if (data) {
       items.innerHTML = "";
       // biome-ignore lint/complexity/noForEach: <explanation>

@@ -1,7 +1,12 @@
-
+import { router, routes } from "../../main";
+import { ACTIVE_URL, COMPLETED_URL, isAuthenticated } from "../services/links";
+import axios from "axios";
 const container = document.getElementById('app');
 
 export function ordersPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col gap-y-8 w-[430px] h-max bg-slate-50 px-6';
 
@@ -35,8 +40,6 @@ export function ordersPage() {
   top.appendChild(searchImg);
   container.appendChild(top);
 
-  let active = true;
-
   // Create tabs
   const tabs = document.createElement('div');
   tabs.classList = 'grid grid-cols-2 text-center justify-center h-14 pr-4';
@@ -57,187 +60,9 @@ export function ordersPage() {
 
   container.appendChild(tabs);
 
-  completedTab.addEventListener('click', () => {
-    activeTab.classList.remove('border-solid', 'border-b-4', 'border-slate-800');
-    completedTab.classList.add('border-solid', 'border-b-4', 'border-slate-800');
-    active = false;
-  })
-
-  activeTab.addEventListener('click', () => {
-    completedTab.classList.remove('border-solid', 'border-b-4', 'border-slate-800');
-    activeTab.classList.add('border-solid', 'border-b-4', 'border-slate-800');
-    active = true;
-  })
-
-
   const items = document.createElement('div');
-  items.classList = 'pl-2 grid grid-cols-1 gap-y-6';
+  items.classList = 'pl-2 grid grid-cols-1 gap-y-6 mb-28 overflow-y-scroll scrollbar-hide';
   items.id = 'items';
-
-
-  if (active) {
-    items.innerHTML = "";
-    const item = document.createElement('div');
-    item.classList = 'flex items-center gap-x-8 rounded-xl bg-white';
-    item.id = 'item';
-
-    // Create image container
-    const itemImgContainer = document.createElement('div');
-    itemImgContainer.classList = 'w-28 h-auto';
-    itemImgContainer.id = 'img';
-
-    const itemImg = document.createElement('img');
-    itemImg.src = '../src/assets/Asics/3.jpg';
-    itemImg.alt = '_';
-
-    itemImgContainer.appendChild(itemImg);
-
-    // Create item info container
-    const itemInfo = document.createElement('div');
-    itemInfo.classList = 'flex flex-col gap-y-2';
-    itemInfo.id = 'info';
-
-    const itemName = document.createElement('p');
-    itemName.classList = 'font-semibold text-2xl';
-    itemName.textContent = 'Convers Classic';
-
-    const itemDetails = document.createElement('div');
-    itemDetails.classList = 'flex gap-x-1 text-slate-600 flex items-center';
-
-    const colorHex = document.createElement('div');
-    colorHex.classList = 'w-5 h-5 bg-black rounded-full';
-    colorHex.id = 'hex';
-
-    const colorDetails = document.createElement('div');
-    colorDetails.classList = 'flex';
-
-    const colorName = document.createElement('p');
-    colorName.id = 'color-name';
-    colorName.textContent = 'Black';
-
-    const size = document.createElement('p');
-    size.innerHTML = 'Size = <span id="size">42</span>';
-
-    const qty = document.createElement('p');
-    qty.innerHTML = 'Qty = <span id="quant">1</span>';
-
-    colorDetails.appendChild(colorName);
-    colorDetails.appendChild(document.createTextNode(' | '));
-    colorDetails.appendChild(size);
-    colorDetails.appendChild(document.createTextNode(' | '));
-    colorDetails.appendChild(qty);
-
-    itemDetails.appendChild(colorHex);
-    itemDetails.appendChild(colorDetails);
-
-    const deliveryStatus = document.createElement('div');
-    deliveryStatus.classList = 'py-2 bg-slate-200 flex justify-center rounded-xl items-center w-24';
-    deliveryStatus.textContent = 'In Delivery';
-
-    const priceInfo = document.createElement('div');
-    priceInfo.classList = 'flex gap-x-4 items-center';
-
-    const price = document.createElement('p');
-    price.classList = 'font-semibold text-2xl';
-    price.innerHTML = '$ <span id="price">105.00</span>';
-
-    const trackOrder = document.createElement('div');
-    trackOrder.classList = 'py-2 w-28 flex items-center justify-center text-white bg-black rounded-3xl';
-    trackOrder.textContent = 'Track Order';
-
-    priceInfo.appendChild(price);
-    priceInfo.appendChild(trackOrder);
-
-    itemInfo.appendChild(itemName);
-    itemInfo.appendChild(itemDetails);
-    itemInfo.appendChild(deliveryStatus);
-    itemInfo.appendChild(priceInfo);
-
-    item.appendChild(itemImgContainer);
-    item.appendChild(itemInfo);
-    items.appendChild(item);
-  } else {
-    items.innerHTML = "";
-    const item = document.createElement('div');
-    item.classList = 'flex items-center gap-x-8 rounded-xl bg-white';
-    item.id = 'item';
-
-    // Create image container
-    const itemImgContainer = document.createElement('div');
-    itemImgContainer.classList = 'w-28 h-auto';
-    itemImgContainer.id = 'img';
-
-    const itemImg = document.createElement('img');
-    itemImg.src = '../src/assets/Asics/3.jpg';
-    itemImg.alt = '_';
-
-    itemImgContainer.appendChild(itemImg);
-
-    // Create item info container
-    const itemInfo = document.createElement('div');
-    itemInfo.classList = 'flex flex-col gap-y-2';
-    itemInfo.id = 'info';
-
-    const itemName = document.createElement('p');
-    itemName.classList = 'font-semibold text-2xl';
-    itemName.textContent = 'Convers Classic';
-
-    const itemDetails = document.createElement('div');
-    itemDetails.classList = 'flex gap-x-1 text-slate-600 flex items-center';
-
-    const colorHex = document.createElement('div');
-    colorHex.classList = 'w-5 h-5 bg-black rounded-full';
-    colorHex.id = 'hex';
-
-    const colorDetails = document.createElement('div');
-    colorDetails.classList = 'flex';
-
-    const colorName = document.createElement('p');
-    colorName.id = 'color-name';
-    colorName.textContent = 'Black';
-
-    const size = document.createElement('p');
-    size.innerHTML = 'Size = <span id="size">42</span>';
-
-    const qty = document.createElement('p');
-    qty.innerHTML = 'Qty = <span id="quant">1</span>';
-
-    colorDetails.appendChild(colorName);
-    colorDetails.appendChild(document.createTextNode(' | '));
-    colorDetails.appendChild(size);
-    colorDetails.appendChild(document.createTextNode(' | '));
-    colorDetails.appendChild(qty);
-
-    itemDetails.appendChild(colorHex);
-    itemDetails.appendChild(colorDetails);
-
-    const deliveryStatus = document.createElement('div');
-    deliveryStatus.classList = 'py-2 bg-slate-200 flex justify-center rounded-xl items-center w-24';
-    deliveryStatus.textContent = 'Completed';
-
-    const priceInfo = document.createElement('div');
-    priceInfo.classList = 'flex gap-x-4 items-center';
-
-    const price = document.createElement('p');
-    price.classList = 'font-semibold text-2xl';
-    price.innerHTML = '$ <span id="price">105.00</span>';
-
-    const trackOrder = document.createElement('div');
-    trackOrder.classList = 'py-2 w-28 flex items-center justify-center text-white bg-black rounded-3xl';
-    trackOrder.textContent = 'Buy Again';
-
-    priceInfo.appendChild(price);
-    priceInfo.appendChild(trackOrder);
-
-    itemInfo.appendChild(itemName);
-    itemInfo.appendChild(itemDetails);
-    itemInfo.appendChild(deliveryStatus);
-    itemInfo.appendChild(priceInfo);
-
-    item.appendChild(itemImgContainer);
-    item.appendChild(itemInfo);
-    items.appendChild(item)
-  }
 
   container.appendChild(items);
 
@@ -317,4 +142,204 @@ export function ordersPage() {
   actionBar.appendChild(profileLink);
 
   container.appendChild(actionBar);
+
+  completedTab.addEventListener('click', () => {
+    fetchOrderedProducts("completed");
+    activeTab.classList.remove('border-solid', 'border-b-4', 'border-slate-800');
+    completedTab.classList.add('border-solid', 'border-b-4', 'border-slate-800');
+  })
+
+  activeTab.addEventListener('click', () => {
+    fetchOrderedProducts("active");
+    completedTab.classList.remove('border-solid', 'border-b-4', 'border-slate-800');
+    activeTab.classList.add('border-solid', 'border-b-4', 'border-slate-800');
+  })
+
+  fetchOrderedProducts("active");
+}
+
+async function fetchOrderedProducts(mode) {
+  const items = document.getElementById('items');
+  let results = "";
+
+  try {
+    const response = await axios.get(mode === 'active' ? ACTIVE_URL : COMPLETED_URL);
+    results = response.data;
+  } catch (e) {
+    throw new Error('failed to fetch', e)
+  }
+
+  if (mode === "active" && results) {
+    items.innerHTML = ""
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    results.forEach((product) => {
+      const item = document.createElement('div');
+      item.classList = 'flex items-center gap-x-8 rounded-xl bg-white';
+      item.id = 'item';
+
+      // Create image container
+      const itemImgContainer = document.createElement('div');
+      itemImgContainer.classList = 'w-28 h-auto';
+      itemImgContainer.id = 'img';
+
+      const itemImg = document.createElement('img');
+      itemImg.src = product.imgUrl;
+      itemImg.alt = '_';
+
+      itemImgContainer.appendChild(itemImg);
+
+      // Create item info container
+      const itemInfo = document.createElement('div');
+      itemInfo.classList = 'flex flex-col gap-y-2';
+      itemInfo.id = 'info';
+
+      const itemName = document.createElement('p');
+      itemName.classList = 'font-semibold text-2xl';
+      itemName.textContent = product.name;
+
+      const itemDetails = document.createElement('div');
+      itemDetails.classList = 'flex gap-x-1 text-slate-600 flex items-center';
+
+      const colorHex = document.createElement('div');
+      colorHex.classList = 'w-5 h-5 rounded-full';
+      colorHex.classList.add(product.hexCode)
+      colorHex.id = 'hex';
+
+      const colorDetails = document.createElement('div');
+      colorDetails.classList = 'flex';
+
+      const colorName = document.createElement('p');
+      colorName.id = 'color-name';
+      colorName.textContent = product.color;
+
+      const size = document.createElement('p');
+      size.innerHTML = 'Size = <span id="size">42</span>';
+
+      const qty = document.createElement('p');
+      qty.innerHTML = `Qty = <span id="quant">${product.quantity}</span>`;
+
+      colorDetails.appendChild(colorName);
+      colorDetails.appendChild(document.createTextNode(' | '));
+      colorDetails.appendChild(size);
+      colorDetails.appendChild(document.createTextNode(' | '));
+      colorDetails.appendChild(qty);
+
+      itemDetails.appendChild(colorHex);
+      itemDetails.appendChild(colorDetails);
+
+      const deliveryStatus = document.createElement('div');
+      deliveryStatus.classList = 'py-2 bg-slate-200 flex justify-center rounded-xl items-center w-24';
+      deliveryStatus.textContent = 'In Delivery';
+
+      const priceInfo = document.createElement('div');
+      priceInfo.classList = 'flex gap-x-4 items-center';
+
+      const calcValue = product.price * product.quantity;
+      const price = document.createElement('p');
+      price.classList = 'font-semibold text-2xl';
+      price.innerHTML = `$ <span id="price">${calcValue}.00</span>`;
+
+      const trackOrder = document.createElement('div');
+      trackOrder.classList = 'py-2 w-28 flex items-center justify-center text-white bg-black rounded-3xl';
+      trackOrder.textContent = 'Track Order';
+
+      priceInfo.appendChild(price);
+      priceInfo.appendChild(trackOrder);
+
+      itemInfo.appendChild(itemName);
+      itemInfo.appendChild(itemDetails);
+      itemInfo.appendChild(deliveryStatus);
+      itemInfo.appendChild(priceInfo);
+
+      item.appendChild(itemImgContainer);
+      item.appendChild(itemInfo);
+      items.appendChild(item);
+    })
+  } else {
+    items.innerHTML = "";
+    // biome-ignore lint/complexity/noForEach: <explanation>
+    results.forEach((product) => {
+      const item = document.createElement('div');
+      item.classList = 'flex items-center gap-x-8 rounded-xl bg-white';
+      item.id = 'item';
+
+      // Create image container
+      const itemImgContainer = document.createElement('div');
+      itemImgContainer.classList = 'w-28 h-auto';
+      itemImgContainer.id = 'img';
+
+      const itemImg = document.createElement('img');
+      itemImg.src = product.imgUrl;
+      itemImg.alt = '_';
+
+      itemImgContainer.appendChild(itemImg);
+
+      // Create item info container
+      const itemInfo = document.createElement('div');
+      itemInfo.classList = 'flex flex-col gap-y-2';
+      itemInfo.id = 'info';
+
+      const itemName = document.createElement('p');
+      itemName.classList = 'font-semibold text-2xl';
+      itemName.textContent = product.name;
+
+      const itemDetails = document.createElement('div');
+      itemDetails.classList = 'flex gap-x-1 text-slate-600 flex items-center';
+
+      const colorHex = document.createElement('div');
+      colorHex.classList = 'w-5 h-5 rounded-full';
+      colorHex.classList.add(product.hexCode)
+      colorHex.id = 'hex';
+
+      const colorDetails = document.createElement('div');
+      colorDetails.classList = 'flex';
+
+      const colorName = document.createElement('p');
+      colorName.id = 'color-name';
+      colorName.textContent = product.color;
+
+      const size = document.createElement('p');
+      size.innerHTML = `Size = <span id="size">${product.size}</span>`;
+
+      const qty = document.createElement('p');
+      qty.innerHTML = `Qty = <span id="quant">${product.quantity}</span>`;
+
+      colorDetails.appendChild(colorName);
+      colorDetails.appendChild(document.createTextNode(' | '));
+      colorDetails.appendChild(size);
+      colorDetails.appendChild(document.createTextNode(' | '));
+      colorDetails.appendChild(qty);
+
+      itemDetails.appendChild(colorHex);
+      itemDetails.appendChild(colorDetails);
+
+      const deliveryStatus = document.createElement('div');
+      deliveryStatus.classList = 'py-2 bg-slate-200 flex justify-center rounded-xl items-center w-24';
+      deliveryStatus.textContent = 'Completed';
+
+      const priceInfo = document.createElement('div');
+      priceInfo.classList = 'flex gap-x-4 items-center';
+
+      const calcValue = product.quantity * product.price
+      const price = document.createElement('p');
+      price.classList = 'font-semibold text-2xl';
+      price.innerHTML = `$ <span id="price">${calcValue}.00</span>`;
+
+      const trackOrder = document.createElement('div');
+      trackOrder.classList = 'py-2 w-28 flex items-center justify-center text-white bg-black rounded-3xl';
+      trackOrder.textContent = 'Buy Again';
+
+      priceInfo.appendChild(price);
+      priceInfo.appendChild(trackOrder);
+
+      itemInfo.appendChild(itemName);
+      itemInfo.appendChild(itemDetails);
+      itemInfo.appendChild(deliveryStatus);
+      itemInfo.appendChild(priceInfo);
+
+      item.appendChild(itemImgContainer);
+      item.appendChild(itemInfo);
+      items.appendChild(item)
+    })
+  }
 }

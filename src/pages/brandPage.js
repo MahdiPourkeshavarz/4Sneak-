@@ -1,4 +1,5 @@
 import { router, routes } from "../../main";
+import { isAuthenticated } from "../services/links";
 import { getProducts } from "./homePage";
 
 const container = document.getElementById('app');
@@ -14,6 +15,9 @@ export function updateBrandInfo(name, url = "") {
 
 
 export function brandPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
 
   const top = document.createElement('div');

@@ -1,7 +1,12 @@
+import { router, routes } from "../../main";
+import { isAuthenticated } from "../services/links";
 
 const container = document.getElementById('app');
 
 export function walletPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-max gap-y-8 bg-slate-50';
 

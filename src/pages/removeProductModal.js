@@ -1,7 +1,7 @@
 
-import { router, routes } from "../../main";
+import axios from "axios";
 import { CART_URL } from "../services/links";
-import { fetchCartProducts } from "./cartPage";
+import { fetchCartProducts, UpdateCartTotalPriceHandler } from "./cartPage";
 
 
 export async function removeProductModal(productId) {
@@ -23,8 +23,8 @@ export async function removeProductModal(productId) {
 
   // Create the item container
   try {
-    const response = await fetch(`${CART_URL}/${productId}`);
-    const data = await response.json();
+    const response = await axios.get(`${CART_URL}/${productId}`);
+    const data = response.data;
     if (data) {
       const item = document.createElement('div');
       item.classList = 'flex gap-x-4 pb-14 items-center mx-auto';
@@ -151,10 +151,9 @@ export async function removeProductModal(productId) {
   document.body.appendChild(modalBg);
 
   removeButton.addEventListener('click', async () => {
-    const response = await fetch(`${CART_URL}/${productId}`, {
-      method: 'DELETE'
-    });
+    const response = await axios.delete(`${CART_URL}/${productId}`);
     modalBg.classList.add('hidden');
+    UpdateCartTotalPriceHandler();
     fetchCartProducts();
   })
 

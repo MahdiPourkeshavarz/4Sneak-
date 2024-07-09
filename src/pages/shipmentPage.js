@@ -1,8 +1,12 @@
 import { router, routes } from "../../main";
-
+import { CHECKOUT_URL, SHIPMENT_URL, isAuthenticated } from "../services/links";
+import axios from "axios";
 const container = document.getElementById('app');
 
 export function shipmentPage() {
+  if (!isAuthenticated()) {
+    router.navigate(routes.auth);
+  }
   container.innerHTML = "";
   container.classList = 'flex flex-col w-[430px] h-[930px] bg-slate-50';
 
@@ -23,21 +27,62 @@ export function shipmentPage() {
   top.appendChild(prevIcon);
   top.appendChild(topText);
 
-
-  const adds = document.createElement('div');
-  adds.classList = 'grid grid-cols-1 px-6 gap-y-6 mt-8';
-  adds.id = 'adds';
+  container.appendChild(top);
 
 
-  function createShippingItem(type, description, price, imgSrc) {
+  const ships = document.createElement('div');
+  ships.classList = 'grid grid-cols-1 px-6 gap-y-6 mt-8';
+  ships.id = 'ships';
+
+  container.appendChild(ships);
+
+  const applyButton = document.createElement('button');
+  applyButton.classList = 'absolute bottom-6 py-4 left-14 bg-slate-900 text-white w-80 rounded-3xl';
+  applyButton.textContent = 'Apply';
+
+  ships.appendChild(applyButton);
+
+  fetchShipmentMethods();
+  prevIcon.addEventListener('click', () => {
+    router.navigate(routes.finalcheckout)
+  })
+  let shipItemId = 1;
+  ships.addEventListener('click', (e) => {
+    shipItemId = e.target.id
+  })
+
+  applyButton.addEventListener('click', async () => {
+    let result = "";
+    try {
+      const res = await axios.get(`${SHIPMENT_URL}/${shipItemId}`);
+      result = res.data;
+    } catch (e) {
+      throw new Error('failed to fetch', e)
+    }
+    if (result) {
+      const resp = await axios.patch(CHECKOUT_URL, {
+        ship: result
+      }, {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+      router.navigate(routes.finalcheckout)
+    }
+  })
+}
+
+async function fetchShipmentMethods() {
+  const ships = document.getElementById('ships')
+  const createShippingItem = (name, price, description, imgSrc, id, isDefault) => {
     const item = document.createElement('div');
-    item.classList = 'flex gap-x-2 px-2 h-20 w-max py-2 rounded-2xl bg-white items-center';
+    item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[380px]';
     item.id = 'item';
 
-    const itemImg = document.createElement('img');
-    itemImg.classList = 'w-16 h-16 mr-1';
-    itemImg.src = imgSrc;
-    itemImg.alt = '_';
+    const locationIcon = document.createElement('img');
+    locationIcon.classList = 'w-16 h-16';
+    locationIcon.src = imgSrc;
+    locationIcon.alt = '_';
 
     const info = document.createElement('div');
     info.classList = 'flex-col flex gap-y-2';
@@ -45,57 +90,72 @@ export function shipmentPage() {
     const infoTop = document.createElement('div');
     infoTop.classList = 'flex gap-x-2 items-center';
 
-    const itemType = document.createElement('p');
-    itemType.classList = 'font-semibold text-2xl';
-    itemType.textContent = type;
+    const itemName = document.createElement('p');
+    itemName.classList = 'font-semibold text-2xl';
+    itemName.textContent = name;
 
-    const itemDescription = document.createElement('p');
-    itemDescription.classList = 'text-slate-600';
-    itemDescription.id = 'address';
-    itemDescription.textContent = description;
+    infoTop.appendChild(itemName);
+
+    if (isDefault) {
+      const defaultLabel = document.createElement('div');
+      defaultLabel.classList = 'p-1 bg-slate-100 rounded-lg';
+      defaultLabel.textContent = 'Default';
+      infoTop.appendChild(defaultLabel);
+    }
+
+    const itemAddress = document.createElement('p');
+    itemAddress.classList = 'text-slate-600';
+    itemAddress.id = 'address';
+    itemAddress.textContent = description;
+
+    info.appendChild(infoTop);
+    info.appendChild(itemAddress);
+
+    const contentWrapperRight = document.createElement('div');
+    contentWrapperRight.classList = 'flex items-center gap-x-3';
+    contentWrapperRight.appendChild(locationIcon);
+    contentWrapperRight.appendChild(info);
+
+    const contentWrapperLeft = document.createElement('div');
+    contentWrapperLeft.classList = 'flex items-center gap-x-1';
 
     const itemPrice = document.createElement('p');
     itemPrice.classList = 'font-semibold text-xl';
     itemPrice.innerHTML = `$ <span id="price">${price}</span>`;
 
     const radioButton = document.createElement('input');
-    radioButton.classList = 'resize border-solid border-2 border-slate-600 antialiased before:content[\'\'] peer';
+    radioButton.classList = 'custom-radio';
     radioButton.type = 'radio';
     radioButton.name = 'add';
-    radioButton.id = 'add';
+    if (isDefault) {
+      radioButton.checked = true;
+    }
+    radioButton.id = `${id}`;
 
-    infoTop.appendChild(itemType);
-    info.appendChild(infoTop);
-    info.appendChild(itemDescription);
+    contentWrapperLeft.appendChild(itemPrice);
+    contentWrapperLeft.appendChild(radioButton);
 
-    item.appendChild(itemImg);
-    item.appendChild(info);
-    item.appendChild(itemPrice);
-    item.appendChild(radioButton);
+    item.appendChild(contentWrapperRight);
+    item.appendChild(contentWrapperLeft);
 
     return item;
+  };
+
+  let results = '';
+  try {
+    const response = await fetch(SHIPMENT_URL);
+    results = await response.json();
+    if (results) {
+      // biome-ignore lint/complexity/noForEach: <explanation>
+      results.forEach((item) => {
+        if (item.name === 'Economy') {
+          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, item.id, true))
+        } else {
+          ships.appendChild(createShippingItem(item.name, item.price, item.description, item.icon, item.id, false))
+        }
+      })
+    }
+  } catch (e) {
+    throw new Error('failed to fetch', e);
   }
-
-
-  const economyItem = createShippingItem('Economy', 'estimated for 2 business days', 15, '../src/assets/chooseshipping/1.png');
-  const vipItem = createShippingItem('Vip', 'estimated for 2 business days', 20, '../src/assets/chooseshipping/1.png');
-
-
-  adds.appendChild(economyItem);
-  adds.appendChild(vipItem);
-
-
-  const applyButton = document.createElement('button');
-  applyButton.classList = 'absolute bottom-6 py-4 left-14 bg-slate-900 text-white w-80 rounded-3xl';
-  applyButton.textContent = 'Apply';
-
-
-  adds.appendChild(applyButton);
-
-
-  container.appendChild(top);
-  container.appendChild(adds);
-  prevIcon.addEventListener('click', () => {
-    router.navigate(routes.finalcheckout)
-  })
 }

@@ -4,6 +4,7 @@ const container = document.getElementById('app');
 
 
 export function firstPage() {
+  localStorage.removeItem('token');
   container.innerHTML = "";
   container.classList = 'flex flex-col items-center justify-center';
 
