@@ -84,7 +84,7 @@ export function authenticationPage() {
   container.appendChild(existingAccountLink);
 
   const rememberMeDiv = document.createElement('div');
-  rememberMeDiv.classList = 'mt-4';
+  rememberMeDiv.classList = 'mt-4 flex gap-x-2';
 
   const rememberMeCheckbox = document.createElement('input');
   rememberMeCheckbox.type = 'checkbox';

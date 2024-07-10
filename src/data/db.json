@@ -727,102 +727,91 @@
   ],
   "cart": [
     {
-      "id": 3,
-      "name": "Adidas Gazelle",
-      "price": 100,
+      "id": 15,
+      "name": "Puma Easy Rider",
+      "price": 90,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/puma/3.jpg",
+      "brand": "puma"
+    },
+    {
+      "id": 14,
+      "name": "Puma Suede",
+      "price": 110,
       "color": "blue",
       "hexCode": "bg-[#27aec7]",
-      "size": "41",
-      "quantity": 1,
-      "imgUrl": "../src/assets/reebok/1.png",
-      "brand": "adidas"
-    },
-    {
-      "id": 11,
-      "name": "Nike Hurachi",
-      "price": 99,
-      "color": "red",
-      "hexCode": "bg-[#c72800]",
-      "size": "41",
-      "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/4.jpg",
-      "brand": "nike"
-    },
-    {
-      "id": 31,
-      "name": "NewBalance 906",
-      "price": 130,
-      "color": "red",
-      "hexCode": "bg-[#c72800]",
       "size": "43",
       "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/1.jpg",
-      "brand": "newbalance"
+      "imgUrl": "../src/assets/puma/2.jpg",
+      "brand": "puma"
     }
   ],
   "checkout": [
     {
       "items": [
         {
-          "id": 3,
-          "name": "Adidas Gazelle",
-          "price": 100,
-          "color": "blue",
-          "hexCode": "bg-[#27aec7]",
-          "size": "41",
-          "quantity": 1,
-          "imgUrl": "../src/assets/reebok/1.png",
-          "brand": "adidas"
-        },
-        {
-          "id": 11,
-          "name": "Nike Hurachi",
-          "price": 99,
+          "id": 15,
+          "name": "Puma Easy Rider",
+          "price": 90,
           "color": "red",
           "hexCode": "bg-[#c72800]",
           "size": "41",
+          "quantity": 2,
+          "imgUrl": "../src/assets/puma/3.jpg",
+          "brand": "puma"
+        },
+        {
+          "id": 14,
+          "name": "Puma Suede",
+          "price": 110,
+          "color": "blue",
+          "hexCode": "bg-[#27aec7]",
+          "size": "43",
           "quantity": 1,
-          "imgUrl": "../src/assets/newbalance/4.jpg",
-          "brand": "nike"
+          "imgUrl": "../src/assets/puma/2.jpg",
+          "brand": "puma"
         }
       ],
       "ship": {
-        "name": "Cargo",
-        "price": 20,
-        "description": "Estimated Arrival. Dec 19-20",
-        "icon": "../src/assets/chooseshipping/3.png",
-        "id": 3
+        "name": "Regular",
+        "price": 15,
+        "description": "Estimated Arrival. Dec 20-22",
+        "icon": "../src/assets/chooseshipping/2.png",
+        "id": 2
       },
       "address": {
-        "name": "Apartment",
-        "address": "21833 Clyde Gallagher. PC 4662",
-        "id": 3
+        "name": "Offic",
+        "address": "6993 Meadow Valley Terra. PC 3637",
+        "id": 2
       },
       "id": 1
     }
   ],
   "active": [
     {
-      "id": 3,
-      "name": "Adidas Gazelle",
-      "price": 100,
-      "color": "blue",
-      "hexCode": "bg-[#27aec7]",
-      "size": "41",
-      "quantity": 1,
-      "imgUrl": "../src/assets/reebok/1.png",
-      "brand": "adidas"
-    },
-    {
-      "id": 11,
-      "name": "Nike Hurachi",
-      "price": 99,
+      "id": 15,
+      "name": "Puma Easy Rider",
+      "price": 90,
       "color": "red",
       "hexCode": "bg-[#c72800]",
       "size": "41",
+      "quantity": 2,
+      "imgUrl": "../src/assets/puma/3.jpg",
+      "brand": "puma"
+    },
+    {
+      "id": 14,
+      "name": "Puma Suede",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "bg-[#27aec7]",
+      "size": "43",
       "quantity": 1,
-      "imgUrl": "../src/assets/newbalance/4.jpg",
-      "brand": "nike"
+      "imgUrl": "../src/assets/puma/2.jpg",
+      "brand": "puma"
     }
   ],
   "completed": [
@@ -858,6 +847,17 @@
       "quantity": 2,
       "imgUrl": "../src/assets/reebok/1.png",
       "brand": "adidas"
+    },
+    {
+      "id": 11,
+      "name": "Nike Hurachi",
+      "price": 99,
+      "color": "red",
+      "hexCode": "bg-[#c72800]",
+      "size": "41",
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/4.jpg",
+      "brand": "nike"
     }
   ],
   "addresses": [
@@ -963,10 +963,10 @@
       "brand": "nike"
     },
     {
-      "id": 12,
-      "name": "Nike Fontanka",
-      "price": 90,
-      "rate": 3.9,
+      "id": 16,
+      "name": "Puma Lamelo",
+      "price": 125,
+      "rate": 4.3,
       "colors": {
         "blue": "#27aec7",
         "green": "#268801",
@@ -978,27 +978,8 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/newbalance/5.jpg",
-      "brand": "nike"
-    },
-    {
-      "id": 4,
-      "name": "Adidas Response",
-      "price": 110,
-      "rate": 3.9,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/reebok/4.png",
-      "brand": "adidas"
+      "imgUrl": "../src/assets/reebok/2.jpg",
+      "brand": "puma"
     }
   ]
 }

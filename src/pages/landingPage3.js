@@ -12,7 +12,7 @@ export function thirdLandingPage() {
 
   const paragraph = document.createElement('p');
   paragraph.classList = 'pt-8 text-2xl text-center font-bold';
-  paragraph.innerHTML = 'We provide high quality <br> products just for you';
+  paragraph.innerHTML = 'Let’s fulfill your fashion needs with 4Sneak right now!';
 
   const img2 = document.createElement('img');
   img2.classList = 'w-24 h-8 mt-2';
