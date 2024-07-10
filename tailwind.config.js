@@ -2,10 +2,11 @@
 export default {
   content: ['./*.html', './src/pages/**/*.js'],
   theme: {
-    fontFamily: {
-      poppins: ['"Poppins"', 'serif']
+    extend: {
+      fontFamily: {
+        sans: ['Roboto', 'ui-sans-serif', 'system-ui'],
+      },
     },
-    extend: {},
   },
   plugins: [
     require('tailwind-scrollbar-hide'),

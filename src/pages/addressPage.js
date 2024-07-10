@@ -88,7 +88,7 @@ async function fetchAddress() {
   const adds = document.getElementById('adds')
   const createItem = (type, address, id, isDefault) => {
     const item = document.createElement('div');
-    item.classList = 'flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center justify-between w-[375px]';
+    item.classList = "flex px-2 h-20 w-max py-2 rounded-2xl bg-white items-center w-[370px] justify-between";
     item.id = 'item';
 
     const locationIcon = document.createElement('img');

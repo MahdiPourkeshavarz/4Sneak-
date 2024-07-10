@@ -1,6 +1,6 @@
 import axios from "axios";
 import { router, routes } from "../../main";
-import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, isAuthenticated } from "../services/links";
+import { ADIDAS_PRO, CART_URL, NB_PRO, NIKE_PRO, PRODUCT_URL, PUMA_PRO, REEBOK_PRO, WISHLIST_URL, isAuthenticated } from "../services/links";
 import { updateBrandInfo } from "./brandPage";
 
 const container = document.getElementById('app');
@@ -98,6 +98,32 @@ export async function productPage() {
     productInfo.appendChild(likeIcon);
 
     container.appendChild(productInfo)
+    let flag = true;
+    likeIcon.addEventListener('click', async () => {
+      if (flag) {
+        likeIcon.src = '../src/assets/icons/heart_red.png'
+        flag = false;
+        try {
+          const response = await axios.post(WISHLIST_URL, data, {
+            headers: {
+              'Content-Type': 'application/json'
+            }
+          })
+        } catch (e) {
+          console.log('failed to fetch data to wishlist', e)
+        }
+      } else {
+        likeIcon.src = '../src/assets/icons/like.png';
+        flag = true;
+        try {
+          const response = await axios.delete(`${WISHLIST_URL}/${data.id}`)
+        } catch (e) {
+          console.log('failed to fetch data to wishlist', e)
+        }
+      }
+    })
+
+
 
     const soldRate = document.createElement('div');
     soldRate.classList = 'mt-6 px-6 flex gap-x-5 items-center';
@@ -474,7 +500,7 @@ export async function productPage() {
           }
         });
 
-        if (response.status === 200) {
+        if (response.data) {
           addToCartButton.textContent = "Added to Cart";
           addToCartButton.classList.remove('bg-slate-900');
           addToCartButton.classList.add('bg-blue-700');
