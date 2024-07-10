@@ -25,7 +25,7 @@ export function wishlistPage() {
   // Create the paragraph element
   const paragraph = document.createElement('p');
   paragraph.classList.add('font-semibold', 'text-3xl');
-  paragraph.textContent = 'Payment Method';
+  paragraph.textContent = 'Wishlist';
 
   // Append the image and paragraph to the parent div
   topDiv.appendChild(prevIcon);
@@ -55,14 +55,46 @@ export function wishlistPage() {
 
   container.appendChild(notFound);
 
+  const alert = document.createElement('div');
+  alert.id = 'alert-modal'
+  alert.classList = "hidden h-16 w-[380px] bg-blue-100 absolute bottom-28 left-6 rounded-2xl flex items-center gap-x-3 px-4 hover:bg-blue-300";
+
+  const closeButton = document.createElement('img');
+  closeButton.src = "../src/assets/icons/close.png";
+  closeButton.alt = "-";
+  alert.appendChild(closeButton);
+
+  const itemName = document.createElement('p');
+  itemName.id = 'name';
+  itemName.classList = "text-black text-lg font-semibold"
+  itemName.innerText = "Adidas Ultraboost removed from wishlist!"
+
+  alert.appendChild(itemName);
+
+  const redoButton = document.createElement('p');
+  redoButton.classList = "text-green-800 text-lg font-bold";
+  redoButton.innerText = "Redo";
+  redoButton.id = 'redo';
+
+  alert.appendChild(redoButton)
+
+
+  container.appendChild(alert);
+
   const itemsDiv = document.createElement('div');
   itemsDiv.classList = "grid grid-cols-2 px-4 gap-x-4 gap-y-8";
   itemsDiv.id = "items";
 
   container.appendChild(itemsDiv);
 
+
+
   prevIcon.addEventListener('click', () => {
     router.navigate(routes.profile)
+  })
+
+  closeButton.addEventListener('click', () => {
+    alert.classList.add('hidden');
   })
   fetchWishlistItems();
 }
@@ -85,7 +117,7 @@ async function fetchWishlistItems() {
     result.forEach((product) => {
       const item = document.createElement("div");
       item.classList = "flex flex-col";
-      item.id = "item";
+      item.id = `item-${product.name}`;
 
       // Create the image container
       const imageContainer = document.createElement("div");
@@ -152,15 +184,33 @@ async function fetchWishlistItems() {
 
       itemsContainer.appendChild(item);
 
-      starIcon.addEventListener('click', async () => {
-        try {
-          const response = await axios.delete(`${WISHLIST_URL}/${product.id}`);
-          if (response.data) {
-            fetchWishlistItems();
+      likeIcon.addEventListener('click', () => {
+        let flag = true;
+        item.classList.add('hidden');
+        const name = document.getElementById('name');
+        name.innerText = `${product.name} removed from wishlist!`;
+        const alert = document.getElementById('alert-modal');
+        alert.classList.remove('hidden');
+        document.getElementById('redo').addEventListener('click', () => {
+          flag = false;
+          alert.classList.add('hidden');
+          item.classList.remove('hidden');
+        })
+        setTimeout(async () => {
+          if (flag) {
+            alert.classList.add('hidden')
+            try {
+              const response = await axios.delete(`${WISHLIST_URL}/${product.id}`);
+              if (response.data) {
+                fetchWishlistItems();
+              }
+            } catch (e) {
+              console.log('failed to fetch from wishlist', e)
+            }
+          } else {
+            return;
           }
-        } catch (e) {
-          console.log('failed to fetch from wishlist', e)
-        }
+        }, 2000)
       })
     });
   }

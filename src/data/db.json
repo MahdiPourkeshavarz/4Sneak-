@@ -914,25 +914,6 @@
   ],
   "wishlist": [
     {
-      "id": 25,
-      "name": "Reebok Floatzig",
-      "price": 170,
-      "rate": 3.9,
-      "colors": {
-        "blue": "#27aec7",
-        "green": "#268801",
-        "red": "#c72800"
-      },
-      "sizes": [
-        41,
-        42,
-        43
-      ],
-      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/reebok/1.png",
-      "brand": "reebok"
-    },
-    {
       "id": 26,
       "name": "Reebok Classic",
       "price": 160,
@@ -971,10 +952,21 @@
       "brand": "reebok"
     },
     {
-      "id": 5,
-      "name": "Adidas Comfort",
-      "price": 99,
-      "rate": 3.6,
+      "id": 7,
+      "name": "Nike Pegasus",
+      "price": 110,
+      "color": "blue",
+      "hexCode": "#27aec7",
+      "size": 41,
+      "quantity": 1,
+      "imgUrl": "../src/assets/newbalance/1.jpg",
+      "brand": "nike"
+    },
+    {
+      "id": 12,
+      "name": "Nike Fontanka",
+      "price": 90,
+      "rate": 3.9,
       "colors": {
         "blue": "#27aec7",
         "green": "#268801",
@@ -986,7 +978,26 @@
         43
       ],
       "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
-      "imgUrl": "../src/assets/reebok/6.jpg",
+      "imgUrl": "../src/assets/newbalance/5.jpg",
+      "brand": "nike"
+    },
+    {
+      "id": 4,
+      "name": "Adidas Response",
+      "price": 110,
+      "rate": 3.9,
+      "colors": {
+        "blue": "#27aec7",
+        "green": "#268801",
+        "red": "#c72800"
+      },
+      "sizes": [
+        41,
+        42,
+        43
+      ],
+      "description": "Lorem, ipsum dolor sit amet consectetur adipisicing elit. In ipsam perferendis quasi consectetur totam reprehenderit!",
+      "imgUrl": "../src/assets/reebok/4.png",
       "brand": "adidas"
     }
   ]

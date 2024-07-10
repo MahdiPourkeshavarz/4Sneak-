@@ -1,6 +1,6 @@
 import axios from "axios";
 import { router, routes } from "../../main";
-import { PRODUCT_URL, isAuthenticated } from "../services/links";
+import { PRODUCT_URL, WISHLIST_URL, isAuthenticated } from "../services/links";
 import { updateProductInfo } from "./productPage";
 
 const container = document.getElementById('app');
@@ -226,6 +226,34 @@ export async function fetchProducts(input) {
       imageContainer.appendChild(likeIcon);
 
       item.appendChild(imageContainer);
+      let flag = true
+      likeIcon.addEventListener('click', async () => {
+        if (flag) {
+          likeIcon.src = '../src/assets/icons/heart_red.png';
+          try {
+            const reponse = await axios.post(WISHLIST_URL, product, {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            })
+            if (reponse.data) {
+              flag = false;
+            }
+          } catch (e) {
+            console.log('failed to fetch to wishlist', e);
+          }
+        } else {
+          likeIcon.src = '../src/assets/icons/like.png';
+          try {
+            const reponse = await axios.delete(`${WISHLIST_URL}/${product.id}`)
+            if (reponse.data) {
+              flag = true;
+            }
+          } catch (e) {
+            console.log('failed to fetch to wishlist', e);
+          }
+        }
+      })
 
       // Create the info section
       const info = document.createElement('div');
@@ -274,7 +302,7 @@ export async function fetchProducts(input) {
 
       itemsContainer.appendChild(item);
 
-      item.addEventListener('click', () => {
+      mainImage.addEventListener('click', () => {
         updateProductInfo(product.id, 'search');
         router.navigate(routes.product);
       })
